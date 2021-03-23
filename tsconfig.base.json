@@ -1,0 +1,25 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2017", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@tinkoff-shiva/core": ["libs/core/src/index.ts"],
+      "@tinkoff-shiva/angular": ["libs/angular/src/index.ts"],
+      "@tinkoff-shiva/angular/*": ["libs/angular/*"],
+      "@tinkoff-shiva/react": ["libs/react/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}

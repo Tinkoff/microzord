@@ -1,0 +1,47 @@
+{
+  "implicitDependencies": {
+    "angular.json": "*",
+    "package.json": {"dependencies": "*", "devDependencies": "*"},
+    "tsconfig.base.json": "*",
+    "tslint.json": "*",
+    ".eslintrc.json": "*",
+    "nx.json": "*"
+  },
+  "affected": {"defaultBase": "master"},
+  "npmScope": "tinkoff-shiva",
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "@nrwl/workspace/tasks-runners/default",
+      "options": {"cacheableOperations": ["build", "test", "lint", "e2e"]}
+    }
+  },
+  "projects": {
+    "ssr-article": {
+      "tags": []
+    },
+    "ssr-article-e2e": {
+      "tags": [],
+      "implicitDependencies": ["ssr-article"]
+    },
+    "core": {
+      "tags": []
+    },
+    "angular": {
+      "tags": []
+    },
+    "blog": {
+      "tags": []
+    },
+    "blog-e2e": {
+      "tags": [],
+      "implicitDependencies": ["blog"]
+    },
+    "rxnode-article": {
+      "tags": []
+    },
+    "rxnode-article-e2e": {
+      "tags": [],
+      "implicitDependencies": ["rxnode-article"]
+    }
+  }
+}

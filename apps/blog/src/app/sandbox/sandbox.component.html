@@ -1,0 +1,19 @@
+<div class="max-w-7xl flex mr-auto ml-auto pt-4 pb-4">
+  <button class="mr-2.5 bg-blue-800" (click)="appName$.next('ssr-article')">
+    Run Angular app
+  </button>
+  <button class="mr-2.5 bg-blue-800" (click)="loadApp('ssr-article')">
+    Load Angular app
+  </button>
+  <button class="mr-2.5 bg-green-900" (click)="appName$.next('rxnode-article')">
+    Run React app
+  </button>
+  <button class="mr-2.5 bg-green-900" (click)="loadApp('rxnode-article')">
+    Load React app
+  </button>
+  <button class="mr-2.5 bg-red-900" (click)="appName$.next(null)">Destroy app</button>
+</div>
+
+<div class="max-w-3xl prose lg:prose-xl mr-auto ml-auto mt-20">
+  <shiva-app [name]="appName$ | async"></shiva-app>
+</div>

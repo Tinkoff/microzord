@@ -1,0 +1,441 @@
+<section>
+  <h1 class="">Angular Universal: real app problems</h1>
+  <img
+    class="w-full"
+    src="https://miro.medium.com/max/1400/1*3xXf2NQ7z5qY_t86qJ2nLQ.png"
+    width="700"
+    role="presentation"
+  />
+
+  <p>
+    <strong>Angular Universal</strong> is an open-source project that extends the
+    functionality of <code>@angular/platform-server</code>. The project makes server-side
+    rendering possible in Angular.
+  </p>
+
+  <p>Angular Universal supports multiple backends:</p>
+
+  <ol>
+    <li>
+      <a
+        href="https://github.com/angular/universal/blob/master/modules/express-engine/README.md"
+        >Express</a
+      >
+    </li>
+    <li>
+      <a
+        href="https://github.com/angular/universal/blob/master/modules/aspnetcore-engine/README.md"
+        >ASP.NET Core</a
+      >
+    </li>
+    <li>
+      <a
+        href="https://github.com/angular/universal/blob/master/modules/hapi-engine/README.md"
+        >hapi</a
+      >
+    </li>
+  </ol>
+
+  <p>
+    Another package
+    <a href="https://github.com/angular/universal/tree/master/modules/socket-engine"
+      >Socket Engine</a
+    >
+    is a framework-agnostic that theoretically allows any backend to be connected to an
+    SSR-server.
+  </p>
+
+  <p>
+    This article will discuss the issues and possible solutions we encountered while
+    developing a real application with Angular Universal and Express.
+  </p>
+
+  <hr />
+
+  <h1>How Angular Universal Works</h1>
+
+  <p>
+    For rendering on the server, Angular uses the DOM implementation for node.js —
+    <a href="https://www.npmjs.com/package/domino">domino</a>. For each GET request,
+    <code>domino</code> creates a similar Browser Document object. In that object context,
+    Angular initializes the application.
+  </p>
+
+  <p>
+    The app makes requests to the backend, performs various asynchronous tasks, and
+    applies any change detection from components to the DOM while still running inside
+    node.js environment. The render engine then serializes DOM into a string and serves up
+    the string to the server. The server sends this HTML as a response to the GET request.
+    Angular application on the server is destroyed after rendering.
+  </p>
+
+  <hr />
+
+  <h1>SSR issues in Angular</h1>
+
+  <h2>1. Infinite page loading</h2>
+
+  <h3>Situation</h3>
+
+  <p>
+    The user opens a page on your site and sees a white screen. In other words, the time
+    until the first byte takes too long. The browser wants to receive a response from the
+    server, but the request ends up with a timeout.
+  </p>
+
+  <h3>Why is this happening</h3>
+
+  <p>
+    Most likely, the problem lies in the Angular-specific SSR mechanism. Before we
+    understand at what point the page is rendered, let&#39;s define Zone.js and
+    ApplicationRef.
+  </p>
+
+  <p>
+    <a
+      href="https://indepth.dev/posts/1059/do-you-still-think-that-ngzone-zone-js-is-required-for-change-detection-in-angular"
+      ><strong>Zone.js</strong></a
+    >
+    is a tool that allows you to track asynchronous operations. With its help, Angular
+    creates its zone and launches the application in it. At the end of each asynchronous
+    operation in the Angular zone, change detection is triggered.
+  </p>
+
+  <p>
+    <strong>ApplicationRef</strong> is a reference to the running application (<a
+      href="https://angular.io/api/core/ApplicationRef"
+      >docs</a
+    >). Of all this class&#39;s functionality, we are interested in the
+    <a href="https://angular.io/api/core/ApplicationRef#isStable"
+      >ApplicationRef#isStable</a
+    >
+    property. It is an Observable that emits a boolean. isStable is true when no
+    asynchronous tasks are running in the Angular zone and false when there are any.
+  </p>
+
+  <p>
+    <strong
+      >So, application stability is the state of the application, which depends on the
+      presence of asynchronous tasks in the Angular zone.</strong
+    >
+  </p>
+
+  <p>
+    So, at the moment of
+    <a
+      href="https://github.com/angular/angular/blob/11.1.x/packages/platform-server/src/utils.ts#L43"
+      >the first onset of stability</a
+    >, Angular
+    <a
+      href="https://github.com/angular/angular/blob/11.1.x/packages/platform-server/src/utils.ts#L69"
+      >renders the current state</a
+    >
+    applications and
+    <a
+      href="https://github.com/angular/angular/blob/11.1.x/packages/platform-server/src/utils.ts#L70"
+      >destroys the platform</a
+    >. And the platform will destroy the application.
+  </p>
+
+  <p>
+    Now цe can assume that the user is trying to open an application that cannot achieve
+    stability. setInterval, rxjs.interval or any other recursive asynchronous operation
+    running in the Angular zone will make stability impossible. HTTP requests also affect
+    stability. The lingering request on the server delays the moment the page is rendered.
+  </p>
+
+  <h3>Possible Solution</h3>
+
+  <p>
+    To avoid the situation with long requests, use the timeout operator from rxjs library:
+  </p>
+
+  <p>
+    The operator will throw an exception after a specified if no server response is
+    received.
+  </p>
+
+  <p>This approach has 2 cons:</p>
+
+  <ul>
+    <li>There is no convenient division of logic by platform.</li>
+    <li>The timeout operator must be written manually for each request.</li>
+  </ul>
+
+  <p>
+    As a more straightforward solution, you can use the NgxSsrTimeoutModule module from
+    the
+    <a href="https://github.com/IKatsuba/ngx-ssr">@ngx-ssr/timeout</a>
+    package. Import the module with the timeout value into the root module of the
+    application. If the module is imported into AppServerModule, then HTTP request
+    timeouts will only work for the server.
+  </p>
+
+  <p>
+    Use the <a href="https://angular.io/api/core/NgZone">NgZone</a> service to take
+    asynchronous operations out of the Angular zone.
+  </p>
+
+  <p>
+    To solve this problem, you can use the
+    <a
+      href="https://github.com/TinkoffCreditSystems/taiga-ui/blob/main/projects/cdk/observables/zone-free.ts#L30"
+      >tuiZonefree</a
+    >
+    from the <code>@taiga-ui/cdk</code>:
+  </p>
+
+  <p>
+    But there is a nuance. Any task must be interrupted when the application is destroyed.
+    Otherwise, you can catch a memory leak (see issue #5). You also need to understand
+    that tasks that are removed from the zone will not trigger change detection.
+  </p>
+
+  <h2>2. Lack of cache out of the box</h2>
+
+  <h3>Situation</h3>
+
+  <p>
+    The user loads the home page of the site. The server requests data for the master and
+    renders it, spending 2 seconds on it. Then the user goes from the main to the child
+    section. Then it tries to go back and waits for the same 2 seconds as the first time.
+  </p>
+
+  <p>
+    If we assume that the data on which the main render depends has not changed, it turns
+    out that HTML with this set has already been rendered. And in theory, we can reuse the
+    HTML we got earlier.
+  </p>
+
+  <h3>Possible Solution</h3>
+
+  <p>
+    Various caching techniques come to the rescue. We&#39;ll cover two: in-memory cache
+    and HTTP cache.
+  </p>
+
+  <p>
+    <strong>HTTP cache.</strong> When using a network cache, it&#39;s all about setting
+    the correct response headers on the server. They specify the cache lifetime and
+    caching policy:
+  </p>
+
+  <p>
+    This option is suitable for an unauthorized zone and in the presence of long
+    unchanging data.
+  </p>
+
+  <p>
+    You can read more about the HTTP cache
+    <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Caching">here</a>
+  </p>
+
+  <p>
+    <strong>In-memory cache.</strong> The in-memory cache can be used for both rendered
+    pages and API requests within the application itself. Both possibilities are package
+    <code>@ngx-ssr/cache</code>.
+  </p>
+
+  <p>
+    Add the NgxSsrCacheModule module to the AppModule to cache API requests and on the
+    server in the browser.
+  </p>
+
+  <p>
+    The <code>maxSize</code> property is responsible for the maximum cache size. A value
+    of 50 means that the cache will contain more than 50 of the last GET requests made
+    from the application.
+  </p>
+
+  <p>
+    The <code>maxAge</code> property is responsible for the cache lifetime. Specified in
+    milliseconds.
+  </p>
+
+  <p>You can go ahead and cache the HTML itself.</p>
+
+  <p>
+    For example, everything in the same package
+    <code>@ngx-ssr/cache</code> has a submodule <code>@ngx-ssr/cache/express</code>. It
+    imports a single <code>withCache</code> function. The function is a wrapper over the
+    render engine.
+  </p>
+
+  <h2>3. Server errors of type ReferenceError: localStorage is not defined</h2>
+
+  <h3>Situation</h3>
+
+  <p>
+    The developer calls localStorage right in the body of the service. It retrieves data
+    from the local storage by key. But on the server, this code crashes with an error:
+    ReferenceError: localStorage is undefined.
+  </p>
+
+  <h3>Why is this happening</h3>
+
+  <p>
+    When running an Angular application on a server, the standard browser API is missing
+    from the global space. For example, there&#39;s no global object
+    <code>document</code> like you&#39;d expect in a browser environment. To get the
+    reference to the document, you must use the DOCUMENT token and DI.
+  </p>
+
+  <h3>Possible Solution</h3>
+
+  <p>
+    Don&#39;t use the browser API through the global space. There is DI for this. Through
+    DI, you can replace or disable browser implementations for their safe use on the
+    server.
+  </p>
+
+  <p>
+    The <a href="https://ng-web-apis.github.io/">Web API for Angular</a> can be used to
+    resolve this issue.
+  </p>
+
+  <p>For example:</p>
+
+  <p>
+    The example above uses the <code>LOCAL_STORAGE</code> token from the
+    <a href="https://github.com/ng-web-apis/common#tokens">@ng-web-apis/common</a>
+    package. But when we run this code on the server, we will get an error from the
+    description. Just add <code>UNIVERSAL_LOCAL_STORAGE</code> from the package
+    <a href="https://github.com/ng-web-apis/universal">@ng-web-apis/universal</a>
+    in the providers <code>AppServerModule</code>, and by the token
+    <code>LOCAL_STORAGE</code>, you will receive an implementation of localStorage for the
+    server.
+  </p>
+
+  <h2>4. Inconvenient separation of logic</h2>
+
+  <h3>Situation</h3>
+
+  <p>
+    If you need to render the block only in the browser, you need to write approximately
+    the following code:
+  </p>
+
+  <p>
+    The component needs to get the <code>PLATFORM_ID</code>, target platform, and
+    understand the class&#39;s public property. This property will be used in the template
+    in conjunction with the <code>ngIf</code> directive.
+  </p>
+
+  <h3>Possible Solution</h3>
+
+  <p>
+    With the help of structural directives and DI, the above mechanism can be greatly
+    simplified.
+  </p>
+
+  <p>First, let&#39;s wrap the server definition in a token.</p>
+
+  <p>
+    Create a structured directive using the
+    <code>IS_SERVER_PLATFORM</code> token with one simple target: render the component
+    only on the server.
+  </p>
+
+  <p>The code looks similar to the <code>IfIsBowser</code> directive.</p>
+
+  <p>Now let&#39;s refactor the component:</p>
+
+  <p>
+    Extra properties have been removed from the component. The component template is now a
+    bit simpler.
+  </p>
+
+  <p>Such directives declaratively hide and show content depending on the platform.</p>
+
+  <p>
+    We have collected the tokens and directives in the package
+    <code>@ngx-ssr/platform</code>.
+  </p>
+
+  <h2>5. Memory Leak</h2>
+
+  <h3>Situation</h3>
+
+  <p>At initialization, the service starts an interval and performs some actions.</p>
+
+  <p>
+    This code does not affect the application&#39;s stability, but the callback passed to
+    subscribe will continue to be called if the application is destroyed on the server.
+    Each launch of the application on the server will leave behind an artifact in the form
+    of an interval. And this is a potential memory leak.
+  </p>
+
+  <h3>Possible Solution</h3>
+
+  <p>
+    In our case, the problem is solved by using the ngOnDestoroy hook. It works for both
+    components and services. We need to save the subscription and terminate it when the
+    service is destructed. There are many techniques for unsubscribing, but here is just
+    one:
+  </p>
+
+  <h2>6. Lack of rehydration</h2>
+
+  <h3>Situation</h3>
+
+  <p>
+    The user&#39;s browser displays a page received from the server, a white screen
+    flickers for a moment, and the application starts functioning and looks normal.
+  </p>
+
+  <h3>Why is this happening</h3>
+
+  <p>
+    Angular does not know how to reuse what it has rendered on the server. It strips all
+    the HTML from the root element and starts painting all over again.
+  </p>
+
+  <h3>Possible Solution</h3>
+
+  <p>
+    It still doesn&#39;t exist. But there is hope that there will be a solution. Angular
+    Universal&#39;s roadmap has a clause: &quot;Full client rehydration strategy that
+    reuses DOM elements/CSS rendered on the server&quot;.
+  </p>
+
+  <h2>7. Inability to abort rendering</h2>
+
+  <h3>Situation</h3>
+
+  <p>
+    We are catching a critical error. Rendering and waiting for stability are meaningless.
+    You need to interrupt the process and give the client the default index.html.
+  </p>
+
+  <h3>Why is this happening</h3>
+
+  <p>
+    Let&#39;s go back to
+    <a
+      href="https://github.com/angular/angular/blob/11.1.x/packages/platform-server/src/utils.ts#L43"
+      >the moment of rendering the application</a
+    >. It occurs when the application becomes stable. We can make our application stable
+    faster using the solution from problem #1. But what if we want to abort the rendering
+    process on the first caught error? What if we want to set a time limit on trying to
+    render an application?
+  </p>
+
+  <h3>Possible Solution</h3>
+
+  <p>There is no solution to this problem now.</p>
+
+  <h1>Summary</h1>
+
+  <p>
+    Angular Universal is the only supported and most widely used solution for rendering
+    Angular applications on the server. The difficulty of integrating into an existing
+    application depends largely on the developer.
+  </p>
+
+  <p>
+    There are still unresolved issues that don&#39;t allow me to classify Angular
+    Universal as a production-ready solution. It is suitable for landing pages and static
+    pages, but on complex applications, you can collect many problems, the solution of
+    which will break in the blink of the page due to the lack of rehydration.
+  </p>
+</section>
