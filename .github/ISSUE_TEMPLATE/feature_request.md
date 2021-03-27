@@ -11,7 +11,7 @@ assignees: IKatsuba, MarsiBarsi
 ### Is your feature request related to a problem?
 
 <!-- A clear and concise description of what the problem is. Ex. -->
-<!-- ✍️edit: --> I'm always frustrated when...
+<!-- ✍️edit: -->
 
 ### Describe the solution you'd like
 
@@ -24,11 +24,6 @@ assignees: IKatsuba, MarsiBarsi
 <!-- ✍️edit: -->
 
 ### Additional context
-
-<!--
-    You can also provide any StackBlitz samples with our starter:
-    https://stackblitz.com/edit/taiga-starter?file=src%2Fapp%2Fapp.component.html
--->
 
 <!-- Add any other context or screenshots about the feature request here -->
 <!-- ✍️edit: -->
