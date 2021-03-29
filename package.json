@@ -12,9 +12,9 @@
     "routing",
     "microservices"
   ],
-  "authors": ["Igor Katsuba <i.katsuba@tinkoff.ru>", "Roman Sedov <79601794011@ya.ru>"],
+  "authors": ["Igor Katsuba <katsuba.igor@gmail.ru>", "Roman Sedov <79601794011@ya.ru>"],
   "contributors": [
-    "Igor Katsuba <i.katsuba@tinkoff.ru>",
+    "Igor Katsuba <katsuba.igor@gmail.ru>",
     "Roman Sedov <79601794011@ya.ru>"
   ],
   "repository": "https://github.com/TinkoffCreditSystems/shiva",
@@ -80,7 +80,7 @@
     "@babel/preset-env": "7.9.6",
     "@babel/preset-react": "7.9.4",
     "@babel/preset-typescript": "7.9.0",
-    "@ng-builders/semrel": "1.2.0",
+    "@ng-builders/semrel": "1.3.0-beta.1",
     "@nrwl/cli": "11.5.1",
     "@nrwl/cypress": "11.5.1",
     "@nrwl/eslint-plugin-nx": "11.5.1",
