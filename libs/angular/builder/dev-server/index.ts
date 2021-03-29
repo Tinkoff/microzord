@@ -3,11 +3,11 @@ import {JsonObject} from '@angular-devkit/core';
 import {executeDevServerBuilder} from '@angular-devkit/build-angular';
 import {Configuration} from 'webpack';
 import {Observable} from 'rxjs';
-import {WebpackShivaBuilderPlugin} from './webpack-shiva-builder-plugin';
 import {
   DevServerBuilderOptions,
   DevServerBuilderOutput,
 } from '@angular-devkit/build-angular/src/dev-server';
+import {ShivaWebpackPlugin} from '@tinkoff-shiva/webpack-plugin';
 
 export const buildShiva = createBuilder(
   (
@@ -16,7 +16,7 @@ export const buildShiva = createBuilder(
   ): Observable<DevServerBuilderOutput> => {
     return executeDevServerBuilder(options, context, {
       webpackConfiguration(input: Configuration) {
-        input.plugins.push(new WebpackShivaBuilderPlugin());
+        input.plugins.push(new ShivaWebpackPlugin());
 
         input.output.jsonpFunction = Math.random().toString();
 

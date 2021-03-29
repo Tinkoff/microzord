@@ -8,5 +8,6 @@
   ],
   "lib": {
     "entryFile": "src/index.ts"
-  }
+  },
+  "allowedNonPeerDependencies": ["@tinkoff-shiva/webpack-plugin"]
 }

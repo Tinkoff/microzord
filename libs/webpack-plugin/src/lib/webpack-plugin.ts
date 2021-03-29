@@ -2,7 +2,7 @@ import {Plugin, Compiler} from 'webpack';
 import {RawSource} from 'webpack-sources';
 import {join, parse} from 'path';
 
-export class WebpackShivaBuilderPlugin implements Plugin {
+export class ShivaWebpackPlugin implements Plugin {
   apply(compiler: Compiler) {
     compiler.hooks.emit.tap('HtmlWebpackPlugin', compilation => {
       compilation.fileDependencies.add('some-file.js');

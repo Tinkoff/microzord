@@ -16,32 +16,14 @@
     }
   },
   "projects": {
-    "ssr-article": {
-      "tags": []
-    },
-    "ssr-article-e2e": {
-      "tags": [],
-      "implicitDependencies": ["ssr-article"]
-    },
-    "core": {
-      "tags": []
-    },
-    "angular": {
-      "tags": []
-    },
-    "blog": {
-      "tags": []
-    },
-    "blog-e2e": {
-      "tags": [],
-      "implicitDependencies": ["blog"]
-    },
-    "rxnode-article": {
-      "tags": []
-    },
-    "rxnode-article-e2e": {
-      "tags": [],
-      "implicitDependencies": ["rxnode-article"]
-    }
+    "ssr-article": {"tags": []},
+    "ssr-article-e2e": {"tags": [], "implicitDependencies": ["ssr-article"]},
+    "core": {"tags": []},
+    "angular": {"tags": []},
+    "blog": {"tags": []},
+    "blog-e2e": {"tags": [], "implicitDependencies": ["blog"]},
+    "rxnode-article": {"tags": []},
+    "rxnode-article-e2e": {"tags": [], "implicitDependencies": ["rxnode-article"]},
+    "webpack-plugin": {"tags": []}
   }
 }
