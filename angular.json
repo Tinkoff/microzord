@@ -194,10 +194,23 @@
         "release": {
           "builder": "@ng-builders/semrel:release",
           "options": {
-            "gitlab": true,
             "npm": {
               "pkgRoot": "dist/libs/core"
-            }
+            },
+            "branches": [
+              "+([0-9])?(.{+([0-9]),x}).x",
+              "main",
+              "next",
+              "next-major",
+              {
+                "name": "beta",
+                "prerelease": true
+              },
+              {
+                "name": "alpha",
+                "prerelease": true
+              }
+            ]
           }
         }
       }
@@ -232,6 +245,28 @@
           "options": {
             "jestConfig": "libs/angular/jest.config.js",
             "passWithNoTests": true
+          }
+        },
+        "release": {
+          "builder": "@ng-builders/semrel:release",
+          "options": {
+            "npm": {
+              "pkgRoot": "dist/libs/angular"
+            },
+            "branches": [
+              "+([0-9])?(.{+([0-9]),x}).x",
+              "main",
+              "next",
+              "next-major",
+              {
+                "name": "beta",
+                "prerelease": true
+              },
+              {
+                "name": "alpha",
+                "prerelease": true
+              }
+            ]
           }
         }
       }
@@ -443,6 +478,38 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["apps/rxnode-article-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    },
+    "webpack-plugin": {
+      "root": "libs/webpack-plugin",
+      "sourceRoot": "libs/webpack-plugin/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/webpack-plugin/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/webpack-plugin"],
+          "options": {
+            "jestConfig": "libs/webpack-plugin/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "build": {
+          "builder": "@nrwl/node:package",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/libs/webpack-plugin",
+            "tsConfig": "libs/webpack-plugin/tsconfig.lib.json",
+            "packageJson": "libs/webpack-plugin/package.json",
+            "main": "libs/webpack-plugin/src/index.ts",
+            "assets": ["libs/webpack-plugin/*.md"]
           }
         }
       }

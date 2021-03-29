@@ -1,0 +1,1 @@
+# @tinkoff-shiva/webpack-plugin

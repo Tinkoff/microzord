@@ -5,5 +5,6 @@ module.exports = {
     '<rootDir>/libs/angular',
     '<rootDir>/apps/blog',
     '<rootDir>/apps/rxnode-article',
+    '<rootDir>/libs/webpack-plugin',
   ],
 };
