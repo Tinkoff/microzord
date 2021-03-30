@@ -1,5 +1,5 @@
-import {Observable} from 'rxjs';
-import {map, tap} from 'rxjs/operators';
+import {defer, Observable} from 'rxjs';
+import {map, mapTo, switchMap, tap} from 'rxjs/operators';
 import {Application} from '../models/application';
 import {appOptionsRegistry, bootstrappedAppRegistry} from '../registry';
 import {loadAppConstructor} from './load-app-constructor';
@@ -14,8 +14,8 @@ export function bootstrapApp<T = void>(
       AppConstructor =>
         new AppConstructor(appName, appOptionsRegistry.get(appName)?.props),
     ),
+    switchMap(app => defer(() => app.bootstrap(selector, props)).pipe(mapTo(app))),
     tap(app => {
-      app.bootstrap(selector, props);
       bootstrappedAppRegistry.set(appName, app);
     }),
   );

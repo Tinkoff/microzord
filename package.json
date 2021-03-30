@@ -93,8 +93,6 @@
     "@nrwl/workspace": "11.5.1",
     "@tailwindcss/typography": "^0.4.0",
     "@testing-library/react": "11.1.2",
-    "@tinkoff/eslint-config": "^1.0.0-rc.9",
-    "@tinkoff/eslint-config-angular": "^1.0.0-rc.9",
     "@tinkoff/linters": "^0.6.0",
     "@types/jest": "26.0.8",
     "@types/node": "12.12.38",
@@ -132,11 +130,6 @@
     }
   },
   "lint-staged": {
-    "*.{js,ts,html,md,less,json}": [
-      "prettier --write",
-      "nx workspace-lint --fix",
-      "git add"
-    ],
-    "*.ts": "tslint --fix"
+    "*.{js,jsx,ts,tsx,html,md,less,scss,json}": ["npm run format:write", "git add"]
   }
 }

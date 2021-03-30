@@ -30,7 +30,7 @@ export class ShivaHostModule {
     @Inject(DOCUMENT) doc: any,
     http: HttpClient,
   ) {
-    const document: Document = (this.document = doc);
+    this.document = doc;
 
     allApps.forEach(apps =>
       apps
@@ -55,7 +55,7 @@ export class ShivaHostModule {
                 }),
                 ignoreElements(),
               ),
-              fromEvent(document, 'loadApp').pipe(
+              fromEvent(this.document, 'loadApp').pipe(
                 map(
                   (
                     event: CustomEvent<{

@@ -9,10 +9,8 @@ import {
   PlatformRef,
   Type,
 } from '@angular/core';
-import {defer, Observable, of} from 'rxjs';
 import {Application, ApplicationConstructor} from '@tinkoff-shiva/core';
 import {Router} from '@angular/router';
-import {mapTo} from 'rxjs/operators';
 import {DOCUMENT} from '@angular/common';
 
 export const APP_NAME = new InjectionToken<string>('App name');
@@ -39,7 +37,7 @@ function createAppFactory<M>(
       }
     }
 
-    bootstrap(container: string | Element, _props?: void) {
+    async bootstrap(container: string | Element, _props?: void): Promise<void> {
       container =
         typeof container === 'string' ? document.querySelector(container) : container;
 
@@ -47,28 +45,26 @@ function createAppFactory<M>(
 
       container.appendChild(rootElement);
 
-      bootstrapFn()
-        .then(ngModule => {
-          this.ngModule = ngModule;
-          this.router = ngModule.injector.get(Router, null, InjectFlags.Optional);
+      try {
+        this.ngModule = await bootstrapFn();
+        this.router = this.ngModule.injector.get(Router, null, InjectFlags.Optional);
 
-          super.bootstrap(container, _props);
-          return ngModule;
-        })
-        .then(resolve, reject);
-    }
-
-    navigate(url: string, props: unknown | undefined): Observable<void> {
-      if (this.router) {
-        return defer(() => this.router.navigateByUrl(url)).pipe(mapTo(undefined));
+        await super.bootstrap(container, _props);
+        resolve(this.ngModule);
+      } catch (e) {
+        reject(e);
+        throw e;
       }
-
-      return of(undefined);
     }
 
-    //
-    send(msg: string | MessageEvent): Observable<void> {
-      return undefined;
+    async navigate(url: string, props: unknown | undefined): Promise<void> {
+      if (this.router) {
+        await this.router.navigateByUrl(url);
+      }
+    }
+
+    async send(msg: string | MessageEvent): Promise<void> {
+      //
     }
   }
 
@@ -97,8 +93,6 @@ export class ShivaPlatformRef extends PlatformRef {
     const bootstrapFn = () => super.bootstrapModule(moduleType, compilerOptions);
 
     return new Promise((resolve, reject) => {
-      // todo: тут нужно выкидывать event с конструктором,
-      // а не создавать инстанс и бутстрапить
       const AppConstructor = createAppFactory(
         bootstrapFn,
         this.rootSelector,

@@ -1,5 +1,4 @@
 {
-  "extends": ["@tinkoff/eslint-config/app", "@tinkoff/eslint-config-angular"],
   "root": true,
   "ignorePatterns": ["**/*"],
   "plugins": ["@nrwl/nx"],

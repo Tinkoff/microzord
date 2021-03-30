@@ -5,7 +5,14 @@ import {Schema as BrowserBuilderSchema} from '@angular-devkit/build-angular/src/
 import {Configuration} from 'webpack';
 import {BrowserBuilderOutput} from '@angular-devkit/build-angular';
 import {Observable} from 'rxjs';
-import {ShivaWebpackPlugin} from '@tinkoff-shiva/webpack-plugin';
+
+// хак для локальной разработки
+let Plugin;
+try {
+  Plugin = require('@tinkoff-shiva/webpack-plugin').ShivaWebpackPlugin;
+} catch (e) {
+  Plugin = require('../../webpack-plugin').ShivaWebpackPlugin;
+}
 
 export const buildShiva = createBuilder(
   (
@@ -14,7 +21,7 @@ export const buildShiva = createBuilder(
   ): Observable<BrowserBuilderOutput> => {
     return executeBrowserBuilder(options, context, {
       webpackConfiguration(input: Configuration) {
-        input.plugins.push(new ShivaWebpackPlugin());
+        input.plugins.push(new Plugin());
 
         input.output.jsonpFunction = Math.random().toString();
 
