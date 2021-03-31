@@ -1,24 +1,24 @@
-export class Event {
+import {Application} from './application';
+
+export class ShivaEvent {
+  target: Application<any>;
   constructor(public readonly type: string) {}
 }
 
-// todo: подумать над ивентами жизненного цикла
-export class LifecycleEvent extends Event {
-  constructor() {
-    super('LifecycleEvent');
-  }
-}
-
 // todo: подумать над сообщениями
-export class MessageEvent extends Event {
-  constructor() {
-    super('MessageEvent');
+export class ShivaMessageEvent extends ShivaEvent {
+  static isMessageEvent(event: ShivaEvent): event is ShivaMessageEvent {
+    return (
+      event && event.constructor && event.constructor.name === ShivaMessageEvent.name
+    );
   }
 }
 
 // todo: подумать над ивентами роутинга
-export class NavigationEvent extends Event {
-  constructor() {
-    super('NavigationEvent');
+export class ShivaNavigationEvent extends ShivaEvent {
+  static isNavigationEvent(event: ShivaEvent): event is ShivaNavigationEvent {
+    return (
+      event && event.constructor && event.constructor.name === ShivaNavigationEvent.name
+    );
   }
 }

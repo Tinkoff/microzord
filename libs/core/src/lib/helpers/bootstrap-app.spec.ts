@@ -1,14 +1,14 @@
 import {registerApp} from './register-app';
-import {bootstrapApp, loadAppConstructor, RegistrationOptions} from '@tinkoff-shiva/core';
 import {
-  appOptionsRegistry,
-  bootstrappedAppRegistry,
-  loadedAppRegistry,
-} from '../registry';
+  Application,
+  bootstrapApp,
+  loadAppConstructor,
+  RegistrationOptions,
+} from '@tinkoff-shiva/core';
+import {appOptionsRegistry, loadedAppRegistry} from '../registry';
 import {ApplicationMock} from '../../__mocks_/application.mock';
 
 function clearRegistry() {
-  bootstrappedAppRegistry.clear();
   loadedAppRegistry.clear();
   appOptionsRegistry.clear();
 }
@@ -46,9 +46,9 @@ describe('bootstrapApp', () => {
     it('should bootstrap an app', async () => {
       expect.assertions(1);
 
-      await bootstrapApp('appMock', '#container').toPromise();
+      const app = await bootstrapApp('appMock', '#container').toPromise();
 
-      expect(bootstrappedAppRegistry.get('appMock')).toBeInstanceOf(ApplicationMock);
+      expect(app).toBeInstanceOf(ApplicationMock);
     });
   });
 
@@ -64,9 +64,9 @@ describe('bootstrapApp', () => {
     it('should bootstrap an app', async () => {
       expect.assertions(1);
 
-      await bootstrapApp('appMock', '#container').toPromise();
+      const app = await bootstrapApp('appMock', '#container').toPromise();
 
-      expect(bootstrappedAppRegistry.get('appMock')).toBeInstanceOf(ApplicationMock);
+      expect(app).toBeInstanceOf(Application);
     });
   });
 

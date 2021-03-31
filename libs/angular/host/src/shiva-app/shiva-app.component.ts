@@ -8,11 +8,9 @@ import {
   OnDestroy,
   Output,
 } from '@angular/core';
-import {bootstrapApp, destroyApp, replaceApps} from '@tinkoff-shiva/core';
-
-/**
- * todo: не забыть все это пустить мимо зоны
- */
+import {Application, bootstrapApp} from '@tinkoff-shiva/core';
+import {Observable, of, Subject} from 'rxjs';
+import {distinctUntilChanged, shareReplay, switchMap, takeUntil} from 'rxjs/operators';
 
 @Component({
   selector: 'shiva-app',
@@ -20,45 +18,58 @@ import {bootstrapApp, destroyApp, replaceApps} from '@tinkoff-shiva/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ShivaAppComponent implements OnDestroy {
-  /**
-   * Hooks
-   *
-   * todo: Lifecycle event single output or bootstrap, destroy, init, etc
-   */
   @Output()
-  bootstrap = new EventEmitter();
+  hook = new EventEmitter();
 
-  constructor(private elementRef: ElementRef, private ngZone: NgZone) {}
+  @Output()
+  application = new EventEmitter<Application<any>>();
 
-  private _name: string;
+  private destroy$ = new Subject<string>();
+  private name$ = new Subject<string>();
 
-  // имя приложения
-  @Input() set name(appName: string) {
-    if (this._name === appName) {
-      return;
-    }
+  constructor(private elementRef: ElementRef, private ngZone: NgZone) {
+    this.name$
+      .pipe(
+        distinctUntilChanged(),
+        switchMap(name =>
+          name
+            ? bootstrapApp(name, this.elementRef.nativeElement).pipe(
+                switchMap(app => {
+                  const unsubscribe = app.onHook(event => {
+                    ngZone.run(() => this.hook.next(event));
+                  });
 
-    this.ngZone.runOutsideAngular(() => {
-      if (appName) {
-        if (!this._name) {
-          bootstrapApp(appName, this.elementRef.nativeElement).subscribe();
-        } else {
-          replaceApps(this._name, appName).subscribe();
-        }
-      } else {
-        if (this._name) {
-          destroyApp(this._name).subscribe();
-        }
-      }
-    });
-    this._name = appName;
+                  return new Observable<Application<any>>(subscriber => {
+                    subscriber.next(app);
+
+                    return () => {
+                      unsubscribe();
+                      app.destroy();
+                      subscriber.unsubscribe();
+                    };
+                  });
+                }),
+              )
+            : of(null),
+        ),
+        shareReplay(1),
+        takeUntil(this.destroy$),
+      )
+      .subscribe(app => {
+        NgZone.assertNotInAngularZone();
+
+        this.application.next(app);
+      });
+
+    this.name = null;
   }
 
-  ngOnInit(): void {}
+  @Input() set name(appName: string) {
+    this.ngZone.runOutsideAngular(() => this.name$.next(appName));
+  }
 
   ngOnDestroy(): void {
-    if (this._name) {
-      destroyApp(this._name).subscribe();
-    }
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }
