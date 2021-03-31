@@ -41,8 +41,10 @@ export abstract class Application<T = void> {
 
   onHook(fn: Listener<ShivaLifecycleEvent>): () => void {
     this.hook.add(fn);
+    console.log('hooks');
 
     return () => {
+      console.log('hooks 1');
       this.hook.delete(fn);
     };
   }

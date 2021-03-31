@@ -1,2 +1,2 @@
 export * from './src/shiva-host.module';
-export * from './src/shiva-app/shiva-app.component';
+export * from './src/shiva-app/shiva-app.directive';

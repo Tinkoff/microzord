@@ -4,7 +4,7 @@ import {
   registerApp,
   RegistrationOptions,
 } from '@tinkoff-shiva/core';
-import {ShivaAppComponent} from './shiva-app/shiva-app.component';
+import {ShivaAppDirective} from './shiva-app/shiva-app.directive';
 import {combineLatest, fromEvent, merge, Observable} from 'rxjs';
 import {DOCUMENT} from '@angular/common';
 import {filter, ignoreElements, map, switchMap, take} from 'rxjs/operators';
@@ -19,8 +19,8 @@ export interface ShivaHostModuleOptions {
 }
 
 @NgModule({
-  declarations: [ShivaAppComponent],
-  exports: [ShivaAppComponent],
+  declarations: [ShivaAppDirective],
+  exports: [ShivaAppDirective],
 })
 export class ShivaHostModule {
   private document: Document;
