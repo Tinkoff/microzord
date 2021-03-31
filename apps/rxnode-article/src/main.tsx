@@ -1,20 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import { BrowserRouter } from 'react-router-dom';
+import {BrowserRouter} from 'react-router-dom';
 
 import App from './app/app';
-import { Application } from '@tinkoff-shiva/core';
-import { Observable } from 'rxjs';
+import {Application} from '@tinkoff-shiva/core';
 
 class ReactApplication extends Application {
-  bootstrap(container: string | Element, _props?: void) {
+  async bootstrap(container: string | Element, _props?: void) {
     container =
-      typeof container === 'string'
-        ? document.querySelector(container)
-        : container;
+      typeof container === 'string' ? document.querySelector(container) : container;
 
-    super.bootstrap(container, _props);
+    await super.bootstrap(container, _props);
 
     ReactDOM.render(
       <React.StrictMode>
@@ -22,7 +19,7 @@ class ReactApplication extends Application {
           <App />
         </BrowserRouter>
       </React.StrictMode>,
-      container
+      container,
     );
   }
 
@@ -38,17 +35,17 @@ class ReactApplication extends Application {
     this.container = null;
   }
 
-  navigate(url: string, props: unknown | undefined): Observable<void> {
+  async navigate(url: string, props: unknown | undefined): Promise<void> {
     return undefined;
   }
 
-  send(msg: string | MessageEvent): Observable<void> {
+  async send(msg: string | MessageEvent): Promise<void> {
     return undefined;
   }
 }
 
 document.dispatchEvent(
   new CustomEvent('loadApp', {
-    detail: { name: 'rxnode-article', appConstructor: ReactApplication },
-  })
+    detail: {name: 'rxnode-article', appConstructor: ReactApplication},
+  }),
 );

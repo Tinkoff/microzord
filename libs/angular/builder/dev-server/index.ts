@@ -7,7 +7,14 @@ import {
   DevServerBuilderOptions,
   DevServerBuilderOutput,
 } from '@angular-devkit/build-angular/src/dev-server';
-import {ShivaWebpackPlugin} from '@tinkoff-shiva/webpack-plugin';
+
+// хак для локальной разработки
+let Plugin;
+try {
+  Plugin = require('@tinkoff-shiva/webpack-plugin').ShivaWebpackPlugin;
+} catch (e) {
+  Plugin = require('../../webpack-plugin').ShivaWebpackPlugin;
+}
 
 export const buildShiva = createBuilder(
   (
@@ -16,7 +23,7 @@ export const buildShiva = createBuilder(
   ): Observable<DevServerBuilderOutput> => {
     return executeDevServerBuilder(options, context, {
       webpackConfiguration(input: Configuration) {
-        input.plugins.push(new ShivaWebpackPlugin());
+        input.plugins.push(new Plugin());
 
         input.output.jsonpFunction = Math.random().toString();
 
