@@ -53,7 +53,7 @@ export class ShivaAppDirective implements OnDestroy {
     this.ngZone.runOutsideAngular(() => this.name$.next(appName));
   }
 
-  ngOnDestroy(): void {
+  ngOnDestroy() {
     this.destroy$.next();
     this.destroy$.complete();
   }
