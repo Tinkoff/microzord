@@ -40,10 +40,9 @@ export class ShivaAppDirective implements OnDestroy {
       filter<Application>(Boolean),
       switchMap(
         app =>
-          new Observable<ShivaLifecycleEvent>(subscriber => {
-            const unsubscribe = app.onHook(event => subscriber.next(event));
-            subscriber.add(unsubscribe);
-          }),
+          new Observable<ShivaLifecycleEvent>(subscriber =>
+            app.onHook(event => subscriber.next(event)),
+          ),
       ),
     );
 
