@@ -22,14 +22,14 @@ export class ShivaAppDirective implements OnDestroy {
       switchMap(name =>
         name
           ? bootstrapApp(name, this.elementRef.nativeElement).pipe(
-              switchMap(app => {
-                return NEVER.pipe(
+              switchMap(app =>
+                NEVER.pipe(
                   startWith(app),
                   finalize(() => {
                     app.destroy();
                   }),
-                );
-              }),
+                ),
+              ),
             )
           : of(null),
       ),
