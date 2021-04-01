@@ -1,14 +1,7 @@
 import {Directive, ElementRef, Input, NgZone, OnDestroy, Output} from '@angular/core';
 import {Application, bootstrapApp, ShivaLifecycleEvent} from '@tinkoff-shiva/core';
 import {NEVER, Observable, of, Subject} from 'rxjs';
-import {
-  distinctUntilChanged,
-  filter,
-  finalize,
-  startWith,
-  switchMap,
-  takeUntil,
-} from 'rxjs/operators';
+import {filter, finalize, startWith, switchMap, takeUntil} from 'rxjs/operators';
 
 @Directive({
   selector: '[shiva-app]',
@@ -25,7 +18,6 @@ export class ShivaAppDirective implements OnDestroy {
 
   constructor(private elementRef: ElementRef, private ngZone: NgZone) {
     this.application = this.name$.pipe(
-      distinctUntilChanged(),
       switchMap(name => {
         NgZone.assertNotInAngularZone();
 
