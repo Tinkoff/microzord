@@ -12,6 +12,7 @@ import {
 import {Application, ApplicationConstructor} from '@tinkoff-shiva/core';
 import {Router} from '@angular/router';
 import {DOCUMENT} from '@angular/common';
+import {ShivaLifecycleEvent, ShivaMessageEvent} from '@tinkoff-shiva/core';
 
 export const APP_NAME = new InjectionToken<string>('App name');
 export const ROOT_SELECTOR = new InjectionToken<string>('Root selector');
@@ -35,6 +36,8 @@ function createAppFactory<M>(
         this.ngModule.destroy();
         this.ngModule = null;
       }
+
+      this.emitHook(ShivaLifecycleEvent.destroyed());
     }
 
     async bootstrap(container: string | Element, _props?: void): Promise<void> {
@@ -51,6 +54,8 @@ function createAppFactory<M>(
 
         await super.bootstrap(container, _props);
         resolve(this.ngModule);
+
+        this.emitHook(ShivaLifecycleEvent.bootstrapped());
       } catch (e) {
         reject(e);
         throw e;
@@ -63,7 +68,7 @@ function createAppFactory<M>(
       }
     }
 
-    async send(msg: string | MessageEvent): Promise<void> {
+    async send(msg: string | ShivaMessageEvent): Promise<void> {
       //
     }
   }

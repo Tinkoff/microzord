@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import {BrowserRouter} from 'react-router-dom';
 
 import App from './app/app';
-import {Application} from '@tinkoff-shiva/core';
+import {Application, ShivaLifecycleEvent, ShivaMessageEvent} from '@tinkoff-shiva/core';
 
 class ReactApplication extends Application {
   async bootstrap(container: string | Element, _props?: void) {
@@ -20,6 +20,9 @@ class ReactApplication extends Application {
         </BrowserRouter>
       </React.StrictMode>,
       container,
+      () => {
+        this.emitHook(ShivaLifecycleEvent.bootstrapped());
+      },
     );
   }
 
@@ -33,13 +36,15 @@ class ReactApplication extends Application {
 
     ReactDOM.unmountComponentAtNode(this.container);
     this.container = null;
+
+    this.emitHook(ShivaLifecycleEvent.destroyed());
   }
 
   async navigate(url: string, props: unknown | undefined): Promise<void> {
     return undefined;
   }
 
-  async send(msg: string | MessageEvent): Promise<void> {
+  async send(msg: string | ShivaMessageEvent): Promise<void> {
     return undefined;
   }
 }

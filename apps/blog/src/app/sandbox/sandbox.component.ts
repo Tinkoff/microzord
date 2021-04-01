@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {Subject} from 'rxjs';
-import {loadAppConstructor} from '@tinkoff-shiva/core';
+import {loadAppConstructor, ShivaLifecycleEvent} from '@tinkoff-shiva/core';
 
 @Component({
   selector: 'tinkoff-shiva-sandbox',
@@ -12,5 +12,9 @@ export class SandboxComponent {
 
   loadApp(appName: string) {
     loadAppConstructor(appName).subscribe();
+  }
+
+  call($event: ShivaLifecycleEvent) {
+    console.log($event);
   }
 }

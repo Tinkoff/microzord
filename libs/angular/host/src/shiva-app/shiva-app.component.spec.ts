@@ -1,19 +1,19 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {ShivaAppComponent} from './shiva-app.component';
+import {ShivaAppDirective} from './shiva-app.directive';
 
-describe('ShivaOutletComponent', () => {
-  let component: ShivaAppComponent;
-  let fixture: ComponentFixture<ShivaAppComponent>;
+describe('ShivaAppDirective', () => {
+  let component: ShivaAppDirective;
+  let fixture: ComponentFixture<ShivaAppDirective>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ShivaAppComponent],
+      declarations: [ShivaAppDirective],
     }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ShivaAppComponent);
+    fixture = TestBed.createComponent(ShivaAppDirective);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

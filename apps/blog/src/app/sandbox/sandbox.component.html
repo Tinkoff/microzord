@@ -15,5 +15,5 @@
 </div>
 
 <div class="max-w-3xl prose lg:prose-xl mr-auto ml-auto mt-20">
-  <shiva-app [name]="appName$ | async"></shiva-app>
+  <div shiva-app [name]="appName$ | async" (hook)="call($event)"></div>
 </div>
