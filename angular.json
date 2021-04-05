@@ -191,7 +191,7 @@
             "passWithNoTests": true
           }
         },
-        "release": {
+        "semrel": {
           "builder": "@ng-builders/semrel:release",
           "options": {
             "npm": {
@@ -211,6 +211,13 @@
                 "prerelease": true
               }
             ]
+          }
+        },
+        "release": {
+          "builder": "@nrwl/workspace:run-commands",
+          "options": {
+            "commands": ["nx build core --prod", "nx semrel core"],
+            "parallel": false
           }
         }
       }
@@ -247,7 +254,7 @@
             "passWithNoTests": true
           }
         },
-        "release": {
+        "semrel": {
           "builder": "@ng-builders/semrel:release",
           "options": {
             "npm": {
@@ -267,6 +274,13 @@
                 "prerelease": true
               }
             ]
+          }
+        },
+        "release": {
+          "builder": "@nrwl/workspace:run-commands",
+          "options": {
+            "commands": ["nx build angular --prod", "nx semrel angular"],
+            "parallel": false
           }
         }
       }
@@ -510,6 +524,35 @@
             "packageJson": "libs/webpack-plugin/package.json",
             "main": "libs/webpack-plugin/src/index.ts",
             "assets": ["libs/webpack-plugin/*.md"]
+          }
+        },
+        "semrel": {
+          "builder": "@ng-builders/semrel:release",
+          "options": {
+            "npm": {
+              "pkgRoot": "dist/libs/angular"
+            },
+            "branches": [
+              "+([0-9])?(.{+([0-9]),x}).x",
+              "main",
+              "next",
+              "next-major",
+              {
+                "name": "beta",
+                "prerelease": true
+              },
+              {
+                "name": "alpha",
+                "prerelease": true
+              }
+            ]
+          }
+        },
+        "release": {
+          "builder": "@nrwl/workspace:run-commands",
+          "options": {
+            "commands": ["nx build webpack-plugin", "nx semrel webpack-plugin"],
+            "parallel": false
           }
         }
       }

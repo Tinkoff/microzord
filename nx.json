@@ -1,29 +1,60 @@
 {
   "implicitDependencies": {
     "angular.json": "*",
-    "package.json": {"dependencies": "*", "devDependencies": "*"},
+    "package.json": {
+      "dependencies": "*",
+      "devDependencies": "*"
+    },
     "tsconfig.base.json": "*",
     "tslint.json": "*",
     ".eslintrc.json": "*",
     "nx.json": "*"
   },
-  "affected": {"defaultBase": "main"},
+  "affected": {
+    "defaultBase": "main"
+  },
   "npmScope": "roofer",
   "tasksRunnerOptions": {
     "default": {
-      "runner": "@nrwl/workspace/tasks-runners/default",
-      "options": {"cacheableOperations": ["build", "test", "lint", "e2e"]}
+      "runner": "@nrwl/nx-cloud",
+      "options": {
+        "cacheableOperations": ["build", "test", "lint", "e2e"],
+        "accessToken": "OGNlYzBkODQtMGE3ZS00YmFiLTlhNTAtOGJkZTRmOTQ3N2QyfHJlYWQtd3JpdGU=",
+        "canTrackAnalytics": false,
+        "showUsageWarnings": true
+      }
     }
   },
   "projects": {
-    "ssr-article": {"tags": []},
-    "ssr-article-e2e": {"tags": [], "implicitDependencies": ["ssr-article"]},
-    "core": {"tags": []},
-    "angular": {"tags": []},
-    "blog": {"tags": []},
-    "blog-e2e": {"tags": [], "implicitDependencies": ["blog"]},
-    "rxnode-article": {"tags": []},
-    "rxnode-article-e2e": {"tags": [], "implicitDependencies": ["rxnode-article"]},
-    "webpack-plugin": {"tags": []}
+    "ssr-article": {
+      "tags": []
+    },
+    "ssr-article-e2e": {
+      "tags": [],
+      "implicitDependencies": ["ssr-article"]
+    },
+    "core": {
+      "tags": []
+    },
+    "angular": {
+      "tags": []
+    },
+    "blog": {
+      "tags": []
+    },
+    "blog-e2e": {
+      "tags": [],
+      "implicitDependencies": ["blog"]
+    },
+    "rxnode-article": {
+      "tags": []
+    },
+    "rxnode-article-e2e": {
+      "tags": [],
+      "implicitDependencies": ["rxnode-article"]
+    },
+    "webpack-plugin": {
+      "tags": []
+    }
   }
 }
