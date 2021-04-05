@@ -1,9 +1,9 @@
 import {Component} from '@angular/core';
 import {Subject} from 'rxjs';
-import {loadAppConstructor, ShivaLifecycleEvent} from '@tinkoff-shiva/core';
+import {loadAppConstructor, RooferLifecycleEvent} from '@roofer/core';
 
 @Component({
-  selector: 'tinkoff-shiva-sandbox',
+  selector: 'blog-sandbox',
   templateUrl: './sandbox.component.html',
   styleUrls: ['./sandbox.component.css'],
 })
@@ -14,7 +14,7 @@ export class SandboxComponent {
     loadAppConstructor(appName).subscribe();
   }
 
-  call($event: ShivaLifecycleEvent) {
+  call($event: RooferLifecycleEvent) {
     console.log($event);
   }
 }

@@ -1,24 +1,24 @@
 import {Application} from './application';
 
-export class ShivaEvent {
+export class RooferEvent {
   target: Application<any>;
   constructor(public readonly type: string) {}
 }
 
 // todo: подумать над сообщениями
-export class ShivaMessageEvent extends ShivaEvent {
-  static isMessageEvent(event: ShivaEvent): event is ShivaMessageEvent {
+export class RooferMessageEvent extends RooferEvent {
+  static isMessageEvent(event: RooferEvent): event is RooferMessageEvent {
     return (
-      event && event.constructor && event.constructor.name === ShivaMessageEvent.name
+      event && event.constructor && event.constructor.name === RooferMessageEvent.name
     );
   }
 }
 
 // todo: подумать над ивентами роутинга
-export class ShivaNavigationEvent extends ShivaEvent {
-  static isNavigationEvent(event: ShivaEvent): event is ShivaNavigationEvent {
+export class RooferNavigationEvent extends RooferEvent {
+  static isNavigationEvent(event: RooferEvent): event is RooferNavigationEvent {
     return (
-      event && event.constructor && event.constructor.name === ShivaNavigationEvent.name
+      event && event.constructor && event.constructor.name === RooferNavigationEvent.name
     );
   }
 }

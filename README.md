@@ -1,4 +1,4 @@
-# @tinkoff-shiva
+# @roofer
 
 ## Attention: WIP
 
@@ -82,6 +82,6 @@ TODO: Cool framework for microfrontends
 
 🆓 Feel free to use our library in your commercial and private applications
 
-All Shiva packages are covered by [Apache 2.0](/LICENSE)
+All Roofer packages are covered by [Apache 2.0](/LICENSE)
 
 Read more about this license [here](https://choosealicense.com/licenses/apache-2.0/)

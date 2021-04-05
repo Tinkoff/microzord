@@ -1,1 +1,1 @@
-# @tinkoff-shiva/webpack-plugin
+# @roofer/webpack-plugin

@@ -1,1 +1,1 @@
-# @tinkoff-shiva/core
+# @roofer/core

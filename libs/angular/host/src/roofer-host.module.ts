@@ -1,32 +1,28 @@
 import {Inject, InjectionToken, ModuleWithProviders, NgModule} from '@angular/core';
-import {
-  ApplicationConstructor,
-  registerApp,
-  RegistrationOptions,
-} from '@tinkoff-shiva/core';
-import {ShivaAppDirective} from './shiva-app/shiva-app.directive';
+import {ApplicationConstructor, registerApp, RegistrationOptions} from '@roofer/core';
+import {RooferAppDirective} from './roofer-app/roofer-app.directive';
 import {combineLatest, fromEvent, merge, Observable} from 'rxjs';
 import {DOCUMENT} from '@angular/common';
 import {filter, ignoreElements, map, switchMap, take} from 'rxjs/operators';
 import {HttpClient} from '@angular/common/http';
 
-export const SHIVA_APPS = new InjectionToken<
+export const ROOFER_APPS = new InjectionToken<
   Omit<RegistrationOptions<any>, 'loadApp'>[][]
->('Shiva apps');
+>('Roofer apps');
 
-export interface ShivaHostModuleOptions {
+export interface RooferHostModuleOptions {
   apps: Omit<RegistrationOptions<any>, 'loadApp'>[];
 }
 
 @NgModule({
-  declarations: [ShivaAppDirective],
-  exports: [ShivaAppDirective],
+  declarations: [RooferAppDirective],
+  exports: [RooferAppDirective],
 })
-export class ShivaHostModule {
+export class RooferHostModule {
   private document: Document;
 
   constructor(
-    @Inject(SHIVA_APPS) allApps: RegistrationOptions<any>[][],
+    @Inject(ROOFER_APPS) allApps: RegistrationOptions<any>[][],
     @Inject(DOCUMENT) doc: any,
     http: HttpClient,
   ) {
@@ -38,7 +34,7 @@ export class ShivaHostModule {
           ...app,
           loadApp: () => {
             return merge(
-              http.get<string[]>(app.name + '/shiva.json').pipe(
+              http.get<string[]>(app.name + '/roofer.json').pipe(
                 switchMap(assets => {
                   return merge(
                     combineLatest(
@@ -76,12 +72,12 @@ export class ShivaHostModule {
   }
 
   // for root injector
-  static forRoot({apps}: ShivaHostModuleOptions): ModuleWithProviders<ShivaHostModule> {
+  static forRoot({apps}: RooferHostModuleOptions): ModuleWithProviders<RooferHostModule> {
     return {
-      ngModule: ShivaHostModule,
+      ngModule: RooferHostModule,
       providers: [
         {
-          provide: SHIVA_APPS,
+          provide: ROOFER_APPS,
           useValue: apps,
           multi: true,
         },
@@ -90,12 +86,14 @@ export class ShivaHostModule {
   }
 
   // for lazy modules
-  static forChild({apps}: ShivaHostModuleOptions): ModuleWithProviders<ShivaHostModule> {
+  static forChild({
+    apps,
+  }: RooferHostModuleOptions): ModuleWithProviders<RooferHostModule> {
     return {
-      ngModule: ShivaHostModule,
+      ngModule: RooferHostModule,
       providers: [
         {
-          provide: SHIVA_APPS,
+          provide: ROOFER_APPS,
           useValue: apps,
           multi: true,
         },

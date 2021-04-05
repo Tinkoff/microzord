@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 
 @Component({
-  selector: 'tinkoff-shiva-main',
+  selector: 'blog-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.css'],
 })

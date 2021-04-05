@@ -1,4 +1,4 @@
-import {getAppConstructor, loadAppConstructor, registerApp} from '@tinkoff-shiva/core';
+import {getAppConstructor, loadAppConstructor, registerApp} from '@roofer/core';
 import {ApplicationMock} from '../../__mocks_/application.mock';
 
 describe('getAppConstructor', () => {

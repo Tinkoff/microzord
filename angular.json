@@ -50,7 +50,7 @@
       "projectType": "application",
       "root": "apps/ssr-article",
       "sourceRoot": "apps/ssr-article/src",
-      "prefix": "shiva",
+      "prefix": "ssr",
       "architect": {
         "build": {
           "builder": "./dist/libs/angular:browser",
@@ -275,7 +275,7 @@
       "projectType": "application",
       "root": "apps/blog",
       "sourceRoot": "apps/blog/src",
-      "prefix": "tinkoff-shiva",
+      "prefix": "blog",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
