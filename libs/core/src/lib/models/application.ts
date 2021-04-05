@@ -1,21 +1,21 @@
-import {ShivaEvent, ShivaMessageEvent, ShivaNavigationEvent} from './events';
-import {ShivaLifecycleEvent} from './lifecycle';
+import {RooferEvent, RooferMessageEvent, RooferNavigationEvent} from './events';
+import {RooferLifecycleEvent} from './lifecycle';
 
-export type Listener<T extends ShivaEvent> = (event: T) => void;
+export type Listener<T extends RooferEvent> = (event: T) => void;
 
 export abstract class Application<T = void> {
   isBootstrapped = false;
   isDestroyed = true;
   container: string | Element;
 
-  protected readonly hook = new Set<Listener<ShivaLifecycleEvent>>();
-  protected readonly message = new Set<Listener<ShivaMessageEvent>>();
-  protected readonly navigationEvent = new Set<Listener<ShivaNavigationEvent>>();
+  protected readonly hook = new Set<Listener<RooferLifecycleEvent>>();
+  protected readonly message = new Set<Listener<RooferMessageEvent>>();
+  protected readonly navigationEvent = new Set<Listener<RooferNavigationEvent>>();
 
   // todo: заспекать типы props
   constructor(public readonly name: string, public props?: T) {}
 
-  onMessage(fn: Listener<ShivaMessageEvent>): () => void {
+  onMessage(fn: Listener<RooferMessageEvent>): () => void {
     this.message.add(fn);
 
     return () => {
@@ -23,11 +23,11 @@ export abstract class Application<T = void> {
     };
   }
 
-  emitMessage(event: ShivaMessageEvent) {
+  emitMessage(event: RooferMessageEvent) {
     this.callListeners(this.message, event);
   }
 
-  onRouteChange(fn: Listener<ShivaNavigationEvent>): () => void {
+  onRouteChange(fn: Listener<RooferNavigationEvent>): () => void {
     this.navigationEvent.add(fn);
 
     return () => {
@@ -35,11 +35,11 @@ export abstract class Application<T = void> {
     };
   }
 
-  emitRouteChange(event: ShivaNavigationEvent) {
+  emitRouteChange(event: RooferNavigationEvent) {
     this.callListeners(this.navigationEvent, event);
   }
 
-  onHook(fn: Listener<ShivaLifecycleEvent>): () => void {
+  onHook(fn: Listener<RooferLifecycleEvent>): () => void {
     this.hook.add(fn);
 
     return () => {
@@ -47,7 +47,7 @@ export abstract class Application<T = void> {
     };
   }
 
-  emitHook(event: ShivaLifecycleEvent) {
+  emitHook(event: RooferLifecycleEvent) {
     this.callListeners(this.hook, event);
   }
 
@@ -65,12 +65,12 @@ export abstract class Application<T = void> {
     this.container = container;
   }
 
-  abstract send(msg: string | ShivaMessageEvent): Promise<void>;
+  abstract send(msg: string | RooferMessageEvent): Promise<void>;
 
   // todo: шо за пропс? Надо придумать
   abstract navigate(url: string, props?: unknown): Promise<void>;
 
-  protected callListeners<K extends ShivaEvent>(listeners: Set<Listener<K>>, event: K) {
+  protected callListeners<K extends RooferEvent>(listeners: Set<Listener<K>>, event: K) {
     event.target = this;
 
     [...listeners].forEach(fn => {

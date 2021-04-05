@@ -16,7 +16,7 @@
           "error",
           {
             "type": "attribute",
-            "prefix": "tinkoff-shiva",
+            "prefix": "blog",
             "style": "camelCase"
           }
         ],
@@ -24,7 +24,7 @@
           "error",
           {
             "type": "element",
-            "prefix": "tinkoff-shiva",
+            "prefix": "blog",
             "style": "kebab-case"
           }
         ]

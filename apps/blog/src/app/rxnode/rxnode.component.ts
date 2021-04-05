@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 
 @Component({
-  selector: 'tinkoff-shiva-rxnode',
+  selector: 'blog-rxnode',
   templateUrl: './rxnode.component.html',
   styleUrls: ['./rxnode.component.css'],
 })

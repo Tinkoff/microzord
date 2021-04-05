@@ -8,7 +8,7 @@
     "nx.json": "*"
   },
   "affected": {"defaultBase": "main"},
-  "npmScope": "tinkoff-shiva",
+  "npmScope": "roofer",
   "tasksRunnerOptions": {
     "default": {
       "runner": "@nrwl/workspace/tasks-runners/default",

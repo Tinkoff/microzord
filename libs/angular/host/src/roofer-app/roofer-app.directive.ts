@@ -1,14 +1,14 @@
 import {Directive, ElementRef, Input, NgZone, OnDestroy, Output} from '@angular/core';
-import {Application, bootstrapApp, ShivaLifecycleEvent} from '@tinkoff-shiva/core';
+import {Application, bootstrapApp, RooferLifecycleEvent} from '@roofer/core';
 import {NEVER, Observable, of, Subject} from 'rxjs';
 import {filter, finalize, startWith, switchMap, takeUntil, tap} from 'rxjs/operators';
 
 @Directive({
-  selector: '[shiva-app]',
+  selector: '[roofer-app]',
 })
-export class ShivaAppDirective implements OnDestroy {
+export class RooferAppDirective implements OnDestroy {
   @Output()
-  hook: Observable<ShivaLifecycleEvent>;
+  hook: Observable<RooferLifecycleEvent>;
 
   @Output()
   application: Observable<Application<any>>;
@@ -40,7 +40,7 @@ export class ShivaAppDirective implements OnDestroy {
       filter<Application>(Boolean),
       switchMap(
         app =>
-          new Observable<ShivaLifecycleEvent>(subscriber =>
+          new Observable<RooferLifecycleEvent>(subscriber =>
             app.onHook(event => subscriber.next(event)),
           ),
       ),

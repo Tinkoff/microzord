@@ -1,19 +1,19 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {ShivaAppDirective} from './shiva-app.directive';
+import {RooferAppDirective} from './roofer-app.directive';
 
-describe('ShivaAppDirective', () => {
-  let component: ShivaAppDirective;
-  let fixture: ComponentFixture<ShivaAppDirective>;
+describe('RooferAppDirective', () => {
+  let component: RooferAppDirective;
+  let fixture: ComponentFixture<RooferAppDirective>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ShivaAppDirective],
+      declarations: [RooferAppDirective],
     }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ShivaAppDirective);
+    fixture = TestBed.createComponent(RooferAppDirective);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

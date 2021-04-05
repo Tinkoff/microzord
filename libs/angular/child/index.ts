@@ -1,1 +1,1 @@
-export * from './src/platform-shiva-child';
+export * from './src/platform-roofer-child';

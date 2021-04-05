@@ -1,4 +1,4 @@
-import {bootstrapApp, registerApp, replaceApps} from '@tinkoff-shiva/core';
+import {bootstrapApp, registerApp, replaceApps} from '@roofer/core';
 import {ApplicationMock} from '../../__mocks_/application.mock';
 
 describe('replaceApps', () => {

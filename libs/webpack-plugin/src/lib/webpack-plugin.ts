@@ -2,7 +2,7 @@ import {Plugin, Compiler} from 'webpack';
 import {RawSource} from 'webpack-sources';
 import {join, parse} from 'path';
 
-export class ShivaWebpackPlugin implements Plugin {
+export class RooferWebpackPlugin implements Plugin {
   apply(compiler: Compiler) {
     compiler.hooks.emit.tap('HtmlWebpackPlugin', compilation => {
       compilation.fileDependencies.add('some-file.js');
@@ -10,7 +10,7 @@ export class ShivaWebpackPlugin implements Plugin {
       const {publicPath = '', assets} = compilation.getStats().toJson();
 
       (compilation as any).emitAsset(
-        'shiva.json',
+        'roofer.json',
         new RawSource(
           JSON.stringify(
             assets

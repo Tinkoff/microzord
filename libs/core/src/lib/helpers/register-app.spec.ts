@@ -1,4 +1,4 @@
-import {registerApp} from '@tinkoff-shiva/core';
+import {registerApp} from '@roofer/core';
 import {ApplicationMock} from '../../__mocks_/application.mock';
 import {appOptionsRegistry} from '../registry';
 

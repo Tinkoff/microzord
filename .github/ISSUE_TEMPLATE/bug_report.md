@@ -22,7 +22,7 @@ assignees: IKatsuba, MarsiBarsi
 
 ### Versions
 
-- Package [e.g. @tinkoff-shiva/core@2.0.0]
+- Package [e.g. @roofer/core@2.0.0]
 
 If needed:
 

@@ -1,5 +1,5 @@
 {
-  "name": "@tinkoff-shiva/core",
+  "name": "@roofer/core",
   "version": "0.0.0-development",
   "dependencies": {
     "tslib": "^2.0.0"

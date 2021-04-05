@@ -1,7 +1,7 @@
-import {ShivaWebpackPlugin} from './webpack-plugin';
+import {RooferWebpackPlugin} from './webpack-plugin';
 
 describe('webpackPlugin', () => {
   it('should work', () => {
-    expect(new ShivaWebpackPlugin()).toBeInstanceOf(ShivaWebpackPlugin);
+    expect(new RooferWebpackPlugin()).toBeInstanceOf(RooferWebpackPlugin);
   });
 });

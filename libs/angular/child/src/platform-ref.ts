@@ -9,10 +9,10 @@ import {
   PlatformRef,
   Type,
 } from '@angular/core';
-import {Application, ApplicationConstructor} from '@tinkoff-shiva/core';
+import {Application, ApplicationConstructor} from '@roofer/core';
 import {Router} from '@angular/router';
 import {DOCUMENT} from '@angular/common';
-import {ShivaLifecycleEvent, ShivaMessageEvent} from '@tinkoff-shiva/core';
+import {RooferLifecycleEvent, RooferMessageEvent} from '@roofer/core';
 
 export const APP_NAME = new InjectionToken<string>('App name');
 export const ROOT_SELECTOR = new InjectionToken<string>('Root selector');
@@ -37,7 +37,7 @@ function createAppFactory<M>(
         this.ngModule = null;
       }
 
-      this.emitHook(ShivaLifecycleEvent.destroyed());
+      this.emitHook(RooferLifecycleEvent.destroyed());
     }
 
     async bootstrap(container: string | Element, _props?: void): Promise<void> {
@@ -55,7 +55,7 @@ function createAppFactory<M>(
         await super.bootstrap(container, _props);
         resolve(this.ngModule);
 
-        this.emitHook(ShivaLifecycleEvent.bootstrapped());
+        this.emitHook(RooferLifecycleEvent.bootstrapped());
       } catch (e) {
         reject(e);
         throw e;
@@ -68,7 +68,7 @@ function createAppFactory<M>(
       }
     }
 
-    async send(msg: string | ShivaMessageEvent): Promise<void> {
+    async send(msg: string | RooferMessageEvent): Promise<void> {
       //
     }
   }
@@ -77,7 +77,7 @@ function createAppFactory<M>(
 }
 
 @Injectable()
-export class ShivaPlatformRef extends PlatformRef {
+export class RooferPlatformRef extends PlatformRef {
   private document: Document;
 
   constructor(

@@ -9,12 +9,12 @@ import {Observable} from 'rxjs';
 // хак для локальной разработки
 let Plugin;
 try {
-  Plugin = require('@tinkoff-shiva/webpack-plugin').ShivaWebpackPlugin;
+  Plugin = require('@roofer/webpack-plugin').RooferWebpackPlugin;
 } catch (e) {
-  Plugin = require('../../webpack-plugin').ShivaWebpackPlugin;
+  Plugin = require('../../webpack-plugin').RooferWebpackPlugin;
 }
 
-export const buildShiva = createBuilder(
+export const buildRoof = createBuilder(
   (
     options: BrowserBuilderSchema & JsonObject,
     context: BuilderContext,
@@ -32,4 +32,4 @@ export const buildShiva = createBuilder(
 );
 
 // export default почему не попадает в бандл
-module.exports.default = buildShiva;
+module.exports.default = buildRoof;

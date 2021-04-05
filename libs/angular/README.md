@@ -1,1 +1,1 @@
-# @tinkoff-shiva/angular
+# @roofer/angular

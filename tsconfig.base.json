@@ -15,11 +15,10 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@tinkoff-shiva/core": ["libs/core/src/index.ts"],
-      "@tinkoff-shiva/angular": ["libs/angular/src/index.ts"],
-      "@tinkoff-shiva/angular/*": ["libs/angular/*"],
-      "@tinkoff-shiva/react": ["libs/react/src/index.ts"],
-      "@tinkoff-shiva/webpack-plugin": ["libs/webpack-plugin/src/index.ts"]
+      "@roofer/core": ["libs/core/src/index.ts"],
+      "@roofer/angular": ["libs/angular/src/index.ts"],
+      "@roofer/angular/*": ["libs/angular/*"],
+      "@roofer/webpack-plugin": ["libs/webpack-plugin/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

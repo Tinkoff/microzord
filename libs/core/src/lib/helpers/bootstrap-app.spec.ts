@@ -4,7 +4,7 @@ import {
   bootstrapApp,
   loadAppConstructor,
   RegistrationOptions,
-} from '@tinkoff-shiva/core';
+} from '@roofer/core';
 import {appOptionsRegistry, loadedAppRegistry} from '../registry';
 import {ApplicationMock} from '../../__mocks_/application.mock';
 

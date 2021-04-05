@@ -3,7 +3,7 @@ import {BrowserModule} from '@angular/platform-browser';
 
 import {AppComponent} from './app.component';
 import {RouterModule} from '@angular/router';
-import {ShivaHostModule} from '@tinkoff-shiva/angular/host';
+import {RooferHostModule} from '@roofer/angular/host';
 import {HttpClientModule} from '@angular/common/http';
 import {RxnodeComponent} from './rxnode/rxnode.component';
 import {SsrComponent} from './ssr/ssr.component';
@@ -40,7 +40,7 @@ import {ComponentsModule} from './components/components.module';
         component: SandboxComponent,
       },
     ]),
-    ShivaHostModule.forRoot({
+    RooferHostModule.forRoot({
       apps: [
         {
           name: 'ssr-article',
