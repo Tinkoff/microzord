@@ -1,5 +1,9 @@
 name: Pull Request Workflow
 
+env:
+  NX_BRANCH: ${{ github.event.number }}
+  NX_RUN_GROUP: ${{ github.run_id }}
+
 on:
   pull_request:
     branches:
