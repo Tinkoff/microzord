@@ -6,5 +6,23 @@
   },
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "license": "Apache-2.0",
+  "keywords": [
+    "microfrontends",
+    "single-page-application",
+    "framework",
+    "angular",
+    "react",
+    "vue",
+    "routing",
+    "microservices"
+  ],
+  "authors": ["Igor Katsuba <katsuba.igor@gmail.ru>", "Roman Sedov <79601794011@ya.ru>"],
+  "contributors": [
+    "Igor Katsuba <katsuba.igor@gmail.ru>",
+    "Roman Sedov <79601794011@ya.ru>"
+  ],
+  "repository": "https://github.com/TinkoffCreditSystems/roofer",
+  "homepage": "https://github.com/TinkoffCreditSystems/roofer"
 }
