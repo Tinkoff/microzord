@@ -32,7 +32,7 @@ jobs:
             ${{ runner.os }}-node-
       - run: npm ci --cache ~/.npm --prefer-offline
       - name: release
-        run: npm run release -- --base=remotes/origin/${GITHUB_REF}~1
+        run: npm run release -- --base=remotes/origin/${GITHUB_REF#refs/heads/}~1
         env:
           CI: true
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
