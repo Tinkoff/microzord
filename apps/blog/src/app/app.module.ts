@@ -40,13 +40,15 @@ import {ComponentsModule} from './components/components.module';
         component: SandboxComponent,
       },
     ]),
-    RooferHostModule.forRoot({
+    RooferHostModule.register({
       apps: [
         {
           name: 'ssr-article',
+          assetMap: '/ssr-article/roofer.json',
         },
         {
           name: 'rxnode-article',
+          assetMap: '/rxnode-article/roofer.json',
         },
       ],
     }),

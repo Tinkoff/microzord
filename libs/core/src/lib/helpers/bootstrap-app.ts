@@ -4,7 +4,7 @@ import {Application} from '../models/application';
 import {appOptionsRegistry} from '../registry';
 import {loadAppConstructor} from './load-app-constructor';
 
-export function bootstrapApp<T = void>(
+export function bootstrapApp<T extends Record<string, any> = Record<string, any>>(
   appName: string,
   selector: string | Element,
   props?: T,

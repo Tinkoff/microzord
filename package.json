@@ -22,8 +22,8 @@
   "scripts": {
     "ng": "nx",
     "nx": "nx",
-    "start": "nx affected --target serve --parallel",
-    "build": "nx affected --target build --prod",
+    "start": "nx run-many --target serve --parallel",
+    "build": "nx affected --target build --prod --with-deps",
     "release": "nx affected --target release",
     "test": "nx affected --target test",
     "lint": "nx workspace-lint && nx affected --target lint",

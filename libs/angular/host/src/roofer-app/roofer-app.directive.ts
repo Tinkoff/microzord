@@ -11,7 +11,7 @@ export class RooferAppDirective implements OnDestroy {
   hook: Observable<RooferLifecycleEvent>;
 
   @Output()
-  application: Observable<Application<any>>;
+  application: Observable<Application>;
 
   private destroy$ = new Subject<string>();
   private name$ = new Subject<string>();
