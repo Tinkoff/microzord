@@ -7,11 +7,11 @@ import App from './app/app';
 import {Application, RooferLifecycleEvent, RooferMessageEvent} from '@roofer/core';
 
 class ReactApplication extends Application {
-  async bootstrap(container: string | Element, _props?: void) {
+  async bootstrap(container: string | Element, props?: Record<string, any>) {
     container =
       typeof container === 'string' ? document.querySelector(container) : container;
 
-    await super.bootstrap(container, _props);
+    await super.bootstrap(container, props);
 
     ReactDOM.render(
       <React.StrictMode>
