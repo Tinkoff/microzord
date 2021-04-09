@@ -22,7 +22,7 @@
   "scripts": {
     "ng": "nx",
     "nx": "nx",
-    "start": "nx run-many --target serve --parallel",
+    "start": "nx run-many --target serve --parallel --all",
     "build": "nx affected --target build --prod --with-deps",
     "release": "nx affected --target release",
     "test": "nx affected --target test",
