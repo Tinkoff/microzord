@@ -1,7 +1,9 @@
 import {Observable} from 'rxjs';
 import {ApplicationConstructor} from './application';
 
-export interface RegistrationOptions<T = void> {
+export interface RegistrationOptions<
+  T extends Record<string, any> = Record<string, any>
+> {
   name: string;
   props?: T;
   loadApp: (

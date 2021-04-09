@@ -7,7 +7,7 @@ import {getAppConstructor} from './get-app-constructor';
 
 // todo: подумать над ошибками, если в опциях нет функции загрузки
 // или приложение вообще не зарегистрированно
-export function loadAppConstructor<T = void>(
+export function loadAppConstructor<T extends Record<string, any> = Record<string, any>>(
   appName: string,
 ): Observable<ApplicationConstructor<T>> {
   return getAppConstructor<T>(appName).pipe(

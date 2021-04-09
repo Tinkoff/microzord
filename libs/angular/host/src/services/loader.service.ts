@@ -5,15 +5,12 @@ import {filter, ignoreElements, map, switchMap, take} from 'rxjs/operators';
 import {DOCUMENT} from '@angular/common';
 import {HttpClient} from '@angular/common/http';
 
+// @dynamic
 @Injectable({
   providedIn: 'root',
 })
 export class LoaderService {
-  private document: Document;
-
-  constructor(@Inject(DOCUMENT) document: any, private http: HttpClient) {
-    this.document = document;
-  }
+  constructor(@Inject(DOCUMENT) private document: Document, private http: HttpClient) {}
 
   loadByAssetsMap(name: string, assetMapUrl: string): Observable<ApplicationConstructor> {
     return merge(

@@ -3,7 +3,7 @@ import {RooferLifecycleEvent} from './lifecycle';
 
 export type Listener<T extends RooferEvent> = (event: T) => void;
 
-export abstract class Application<T = void> {
+export abstract class Application<T extends Record<string, any> = Record<string, any>> {
   isBootstrapped = false;
   isDestroyed = true;
   container: string | Element;
@@ -79,6 +79,8 @@ export abstract class Application<T = void> {
   }
 }
 
-export interface ApplicationConstructor<T = void> {
+export interface ApplicationConstructor<
+  T extends Record<string, any> = Record<string, any>
+> {
   new (name: string, props?: T): Application<T>;
 }

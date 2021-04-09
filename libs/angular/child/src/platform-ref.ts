@@ -18,14 +18,14 @@ export const APP_NAME = new InjectionToken<string>('App name');
 export const ROOT_SELECTOR = new InjectionToken<string>('Root selector');
 
 // todo: очень грубая имплементация
-function createAppFactory<M>(
+function createAppFactory<M, Props extends Record<string, any> = Record<string, any>>(
   bootstrapFn: () => Promise<NgModuleRef<M>>,
   rootSelector: string,
   resolve: (value?: NgModuleRef<M> | PromiseLike<NgModuleRef<M>>) => void,
   reject: (reason?: any) => void,
 ): ApplicationConstructor {
   // todo: не хватает имплементации хуков, сообщений и навигации
-  class AngularApp extends Application {
+  class AngularApp<T = Props> extends Application<T> {
     private router: Router;
     private ngModule: NgModuleRef<M>;
 
@@ -40,7 +40,7 @@ function createAppFactory<M>(
       this.emitHook(RooferLifecycleEvent.destroyed());
     }
 
-    async bootstrap(container: string | Element, _props?: void): Promise<void> {
+    async bootstrap(container: string | Element, props?: T): Promise<void> {
       container =
         typeof container === 'string' ? document.querySelector(container) : container;
 
@@ -52,7 +52,7 @@ function createAppFactory<M>(
         this.ngModule = await bootstrapFn();
         this.router = this.ngModule.injector.get(Router, null, InjectFlags.Optional);
 
-        await super.bootstrap(container, _props);
+        await super.bootstrap(container, props);
         resolve(this.ngModule);
 
         this.emitHook(RooferLifecycleEvent.bootstrapped());
@@ -62,13 +62,13 @@ function createAppFactory<M>(
       }
     }
 
-    async navigate(url: string, props: unknown | undefined): Promise<void> {
+    async navigate(url: string, _props: unknown | undefined): Promise<void> {
       if (this.router) {
         await this.router.navigateByUrl(url);
       }
     }
 
-    async send(msg: string | RooferMessageEvent): Promise<void> {
+    async send(_msg: string | RooferMessageEvent): Promise<void> {
       //
     }
   }
@@ -76,18 +76,16 @@ function createAppFactory<M>(
   return AngularApp;
 }
 
+// @dynamic
 @Injectable()
 export class RooferPlatformRef extends PlatformRef {
-  private document: Document;
-
   constructor(
-    @Inject(DOCUMENT) document: any,
+    @Inject(DOCUMENT) private document: Document,
     @Inject(APP_NAME) private appName: string,
     @Inject(ROOT_SELECTOR) private rootSelector: string,
     _injector: Injector,
   ) {
     super();
-    this.document = document;
     (this as any)._injector = _injector;
   }
 
