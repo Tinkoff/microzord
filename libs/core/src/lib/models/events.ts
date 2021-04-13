@@ -1,7 +1,7 @@
 import {Application} from './application';
 
 export class RooferEvent {
-  target: Application<any>;
+  target: Application<any> | null = null;
   constructor(public readonly type: string) {}
 }
 

@@ -6,7 +6,7 @@ export type Listener<T extends RooferEvent> = (event: T) => void;
 export abstract class Application<T extends Record<string, any> = Record<string, any>> {
   isBootstrapped = false;
   isDestroyed = true;
-  container: string | Element;
+  container: Element | string = '';
 
   protected readonly hook = new Set<Listener<RooferLifecycleEvent>>();
   protected readonly message = new Set<Listener<RooferMessageEvent>>();

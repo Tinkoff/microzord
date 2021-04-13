@@ -8,7 +8,7 @@ import {loadAppConstructor, RooferLifecycleEvent} from '@roofer/core';
   styleUrls: ['./sandbox.component.css'],
 })
 export class SandboxComponent {
-  appName$: Subject<string> = new Subject();
+  appName$: Subject<string | null> = new Subject();
 
   loadApp(appName: string) {
     loadAppConstructor(appName).subscribe();
