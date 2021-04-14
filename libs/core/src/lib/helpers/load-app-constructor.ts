@@ -1,7 +1,6 @@
 import {defer, isObservable, Observable, of} from 'rxjs';
-import {switchMap, tap} from 'rxjs/operators';
+import {catchError, switchMap, tap} from 'rxjs/operators';
 import {ApplicationConstructor} from '../models/application';
-import {RegistrationOptions} from '../models/registration-options';
 import {appOptionsRegistry, loadedAppRegistry} from '../registry';
 import {getAppConstructor} from './get-app-constructor';
 
@@ -23,17 +22,20 @@ export function loadAppConstructor<T extends Record<string, any> = Record<string
               throw `Roofer appliction "${appName}" is registered but it has no "loadApp" function. Please, provide it`;
             }
 
+            // catch?
             const result = appOptions.loadApp(appOptions.props);
 
-            if (
+            const applicationConstructor$ =
               result &&
               (isObservable(result) ||
                 ('then' in result && typeof result['then'] === 'function'))
-            ) {
-              return defer(() => result);
-            }
+                ? defer(() => result)
+                : of(result as ApplicationConstructor<T>);
 
-            return of(result as ApplicationConstructor<T>);
+            return applicationConstructor$
+              .pipe
+              // TODO: catchError ?
+              ();
           }),
     ),
     tap(applicationConstructor => loadedAppRegistry.set(appName, applicationConstructor)),
