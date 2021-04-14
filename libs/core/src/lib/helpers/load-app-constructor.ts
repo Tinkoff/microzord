@@ -5,8 +5,6 @@ import {RegistrationOptions} from '../models/registration-options';
 import {appOptionsRegistry, loadedAppRegistry} from '../registry';
 import {getAppConstructor} from './get-app-constructor';
 
-// todo: подумать над ошибками, если в опциях нет функции загрузки
-// или приложение вообще не зарегистрированно
 export function loadAppConstructor<T extends Record<string, any> = Record<string, any>>(
   appName: string,
 ): Observable<ApplicationConstructor<T>> {
@@ -18,15 +16,11 @@ export function loadAppConstructor<T extends Record<string, any> = Record<string
             const appOptions = appOptionsRegistry.get(appName);
 
             if (!appOptions) {
-              throw new Error(
-                `Roofer appliction "${appName}" has not been registered. Check the spelling or register an app.`,
-              );
+              throw `Roofer appliction "${appName}" has not been registered. Check the spelling or register an app.`;
             }
 
             if (!appOptions.loadApp) {
-              throw new Error(
-                `Roofer appliction "${appName}" is registered but it has no "loadApp" function. Please, provide it`,
-              );
+              throw `Roofer appliction "${appName}" is registered but it has no "loadApp" function. Please, provide it`;
             }
 
             const result = appOptions.loadApp(appOptions.props);
