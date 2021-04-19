@@ -22,20 +22,13 @@ export function loadAppConstructor<T extends Record<string, any> = Record<string
               throw `Roofer appliction "${appName}" is registered but it has no "loadApp" function. Please, provide it`;
             }
 
-            // catch?
             const result = appOptions.loadApp(appOptions.props);
 
-            const applicationConstructor$ =
-              result &&
+            return result &&
               (isObservable(result) ||
                 ('then' in result && typeof result['then'] === 'function'))
-                ? defer(() => result)
-                : of(result as ApplicationConstructor<T>);
-
-            return applicationConstructor$
-              .pipe
-              // TODO: catchError ?
-              ();
+              ? defer(() => result)
+              : of(result as ApplicationConstructor<T>);
           }),
     ),
     tap(applicationConstructor => loadedAppRegistry.set(appName, applicationConstructor)),
