@@ -7,7 +7,7 @@ export class RooferWebpackPlugin implements Plugin {
     compiler.hooks.emit.tap('HtmlWebpackPlugin', compilation => {
       compilation.fileDependencies.add('some-file.js');
 
-      const {publicPath = '', assets} = compilation.getStats().toJson();
+      const {publicPath = '', assets = []} = compilation.getStats().toJson();
 
       (compilation as any).emitAsset(
         'roofer.json',

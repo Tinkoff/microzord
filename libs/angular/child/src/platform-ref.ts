@@ -21,13 +21,13 @@ export const ROOT_SELECTOR = new InjectionToken<string>('Root selector');
 function createAppFactory<M, Props extends Record<string, any> = Record<string, any>>(
   bootstrapFn: () => Promise<NgModuleRef<M>>,
   rootSelector: string,
-  resolve: (value?: NgModuleRef<M> | PromiseLike<NgModuleRef<M>>) => void,
+  resolve: (value: NgModuleRef<M> | PromiseLike<NgModuleRef<M>>) => void,
   reject: (reason?: any) => void,
 ): ApplicationConstructor {
   // todo: не хватает имплементации хуков, сообщений и навигации
   class AngularApp<T = Props> extends Application<T> {
-    private router: Router;
-    private ngModule: NgModuleRef<M>;
+    private router: Router | null = null;
+    private ngModule: NgModuleRef<M> | null = null;
 
     destroy() {
       super.destroy();
@@ -41,12 +41,16 @@ function createAppFactory<M, Props extends Record<string, any> = Record<string, 
     }
 
     async bootstrap(container: string | Element, props?: T): Promise<void> {
-      container =
+      const containerElement =
         typeof container === 'string' ? document.querySelector(container) : container;
+
+      if (!containerElement) {
+        throw new Error(`No container found for ${container}`);
+      }
 
       const rootElement = document.createElement(rootSelector);
 
-      container.appendChild(rootElement);
+      containerElement.appendChild(rootElement);
 
       try {
         this.ngModule = await bootstrapFn();

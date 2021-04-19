@@ -7,7 +7,7 @@ import {BrowserBuilderOutput} from '@angular-devkit/build-angular';
 import {Observable} from 'rxjs';
 
 // хак для локальной разработки
-let Plugin;
+let Plugin: any;
 try {
   Plugin = require('@roofer/webpack-plugin').RooferWebpackPlugin;
 } catch (e) {
@@ -21,9 +21,11 @@ export const buildRoof = createBuilder(
   ): Observable<BrowserBuilderOutput> => {
     return executeBrowserBuilder(options, context, {
       webpackConfiguration(input: Configuration) {
-        input.plugins.push(new Plugin());
+        input.plugins?.push(new Plugin());
 
-        input.output.jsonpFunction = Math.random().toString();
+        if (input.output) {
+          input.output.jsonpFunction = Math.random().toString();
+        }
 
         return input;
       },

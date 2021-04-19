@@ -9,7 +9,7 @@ import {Application, RooferLifecycleEvent, RooferMessageEvent} from '@roofer/cor
 class ReactApplication extends Application {
   async bootstrap(container: string | Element, props?: Record<string, any>) {
     container =
-      typeof container === 'string' ? document.querySelector(container) : container;
+      typeof container === 'string' ? document.querySelector(container)! : container;
 
     await super.bootstrap(container, props);
 
@@ -31,11 +31,11 @@ class ReactApplication extends Application {
 
     this.container =
       typeof this.container === 'string'
-        ? document.querySelector(this.container)
+        ? document.querySelector(this.container)!
         : this.container;
 
     ReactDOM.unmountComponentAtNode(this.container);
-    this.container = null;
+    this.container = '';
 
     this.emitHook(RooferLifecycleEvent.destroyed());
   }

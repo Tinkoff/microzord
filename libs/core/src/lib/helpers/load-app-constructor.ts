@@ -15,13 +15,26 @@ export function loadAppConstructor<T extends Record<string, any> = Record<string
       appConstructor
         ? of(appConstructor)
         : defer(() => {
-            const appOptions: RegistrationOptions<T> = appOptionsRegistry.get(appName);
+            const appOptions = appOptionsRegistry.get(appName);
+
+            if (!appOptions) {
+              throw new Error(
+                `Roofer appliction "${appName}" has not been registered. Check the spelling or register an app.`,
+              );
+            }
+
+            if (!appOptions.loadApp) {
+              throw new Error(
+                `Roofer appliction "${appName}" is registered but it has no "loadApp" function. Please, provide it`,
+              );
+            }
 
             const result = appOptions.loadApp(appOptions.props);
 
             if (
               result &&
-              (isObservable(result) || typeof result['then'] === 'function')
+              (isObservable(result) ||
+                ('then' in result && typeof result['then'] === 'function'))
             ) {
               return defer(() => result);
             }

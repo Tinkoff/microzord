@@ -31,7 +31,7 @@ export class LoaderService {
         }),
         ignoreElements(),
       ),
-      fromEvent(this.document, 'loadApp').pipe(
+      fromEvent<CustomEvent>(this.document, 'loadApp').pipe(
         map(
           (
             event: CustomEvent<{

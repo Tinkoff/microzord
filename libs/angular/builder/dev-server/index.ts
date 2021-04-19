@@ -9,7 +9,7 @@ import {
 } from '@angular-devkit/build-angular/src/dev-server';
 
 // хак для локальной разработки
-let Plugin;
+let Plugin: any;
 try {
   Plugin = require('@roofer/webpack-plugin').RooferWebpackPlugin;
 } catch (e) {
@@ -23,9 +23,11 @@ export const buildRoofer = createBuilder(
   ): Observable<DevServerBuilderOutput> => {
     return executeDevServerBuilder(options, context, {
       webpackConfiguration(input: Configuration) {
-        input.plugins.push(new Plugin());
+        input.plugins?.push(new Plugin());
 
-        input.output.jsonpFunction = Math.random().toString();
+        if (input.output) {
+          input.output.jsonpFunction = Math.random().toString();
+        }
 
         return input;
       },
