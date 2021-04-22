@@ -4,7 +4,7 @@ import {NEVER, Observable, of, Subject} from 'rxjs';
 import {filter, finalize, startWith, switchMap, takeUntil, tap} from 'rxjs/operators';
 
 @Directive({
-  selector: '[roofer-app]',
+  selector: '[roofer-app]:not(ng-container)',
 })
 export class RooferAppDirective implements OnDestroy {
   @Output()
@@ -15,6 +15,11 @@ export class RooferAppDirective implements OnDestroy {
 
   private destroy$ = new Subject<string>();
   private name$ = new Subject<string>();
+
+  @Input('roofer-app')
+  set name(appName: string) {
+    this.ngZone.runOutsideAngular(() => this.name$.next(appName));
+  }
 
   constructor(private elementRef: ElementRef, private ngZone: NgZone) {
     this.application = this.name$.pipe(
@@ -47,10 +52,6 @@ export class RooferAppDirective implements OnDestroy {
     );
 
     this.application.subscribe();
-  }
-
-  @Input() set name(appName: string) {
-    this.ngZone.runOutsideAngular(() => this.name$.next(appName));
   }
 
   ngOnDestroy() {
