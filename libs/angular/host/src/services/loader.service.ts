@@ -4,13 +4,17 @@ import {combineLatest, fromEvent, merge, Observable} from 'rxjs';
 import {filter, ignoreElements, map, switchMap, take} from 'rxjs/operators';
 import {DOCUMENT} from '@angular/common';
 import {HttpClient} from '@angular/common/http';
+import {ROOFER_LOADER} from '../tokens/roofer-loader';
 
 // @dynamic
 @Injectable({
   providedIn: 'root',
 })
 export class LoaderService {
-  constructor(@Inject(DOCUMENT) private document: Document, private http: HttpClient) {}
+  constructor(
+    @Inject(DOCUMENT) private readonly documentRef: Document,
+    @Inject(ROOFER_LOADER) private readonly http: HttpClient,
+  ) {}
 
   loadByAssetsMap(name: string, assetMapUrl: string): Observable<ApplicationConstructor> {
     return merge(
@@ -31,7 +35,7 @@ export class LoaderService {
         }),
         ignoreElements(),
       ),
-      fromEvent<CustomEvent>(this.document, 'loadApp').pipe(
+      fromEvent<CustomEvent>(this.documentRef, 'loadApp').pipe(
         map(
           (
             event: CustomEvent<{
@@ -49,7 +53,7 @@ export class LoaderService {
 
   private importJS(src: string): Observable<void> {
     return new Observable<void>(subscriber => {
-      const script = this.document.createElement('script');
+      const script = this.documentRef.createElement('script');
 
       script.src = src;
 
@@ -68,7 +72,7 @@ export class LoaderService {
         subscriber.error(error);
       };
 
-      this.document.head.appendChild(script);
+      this.documentRef.head.appendChild(script);
 
       return () => {
         script.remove();
@@ -78,7 +82,7 @@ export class LoaderService {
 
   private importCSS(src: string): Observable<void> {
     return new Observable<void>(subscriber => {
-      const link = this.document.createElement('link');
+      const link = this.documentRef.createElement('link');
 
       link.href = src;
       link.rel = 'stylesheet';
@@ -98,7 +102,7 @@ export class LoaderService {
         subscriber.error(error);
       };
 
-      this.document.head.appendChild(link);
+      this.documentRef.head.appendChild(link);
 
       return () => {
         link.remove();
