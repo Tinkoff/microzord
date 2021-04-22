@@ -3,7 +3,7 @@ import {BrowserModule} from '@angular/platform-browser';
 
 import {AppComponent} from './app.component';
 import {RouterModule} from '@angular/router';
-import {RooferHostModule} from '@roofer/angular/host';
+import {RooferAppModule, RooferHostModule} from '@roofer/angular';
 import {HttpClientModule} from '@angular/common/http';
 import {RxnodeComponent} from './rxnode/rxnode.component';
 import {SsrComponent} from './ssr/ssr.component';
@@ -40,6 +40,7 @@ import {ComponentsModule} from './components/components.module';
         component: SandboxComponent,
       },
     ]),
+    RooferAppModule,
     RooferHostModule.register({
       apps: [
         {
