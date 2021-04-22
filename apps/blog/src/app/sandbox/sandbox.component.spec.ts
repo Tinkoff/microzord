@@ -1,7 +1,7 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {SandboxComponent} from './sandbox.component';
-import {RooferHostModule} from '@roofer/angular/host';
+import {RooferHostModule} from '@roofer/angular';
 
 describe('SandboxComponent', () => {
   let component: SandboxComponent;
