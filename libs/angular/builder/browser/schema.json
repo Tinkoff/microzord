@@ -6,7 +6,7 @@
   "properties": {
     "roofer": {
       "type": "object",
-      "description": "",
+      "description": "Roofer webpack plugin configuration",
       "properties": {
         "groups": {
           "type": "array",

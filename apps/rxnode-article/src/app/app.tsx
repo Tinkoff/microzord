@@ -1,7 +1,5 @@
 import React from 'react';
 
-console.log(import('@angular/core'));
-
 export function App() {
   return (
     <div>

@@ -1,6 +1,6 @@
 import {Inject, Injectable} from '@angular/core';
 import {ApplicationConstructor} from '@roofer/core';
-import {combineLatest, concat, fromEvent, merge, Observable} from 'rxjs';
+import {concat, fromEvent, merge, Observable} from 'rxjs';
 import {filter, ignoreElements, map, switchMap, take} from 'rxjs/operators';
 import {DOCUMENT} from '@angular/common';
 import {HttpClient} from '@angular/common/http';
@@ -23,16 +23,12 @@ export class LoaderService {
           return concat(
             ...groups.map(assets =>
               merge(
-                combineLatest(
-                  assets
-                    .filter(file => file.endsWith('.css'))
-                    .map(file => this.importCSS(file)),
-                ),
-                combineLatest(
-                  assets
-                    .filter(file => file.endsWith('.js'))
-                    .map(file => this.importJS(file)),
-                ),
+                ...assets
+                  .filter(file => file.endsWith('.css'))
+                  .map(file => this.importCSS(file)),
+                ...assets
+                  .filter(file => file.endsWith('.js'))
+                  .map(file => this.importJS(file)),
               ),
             ),
           );
