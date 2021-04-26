@@ -2,7 +2,8 @@
   "name": "@roofer/webpack-plugin",
   "version": "0.0.0-development",
   "dependencies": {
-    "@types/webpack": "^4.41.26"
+    "@types/webpack": "^4.41.26",
+    "minimatch": "^3.0.4"
   },
   "publishConfig": {
     "access": "public"

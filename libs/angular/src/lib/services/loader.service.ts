@@ -1,6 +1,6 @@
 import {Inject, Injectable} from '@angular/core';
 import {ApplicationConstructor} from '@roofer/core';
-import {combineLatest, fromEvent, merge, Observable} from 'rxjs';
+import {concat, fromEvent, merge, Observable} from 'rxjs';
 import {filter, ignoreElements, map, switchMap, take} from 'rxjs/operators';
 import {DOCUMENT} from '@angular/common';
 import {HttpClient} from '@angular/common/http';
@@ -18,18 +18,18 @@ export class LoaderService {
 
   loadByAssetsMap(name: string, assetMapUrl: string): Observable<ApplicationConstructor> {
     return merge(
-      this.http.get<string[]>(assetMapUrl).pipe(
-        switchMap(assets => {
-          return merge(
-            combineLatest(
-              assets
-                .filter(file => file.endsWith('.css'))
-                .map(file => this.importCSS(file)),
-            ),
-            combineLatest(
-              assets
-                .filter(file => file.endsWith('.js'))
-                .map(file => this.importJS(file)),
+      this.http.get<{groups: string[][]}>(assetMapUrl).pipe(
+        switchMap(({groups}) => {
+          return concat(
+            ...groups.map(assets =>
+              merge(
+                ...assets
+                  .filter(file => file.endsWith('.css'))
+                  .map(file => this.importCSS(file)),
+                ...assets
+                  .filter(file => file.endsWith('.js'))
+                  .map(file => this.importJS(file)),
+              ),
             ),
           );
         }),

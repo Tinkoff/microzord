@@ -4,6 +4,39 @@
   "description": "Browser target options",
   "type": "object",
   "properties": {
+    "roofer": {
+      "type": "object",
+      "description": "Roofer webpack plugin configuration",
+      "properties": {
+        "groups": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": {
+              "oneOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "pattern": {
+                      "type": "string"
+                    },
+                    "external": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": ["pattern"]
+                }
+              ]
+            }
+          }
+        }
+      },
+      "additionalProperties": false,
+      "required": ["groups"]
+    },
     "assets": {
       "type": "array",
       "description": "List of static application assets.",
@@ -390,7 +423,7 @@
     }
   },
   "additionalProperties": false,
-  "required": ["outputPath", "index", "main", "tsConfig"],
+  "required": ["outputPath", "index", "main", "tsConfig", "roofer"],
   "definitions": {
     "assetPattern": {
       "oneOf": [

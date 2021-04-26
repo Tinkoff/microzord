@@ -64,7 +64,13 @@
             "assets": ["apps/ssr-article/src/favicon.ico", "apps/ssr-article/src/assets"],
             "styles": ["apps/ssr-article/src/styles.scss"],
             "scripts": [],
-            "deployUrl": "ssr-article/"
+            "deployUrl": "ssr-article/",
+            "roofer": {
+              "groups": [
+                ["runtime*.js", "style*.css"],
+                ["polyfills*.js", "vendor*.js", "main*.js"]
+              ]
+            }
           },
           "configurations": {
             "production": {

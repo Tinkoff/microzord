@@ -21,7 +21,7 @@ export const buildRoof = createBuilder(
   ): Observable<BrowserBuilderOutput> => {
     return executeBrowserBuilder(options, context, {
       webpackConfiguration(input: Configuration) {
-        input.plugins?.push(new Plugin());
+        input.plugins?.push(new Plugin(options.roofer));
 
         if (input.output) {
           input.output.jsonpFunction = Math.random().toString();
