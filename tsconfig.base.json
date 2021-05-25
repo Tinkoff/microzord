@@ -19,7 +19,10 @@
       "@roofer/core": ["libs/core/src/index.ts"],
       "@roofer/angular": ["libs/angular/src/index.ts"],
       "@roofer/angular/*": ["libs/angular/*"],
-      "@roofer/webpack-plugin": ["libs/webpack-plugin/src/index.ts"]
+      "@roofer/webpack-plugin": ["libs/webpack-plugin/src/index.ts"],
+      "@roofer/react": ["libs/react/src/index.ts"],
+      "@roofer/vue": ["libs/vue/src/index.ts"],
+      "@roofer/svelte": ["libs/svelte/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
