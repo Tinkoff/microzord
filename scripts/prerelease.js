@@ -12,6 +12,7 @@ function copyExtraFiles() {
     copyReadmeIntoLibFolder(README_PATH, 'angular');
     copyReadmeIntoLibFolder(README_PATH, 'react');
     copyReadmeIntoLibFolder(README_PATH, 'vue');
+    copyReadmeIntoLibFolder(README_PATH, 'svelte');
     copyReadmeIntoLibFolder(README_PATH, 'webpack-plugin');
   }
 }
