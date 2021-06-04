@@ -24,6 +24,7 @@
     "nx": "nx",
     "start": "nx run demo:serve",
     "build": "nx affected --target build --prod --with-deps",
+    "prerelease": "node scripts/prerelease",
     "release": "nx affected --target release",
     "test": "nx affected --target test",
     "lint": "nx workspace-lint && nx affected --target lint",
