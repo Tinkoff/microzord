@@ -4,9 +4,9 @@ import {NEVER, Observable, of, Subject} from 'rxjs';
 import {filter, finalize, startWith, switchMap, takeUntil, tap} from 'rxjs/operators';
 
 @Directive({
-  selector: '[microzord-app]:not(ng-container)',
+  selector: '[microzord]:not(ng-container)',
 })
-export class MicrozordAppDirective implements OnDestroy {
+export class MicrozordDirective implements OnDestroy {
   @Output()
   hook: Observable<MicrozordLifecycleEvent>;
 
@@ -16,7 +16,7 @@ export class MicrozordAppDirective implements OnDestroy {
   private destroy$ = new Subject<string>();
   private name$ = new Subject<string>();
 
-  @Input('microzord-app')
+  @Input('microzord')
   set name(appName: string) {
     this.ngZone.runOutsideAngular(() => this.name$.next(appName));
   }
