@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {LoaderService} from './loader.service';
-import {AppRegistrationOptions} from '../tokens/microzords';
+import {AppRegistrationOptions} from '../tokens/microzord-apps';
 import {registerApp} from '@microzord/core';
 
 @Injectable({

@@ -1,5 +1,5 @@
 import {Inject, ModuleWithProviders, NgModule} from '@angular/core';
-import {AppRegistrationOptions, MICROZORD_APPS} from './tokens/microzords';
+import {AppRegistrationOptions, MICROZORD_APPS} from './tokens/microzord-apps';
 import {RegistryService} from './services/registry.service';
 
 export interface MicrozordHostModuleOptions {
