@@ -2,7 +2,7 @@
 
 ## Attention: WIP
 
-TODO: Cool framework for microfrontends
+It is a pre-alpha version ofthe library. Please, do not use it until official release.
 
 ## Core team
 
@@ -19,26 +19,24 @@ TODO: Cool framework for microfrontends
             >
             <div style="margin-top: 4px">
                 <a
-                    style="margin-left: 8px"
                     href="https://twitter.com/katsuba_igor"
                     title="Twitter"
                     ><img
                         style="width: 16px;"
                         width="16"
-                        src="https://image.flaticon.com/icons/svg/733/733579.svg"
+                        src="https://raw.githubusercontent.com/feathericons/feather/master/icons/twitter.svg"
                 /></a>
                 <a href="https://github.com/IKatsuba" title="Github"
                     ><img
                         width="16"
-                        src="https://image.flaticon.com/icons/svg/2111/2111425.svg"
+                        src="https://raw.githubusercontent.com/feathericons/feather/master/icons/github.svg"
                 /></a>
                 <a
-                    style="margin-left: 8px"
                     href="https://t.me/Katsuba"
                     title="Telegram"
                     ><img
                         width="16"
-                        src="https://image.flaticon.com/icons/svg/2111/2111644.svg"
+                        src="https://raw.githubusercontent.com/feathericons/feather/master/icons/send.svg"
                 /></a>
             </div>
         </td>
@@ -49,39 +47,40 @@ TODO: Cool framework for microfrontends
                     width="100"
                     style="margin-bottom: -4px; border-radius: 8px;"
                     alt="Roman Sedov"
-                /><br /><sub><b>Roman Sedov</b></sub></a
+                /><br /><b>Roman Sedov</b></a
             >
             <div style="margin-top: 4px">
                 <a
-                    style="margin-left: 8px"
                     href="https://twitter.com/marsibarsi"
                     title="Twitter"
                     ><img
                         width="16"
-                        src="https://image.flaticon.com/icons/svg/733/733579.svg"
-                /></a>
-                <a href="https://github.com/marsibarsi" title="Github"
-                    ><img
-                        width="16"
-                        src="https://image.flaticon.com/icons/svg/2111/2111425.svg"
+                        src="https://raw.githubusercontent.com/feathericons/feather/master/icons/twitter.svg"
                 /></a>
                 <a
-                    style="margin-left: 8px"
+                    href="https://github.com/marsibarsi"
+                    title="GitHub"
+                    ><img
+                        width="16"
+                        src="https://raw.githubusercontent.com/feathericons/feather/master/icons/github.svg"
+                /></a>
+                <a
                     href="https://t.me/marsibarsi"
                     title="Telegram"
                     ><img
                         width="16"
-                        src="https://image.flaticon.com/icons/svg/2111/2111644.svg"
+                        src="https://raw.githubusercontent.com/feathericons/feather/master/icons/send.svg"
                 /></a>
             </div>
         </td>
     </tr>
+
 </table>
 
 ## License
 
 🆓 Feel free to use our library in your commercial and private applications
 
-All Roofer packages are covered by [Apache 2.0](/LICENSE)
+All microzord packages are covered by [Apache 2.0](/LICENSE)
 
 Read more about this license [here](https://choosealicense.com/licenses/apache-2.0/)

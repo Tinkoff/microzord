@@ -1,14 +1,14 @@
 import {Directive, ElementRef, Input, NgZone, OnDestroy, Output} from '@angular/core';
-import {Application, bootstrapApp, RooferLifecycleEvent} from '@roofer/core';
+import {Application, bootstrapApp, MicrozordLifecycleEvent} from '@microzord/core';
 import {NEVER, Observable, of, Subject} from 'rxjs';
 import {filter, finalize, startWith, switchMap, takeUntil, tap} from 'rxjs/operators';
 
 @Directive({
-  selector: '[roofer-app]:not(ng-container)',
+  selector: '[microzord]:not(ng-container)',
 })
-export class RooferAppDirective implements OnDestroy {
+export class MicrozordDirective implements OnDestroy {
   @Output()
-  hook: Observable<RooferLifecycleEvent>;
+  hook: Observable<MicrozordLifecycleEvent>;
 
   @Output()
   application: Observable<Application | null>;
@@ -16,7 +16,7 @@ export class RooferAppDirective implements OnDestroy {
   private destroy$ = new Subject<string>();
   private name$ = new Subject<string>();
 
-  @Input('roofer-app')
+  @Input('microzord')
   set name(appName: string) {
     this.ngZone.runOutsideAngular(() => this.name$.next(appName));
   }
@@ -45,7 +45,7 @@ export class RooferAppDirective implements OnDestroy {
       filter((app => !!app) as (app: unknown) => app is Application),
       switchMap(
         app =>
-          new Observable<RooferLifecycleEvent>(subscriber =>
+          new Observable<MicrozordLifecycleEvent>(subscriber =>
             app.onHook(event => subscriber.next(event)),
           ),
       ),

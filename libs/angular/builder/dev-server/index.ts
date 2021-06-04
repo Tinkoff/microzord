@@ -16,12 +16,12 @@ import {switchMap} from 'rxjs/operators';
 // хак для локальной разработки
 let Plugin: any;
 try {
-  Plugin = require('@roofer/webpack-plugin').RooferWebpackPlugin;
+  Plugin = require('@microzord/webpack-plugin').MicrozordWebpackPlugin;
 } catch (e) {
-  Plugin = require('../../webpack-plugin').RooferWebpackPlugin;
+  Plugin = require('../../webpack-plugin').MicrozordWebpackPlugin;
 }
 
-export const buildRoofer = createBuilder(
+export const buildMicrozord = createBuilder(
   (
     options: DevServerBuilderOptions & JsonObject,
     context: BuilderContext,
@@ -29,10 +29,10 @@ export const buildRoofer = createBuilder(
     return from(
       context.getTargetOptions(targetFromTargetString(options.browserTarget)),
     ).pipe(
-      switchMap(({roofer}) =>
+      switchMap(({microzord}) =>
         executeDevServerBuilder(options, context, {
           webpackConfiguration(input: Configuration) {
-            input.plugins?.push(new Plugin(roofer));
+            input.plugins?.push(new Plugin(microzord));
 
             if (input.output) {
               input.output.jsonpFunction = Math.random().toString();
@@ -47,4 +47,4 @@ export const buildRoofer = createBuilder(
 );
 
 // export default почему не попадает в бандл
-module.exports.default = buildRoofer;
+module.exports.default = buildMicrozord;

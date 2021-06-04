@@ -8,19 +8,19 @@ export interface Asset {
   external?: boolean;
 }
 
-export interface RooferWebpackPluginOptions {
+export interface MicrozordWebpackPluginOptions {
   groups?: Array<Array<string | Asset>>;
   assetMapName?: string;
 }
 
-export class RooferWebpackPlugin implements Plugin {
-  constructor(private config: RooferWebpackPluginOptions = {}) {
+export class MicrozordWebpackPlugin implements Plugin {
+  constructor(private config: MicrozordWebpackPluginOptions = {}) {
     this.config.groups ??= [];
-    this.config.assetMapName ??= 'roofer.json';
+    this.config.assetMapName ??= 'microzord.json';
   }
 
   apply(compiler: Compiler) {
-    compiler.hooks.emit.tap(RooferWebpackPlugin.name, compilation => {
+    compiler.hooks.emit.tap(MicrozordWebpackPlugin.name, compilation => {
       const {
         publicPath = '',
         assets: webpackAssets = [],
@@ -44,7 +44,7 @@ export class RooferWebpackPlugin implements Plugin {
       );
 
       (compilation as any).emitAsset(
-        this.config.assetMapName ?? 'roofer.json',
+        this.config.assetMapName ?? 'microzord.json',
         new RawSource(JSON.stringify({groups})),
       );
     });

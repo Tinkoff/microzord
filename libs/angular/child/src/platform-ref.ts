@@ -9,10 +9,10 @@ import {
   PlatformRef,
   Type,
 } from '@angular/core';
-import {Application, ApplicationConstructor} from '@roofer/core';
+import {Application, ApplicationConstructor} from '@microzord/core';
 import {Router} from '@angular/router';
 import {DOCUMENT} from '@angular/common';
-import {RooferLifecycleEvent, RooferMessageEvent} from '@roofer/core';
+import {MicrozordLifecycleEvent, MicrozordMessageEvent} from '@microzord/core';
 
 export const APP_NAME = new InjectionToken<string>('App name');
 export const ROOT_SELECTOR = new InjectionToken<string>('Root selector');
@@ -37,7 +37,7 @@ function createAppFactory<M, Props extends Record<string, any> = Record<string, 
         this.ngModule = null;
       }
 
-      this.emitHook(RooferLifecycleEvent.destroyed());
+      this.emitHook(MicrozordLifecycleEvent.destroyed());
     }
 
     async bootstrap(container: string | Element, props?: T): Promise<void> {
@@ -59,7 +59,7 @@ function createAppFactory<M, Props extends Record<string, any> = Record<string, 
         await super.bootstrap(container, props);
         resolve(this.ngModule);
 
-        this.emitHook(RooferLifecycleEvent.bootstrapped());
+        this.emitHook(MicrozordLifecycleEvent.bootstrapped());
       } catch (e) {
         reject(e);
         throw e;
@@ -72,7 +72,7 @@ function createAppFactory<M, Props extends Record<string, any> = Record<string, 
       }
     }
 
-    async send(_msg: string | RooferMessageEvent): Promise<void> {
+    async send(_msg: string | MicrozordMessageEvent): Promise<void> {
       //
     }
   }
@@ -82,7 +82,7 @@ function createAppFactory<M, Props extends Record<string, any> = Record<string, 
 
 // @dynamic
 @Injectable()
-export class RooferPlatformRef extends PlatformRef {
+export class MicrozordPlatformRef extends PlatformRef {
   constructor(
     @Inject(DOCUMENT) private document: Document,
     @Inject(APP_NAME) private appName: string,

@@ -6,22 +6,22 @@ import {Configuration} from 'webpack';
 import {BrowserBuilderOutput} from '@angular-devkit/build-angular';
 import {Observable} from 'rxjs';
 
-// хак для локальной разработки
+// for local development
 let Plugin: any;
 try {
-  Plugin = require('@roofer/webpack-plugin').RooferWebpackPlugin;
+  Plugin = require('@microzord/webpack-plugin').MicrozordWebpackPlugin;
 } catch (e) {
-  Plugin = require('../../webpack-plugin').RooferWebpackPlugin;
+  Plugin = require('../../webpack-plugin').MicrozordWebpackPlugin;
 }
 
-export const buildRoof = createBuilder(
+export const buildZord = createBuilder(
   (
     options: BrowserBuilderSchema & JsonObject,
     context: BuilderContext,
   ): Observable<BrowserBuilderOutput> => {
     return executeBrowserBuilder(options, context, {
       webpackConfiguration(input: Configuration) {
-        input.plugins?.push(new Plugin(options.roofer));
+        input.plugins?.push(new Plugin(options.microzord));
 
         if (input.output) {
           input.output.jsonpFunction = Math.random().toString();
@@ -33,5 +33,5 @@ export const buildRoof = createBuilder(
   },
 );
 
-// export default почему не попадает в бандл
-module.exports.default = buildRoof;
+// TODO: research why "export default" is not in the bundle
+module.exports.default = buildZord;

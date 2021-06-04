@@ -1,19 +1,14 @@
 {
   "implicitDependencies": {
     "angular.json": "*",
-    "package.json": {
-      "dependencies": "*",
-      "devDependencies": "*"
-    },
+    "package.json": {"dependencies": "*", "devDependencies": "*"},
     "tsconfig.base.json": "*",
     "tslint.json": "*",
     ".eslintrc.json": "*",
     "nx.json": "*"
   },
-  "affected": {
-    "defaultBase": "main"
-  },
-  "npmScope": "roofer",
+  "affected": {"defaultBase": "main"},
+  "npmScope": "microzord",
   "tasksRunnerOptions": {
     "default": {
       "runner": "@nrwl/nx-cloud",
@@ -26,20 +21,15 @@
     }
   },
   "projects": {
-    "ssr-article": {
-      "tags": []
-    },
+    "ssr-article": {"tags": []},
     "core": {"tags": []},
     "angular": {"tags": []},
-    "blog": {
-      "tags": []
-    },
-    "rxnode-article": {
-      "tags": []
-    },
+    "blog": {"tags": []},
+    "rxnode-article": {"tags": []},
     "webpack-plugin": {"tags": []},
     "react": {"tags": []},
     "vue": {"tags": []},
-    "svelte": {"tags": []}
+    "svelte": {"tags": []},
+    "demo": {"tags": []}
   }
 }

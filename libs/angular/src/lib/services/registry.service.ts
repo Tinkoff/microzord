@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {LoaderService} from './loader.service';
-import {AppRegistrationOptions} from '../tokens/roofer-apps';
-import {registerApp} from '@roofer/core';
+import {AppRegistrationOptions} from '../tokens/microzord-apps';
+import {registerApp} from '@microzord/core';
 
 @Injectable({
   providedIn: 'root',

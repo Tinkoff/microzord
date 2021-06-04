@@ -1,4 +1,4 @@
-import {registerApp} from '@roofer/core';
+import {registerApp} from '@microzord/core';
 import {ApplicationMock} from '../../__mocks_/application.mock';
 import {appOptionsRegistry} from '../registry';
 

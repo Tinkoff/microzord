@@ -22,7 +22,7 @@ assignees: IKatsuba, MarsiBarsi
 
 ### Versions
 
-- Package [e.g. @roofer/core@2.0.0]
+- Package [e.g. @microzord/core@2.0.0]
 
 If needed:
 

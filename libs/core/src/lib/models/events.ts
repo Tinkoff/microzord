@@ -1,24 +1,26 @@
 import {Application} from './application';
 
-export class RooferEvent {
+export class MicrozordEvent {
   target: Application<any> | null = null;
   constructor(public readonly type: string) {}
 }
 
 // todo: подумать над сообщениями
-export class RooferMessageEvent extends RooferEvent {
-  static isMessageEvent(event: RooferEvent): event is RooferMessageEvent {
+export class MicrozordMessageEvent extends MicrozordEvent {
+  static isMessageEvent(event: MicrozordEvent): event is MicrozordMessageEvent {
     return (
-      event && event.constructor && event.constructor.name === RooferMessageEvent.name
+      event && event.constructor && event.constructor.name === MicrozordMessageEvent.name
     );
   }
 }
 
 // todo: подумать над ивентами роутинга
-export class RooferNavigationEvent extends RooferEvent {
-  static isNavigationEvent(event: RooferEvent): event is RooferNavigationEvent {
+export class MicrozordNavigationEvent extends MicrozordEvent {
+  static isNavigationEvent(event: MicrozordEvent): event is MicrozordNavigationEvent {
     return (
-      event && event.constructor && event.constructor.name === RooferNavigationEvent.name
+      event &&
+      event.constructor &&
+      event.constructor.name === MicrozordNavigationEvent.name
     );
   }
 }

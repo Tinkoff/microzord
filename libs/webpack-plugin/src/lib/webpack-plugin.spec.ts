@@ -1,7 +1,7 @@
-import {RooferWebpackPlugin} from './webpack-plugin';
+import {MicrozordWebpackPlugin} from './webpack-plugin';
 
 describe('webpackPlugin', () => {
   it('should work', () => {
-    expect(new RooferWebpackPlugin()).toBeInstanceOf(RooferWebpackPlugin);
+    expect(new MicrozordWebpackPlugin()).toBeInstanceOf(MicrozordWebpackPlugin);
   });
 });

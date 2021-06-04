@@ -4,9 +4,9 @@
   "description": "Browser target options",
   "type": "object",
   "properties": {
-    "roofer": {
+    "microzord": {
       "type": "object",
-      "description": "Roofer webpack plugin configuration",
+      "description": "Microzord webpack plugin configuration",
       "properties": {
         "groups": {
           "type": "array",
@@ -423,7 +423,7 @@
     }
   },
   "additionalProperties": false,
-  "required": ["outputPath", "index", "main", "tsConfig", "roofer"],
+  "required": ["outputPath", "index", "main", "tsConfig", "microzord"],
   "definitions": {
     "assetPattern": {
       "oneOf": [

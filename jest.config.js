@@ -10,5 +10,6 @@ module.exports = {
     '<rootDir>/libs/react',
     '<rootDir>/libs/vue',
     '<rootDir>/libs/svelte',
+    '<rootDir>/apps/demo',
   ],
 };

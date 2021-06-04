@@ -1,30 +1,32 @@
-import {RooferEvent} from './events';
+import {MicrozordEvent} from './events';
 
 export enum LifecycleEventTypes {
   bootstrapped = 'bootstrapped',
   destroyed = 'destroyed',
 }
 
-export class RooferLifecycleEvent extends RooferEvent {
-  static isLifecycleEvent(event: RooferEvent): event is RooferLifecycleEvent {
+export class MicrozordLifecycleEvent extends MicrozordEvent {
+  static isLifecycleEvent(event: MicrozordEvent): event is MicrozordLifecycleEvent {
     return (
-      event && event.constructor && event.constructor.name === RooferLifecycleEvent.name
+      event &&
+      event.constructor &&
+      event.constructor.name === MicrozordLifecycleEvent.name
     );
   }
 
-  static bootstrapped(): RooferLifecycleEvent {
-    return new RooferLifecycleEvent(LifecycleEventTypes.bootstrapped);
+  static bootstrapped(): MicrozordLifecycleEvent {
+    return new MicrozordLifecycleEvent(LifecycleEventTypes.bootstrapped);
   }
 
-  static isBootstrappedEvent(event: RooferLifecycleEvent): boolean {
+  static isBootstrappedEvent(event: MicrozordLifecycleEvent): boolean {
     return event.type === LifecycleEventTypes.bootstrapped;
   }
 
-  static destroyed(): RooferLifecycleEvent {
-    return new RooferLifecycleEvent(LifecycleEventTypes.destroyed);
+  static destroyed(): MicrozordLifecycleEvent {
+    return new MicrozordLifecycleEvent(LifecycleEventTypes.destroyed);
   }
 
-  static isDestroyedEvent(event: RooferLifecycleEvent): boolean {
+  static isDestroyedEvent(event: MicrozordLifecycleEvent): boolean {
     return event.type === LifecycleEventTypes.destroyed;
   }
 }

@@ -1,12 +1,12 @@
 import {Application} from '../lib/models/application';
-import {RooferMessageEvent} from '@roofer/core';
+import {MicrozordMessageEvent} from '@microzord/core';
 
 export class ApplicationMock extends Application<any> {
   navigate(_url: string, _props?: unknown): Promise<void> {
     return Promise.resolve(undefined);
   }
 
-  send(_msg: string | RooferMessageEvent): Promise<void> {
+  send(_msg: string | MicrozordMessageEvent): Promise<void> {
     return Promise.resolve(undefined);
   }
 }
