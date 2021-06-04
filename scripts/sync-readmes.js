@@ -18,7 +18,9 @@ function copyExtraFiles() {
 }
 
 function copyReadmeIntoLibFolder(srcPath, lib) {
-  const fileBody = fs.readFileSync(srcPath).toString();
+  try {
+    const fileBody = fs.readFileSync(srcPath).toString();
 
-  fs.writeFileSync(`libs/${lib}/${README_PATH}`, fileBody);
+    fs.writeFileSync(`dist/libs/${lib}/${README_PATH}`, fileBody);
+  } catch (_) {}
 }
