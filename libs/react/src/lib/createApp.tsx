@@ -1,4 +1,8 @@
-import {Application, RooferLifecycleEvent, RooferMessageEvent} from '@roofer/core';
+import {
+  Application,
+  MicrozordLifecycleEvent,
+  MicrozordMessageEvent,
+} from '@microzord/core';
 import ReactDOM from 'react-dom';
 import React, {ReactElement} from 'react';
 
@@ -11,7 +15,7 @@ export function createApp<P>(name: string, element: ReactElement<P>) {
       await super.bootstrap(container, props);
 
       ReactDOM.render(element, container, () => {
-        this.emitHook(RooferLifecycleEvent.bootstrapped());
+        this.emitHook(MicrozordLifecycleEvent.bootstrapped());
       });
     }
 
@@ -26,14 +30,14 @@ export function createApp<P>(name: string, element: ReactElement<P>) {
       ReactDOM.unmountComponentAtNode(this.container);
       this.container = '';
 
-      this.emitHook(RooferLifecycleEvent.destroyed());
+      this.emitHook(MicrozordLifecycleEvent.destroyed());
     }
 
     async navigate(url: string, props: unknown | undefined): Promise<void> {
       return undefined;
     }
 
-    async send(msg: string | RooferMessageEvent): Promise<void> {
+    async send(msg: string | MicrozordMessageEvent): Promise<void> {
       return undefined;
     }
   }

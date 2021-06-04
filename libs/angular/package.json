@@ -1,5 +1,5 @@
 {
-  "name": "@roofer/angular",
+  "name": "@microzord/angular",
   "version": "0.0.0-development",
   "peerDependencies": {
     "@angular/common": "^11.2.3",
@@ -28,6 +28,6 @@
     "Igor Katsuba <katsuba.igor@gmail.ru>",
     "Roman Sedov <79601794011@ya.ru>"
   ],
-  "repository": "https://github.com/TinkoffCreditSystems/roofer",
-  "homepage": "https://github.com/TinkoffCreditSystems/roofer"
+  "repository": "https://github.com/TinkoffCreditSystems/microzord",
+  "homepage": "https://github.com/TinkoffCreditSystems/microzord"
 }

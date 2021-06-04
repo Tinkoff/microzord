@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {Subject} from 'rxjs';
-import {loadAppConstructor, RooferLifecycleEvent} from '@roofer/core';
+import {loadAppConstructor, MicrozordLifecycleEvent} from '@microzord/core';
 
 @Component({
   selector: 'blog-sandbox',
@@ -14,7 +14,7 @@ export class SandboxComponent {
     loadAppConstructor(appName).subscribe();
   }
 
-  call($event: RooferLifecycleEvent) {
+  call($event: MicrozordLifecycleEvent) {
     console.log($event);
   }
 }

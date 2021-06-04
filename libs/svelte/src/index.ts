@@ -1,5 +1,9 @@
 import type {SvelteComponentTyped} from 'svelte';
-import {Application, RooferLifecycleEvent, RooferMessageEvent} from '@roofer/core';
+import {
+  Application,
+  MicrozordLifecycleEvent,
+  MicrozordMessageEvent,
+} from '@microzord/core';
 
 export interface SvelteComponentConstructor {
   new (options: {
@@ -27,7 +31,7 @@ export function createApp(name: string, app: SvelteComponentConstructor) {
         target: container,
       });
 
-      this.emitHook(RooferLifecycleEvent.bootstrapped());
+      this.emitHook(MicrozordLifecycleEvent.bootstrapped());
     }
 
     destroy() {
@@ -43,14 +47,14 @@ export function createApp(name: string, app: SvelteComponentConstructor) {
       }
       this.container = '';
 
-      this.emitHook(RooferLifecycleEvent.destroyed());
+      this.emitHook(MicrozordLifecycleEvent.destroyed());
     }
 
     async navigate(url: string, props: unknown | undefined): Promise<void> {
       return undefined;
     }
 
-    async send(msg: string | RooferMessageEvent): Promise<void> {
+    async send(msg: string | MicrozordMessageEvent): Promise<void> {
       return undefined;
     }
   }

@@ -15,11 +15,11 @@ export function loadAppConstructor<T extends Record<string, any> = Record<string
             const appOptions = appOptionsRegistry.get(appName);
 
             if (!appOptions) {
-              throw `Roofer appliction "${appName}" has not been registered. Check the spelling or register an app.`;
+              throw `Microzord appliction "${appName}" has not been registered. Check the spelling or register an app.`;
             }
 
             if (!appOptions.loadApp) {
-              throw `Roofer appliction "${appName}" is registered but it has no "loadApp" function. Please, provide it`;
+              throw `Microzord appliction "${appName}" is registered but it has no "loadApp" function. Please, provide it`;
             }
 
             const result = appOptions.loadApp(appOptions.props);

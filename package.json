@@ -1,5 +1,5 @@
 {
-  "name": "roofer",
+  "name": "microzord",
   "version": "0.0.0",
   "license": "Apache-2.0",
   "keywords": [
@@ -17,8 +17,8 @@
     "Igor Katsuba <katsuba.igor@gmail.ru>",
     "Roman Sedov <79601794011@ya.ru>"
   ],
-  "repository": "https://github.com/TinkoffCreditSystems/roofer",
-  "homepage": "https://github.com/TinkoffCreditSystems/roofer",
+  "repository": "https://github.com/TinkoffCreditSystems/microzord",
+  "homepage": "https://github.com/TinkoffCreditSystems/microzord",
   "scripts": {
     "ng": "nx",
     "nx": "nx",

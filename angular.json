@@ -65,7 +65,7 @@
             "styles": ["apps/ssr-article/src/styles.scss"],
             "scripts": [],
             "deployUrl": "ssr-article/",
-            "roofer": {
+            "microzord": {
               "groups": [
                 ["runtime*.js", "style*.css"],
                 ["polyfills*.js", "vendor*.js", "main*.js"]
@@ -609,7 +609,7 @@
       "projectType": "application",
       "root": "apps/demo",
       "sourceRoot": "apps/demo/src",
-      "prefix": "roofer",
+      "prefix": "microzord",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",

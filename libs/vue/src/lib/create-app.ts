@@ -1,5 +1,9 @@
 import {App as VueApp, Component, createApp as createVueApp} from 'vue';
-import {Application, RooferLifecycleEvent, RooferMessageEvent} from '@roofer/core';
+import {
+  Application,
+  MicrozordLifecycleEvent,
+  MicrozordMessageEvent,
+} from '@microzord/core';
 
 export function createApp(name: string, rootComponent: Component) {
   class VueApplication extends Application {
@@ -15,7 +19,7 @@ export function createApp(name: string, rootComponent: Component) {
 
       this.app.mount(container);
 
-      this.emitHook(RooferLifecycleEvent.bootstrapped());
+      this.emitHook(MicrozordLifecycleEvent.bootstrapped());
     }
 
     destroy() {
@@ -24,14 +28,14 @@ export function createApp(name: string, rootComponent: Component) {
       this.app.unmount();
       this.container = '';
 
-      this.emitHook(RooferLifecycleEvent.destroyed());
+      this.emitHook(MicrozordLifecycleEvent.destroyed());
     }
 
     async navigate(url: string, props: unknown | undefined): Promise<void> {
       return undefined;
     }
 
-    async send(msg: string | RooferMessageEvent): Promise<void> {
+    async send(msg: string | MicrozordMessageEvent): Promise<void> {
       return undefined;
     }
   }

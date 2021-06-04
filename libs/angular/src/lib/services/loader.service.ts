@@ -1,10 +1,10 @@
 import {Inject, Injectable} from '@angular/core';
-import {ApplicationConstructor} from '@roofer/core';
+import {ApplicationConstructor} from '@microzord/core';
 import {concat, fromEvent, merge, Observable} from 'rxjs';
 import {filter, ignoreElements, map, switchMap, take} from 'rxjs/operators';
 import {DOCUMENT} from '@angular/common';
 import {HttpClient} from '@angular/common/http';
-import {ROOFER_LOADER} from '../tokens/roofer-loader';
+import {MICROZORD_LOADER} from '../tokens/microzord-loader';
 
 // @dynamic
 @Injectable({
@@ -13,7 +13,7 @@ import {ROOFER_LOADER} from '../tokens/roofer-loader';
 export class LoaderService {
   constructor(
     @Inject(DOCUMENT) private readonly documentRef: Document,
-    @Inject(ROOFER_LOADER) private readonly http: HttpClient,
+    @Inject(MICROZORD_LOADER) private readonly http: HttpClient,
   ) {}
 
   loadByAssetsMap(name: string, assetMapUrl: string): Observable<ApplicationConstructor> {

@@ -1,19 +1,19 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {RooferAppDirective} from './roofer-app.directive';
+import {MicrozordAppDirective} from './microzord-app.directive';
 
-describe('RooferAppDirective', () => {
-  let component: RooferAppDirective;
-  let fixture: ComponentFixture<RooferAppDirective>;
+describe('MicrozordAppDirective', () => {
+  let component: MicrozordAppDirective;
+  let fixture: ComponentFixture<MicrozordAppDirective>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [RooferAppDirective],
+      declarations: [MicrozordAppDirective],
     }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RooferAppDirective);
+    fixture = TestBed.createComponent(MicrozordAppDirective);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

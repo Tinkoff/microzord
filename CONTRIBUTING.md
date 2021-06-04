@@ -21,7 +21,7 @@ the code, follow these steps to kick start the development:
 1. We follow [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0-beta.4/)
    in our commit messages, i.e. `feat(core): add cool things`.
    - `feat: ...` will trigger release of all packages after merge
-   - `feat(core): ...` will trigger `@roofer/core` release after merge
+   - `feat(core): ...` will trigger `@microzord/core` release after merge
    - `feat(unknown-project): ...` will trigger no release
 2. Make sure you cover all code changes with unit tests
 3. When you are ready, create Pull Request of your fork into original repository

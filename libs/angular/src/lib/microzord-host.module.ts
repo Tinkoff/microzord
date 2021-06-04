@@ -1,15 +1,15 @@
 import {Inject, ModuleWithProviders, NgModule} from '@angular/core';
-import {AppRegistrationOptions, ROOFER_APPS} from './tokens/roofer-apps';
+import {AppRegistrationOptions, MICROZORD_APPS} from './tokens/microzord-apps';
 import {RegistryService} from './services/registry.service';
 
-export interface RooferHostModuleOptions {
+export interface MicrozordHostModuleOptions {
   apps: AppRegistrationOptions[];
 }
 
 @NgModule({})
-export class RooferHostModule {
+export class MicrozordHostModule {
   constructor(
-    @Inject(ROOFER_APPS) allApps: AppRegistrationOptions[][],
+    @Inject(MICROZORD_APPS) allApps: AppRegistrationOptions[][],
     registry: RegistryService,
   ) {
     allApps.forEach(apps => registry.registerApps(apps));
@@ -17,12 +17,12 @@ export class RooferHostModule {
 
   static register({
     apps,
-  }: RooferHostModuleOptions): ModuleWithProviders<RooferHostModule> {
+  }: MicrozordHostModuleOptions): ModuleWithProviders<MicrozordHostModule> {
     return {
-      ngModule: RooferHostModule,
+      ngModule: MicrozordHostModule,
       providers: [
         {
-          provide: ROOFER_APPS,
+          provide: MICROZORD_APPS,
           useValue: apps,
           multi: true,
         },

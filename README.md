@@ -1,4 +1,4 @@
-# @roofer
+# @microzord
 
 ## Attention: WIP
 
@@ -81,6 +81,6 @@ It is a pre-alpha version ofthe library. Please, do not use it until official re
 
 🆓 Feel free to use our library in your commercial and private applications
 
-All roofer packages are covered by [Apache 2.0](/LICENSE)
+All microzord packages are covered by [Apache 2.0](/LICENSE)
 
 Read more about this license [here](https://choosealicense.com/licenses/apache-2.0/)

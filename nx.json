@@ -8,7 +8,7 @@
     "nx.json": "*"
   },
   "affected": {"defaultBase": "main"},
-  "npmScope": "roofer",
+  "npmScope": "microzord",
   "tasksRunnerOptions": {
     "default": {
       "runner": "@nrwl/nx-cloud",

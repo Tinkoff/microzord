@@ -3,7 +3,7 @@ import {BrowserModule} from '@angular/platform-browser';
 
 import {AppComponent} from './app.component';
 import {RouterModule} from '@angular/router';
-import {RooferAppModule, RooferHostModule} from '@roofer/angular';
+import {MicrozordAppModule, MicrozordHostModule} from '@microzord/angular';
 import {HttpClientModule} from '@angular/common/http';
 import {RxnodeComponent} from './rxnode/rxnode.component';
 import {SsrComponent} from './ssr/ssr.component';
@@ -40,16 +40,16 @@ import {ComponentsModule} from './components/components.module';
         component: SandboxComponent,
       },
     ]),
-    RooferAppModule,
-    RooferHostModule.register({
+    MicrozordAppModule,
+    MicrozordHostModule.register({
       apps: [
         {
           name: 'ssr-article',
-          assetMap: '/ssr-article/roofer.json',
+          assetMap: '/ssr-article/microzord.json',
         },
         {
           name: 'rxnode-article',
-          assetMap: '/rxnode-article/roofer.json',
+          assetMap: '/rxnode-article/microzord.json',
         },
       ],
     }),

@@ -4,7 +4,11 @@ import ReactDOM from 'react-dom';
 import {BrowserRouter} from 'react-router-dom';
 
 import App from './app/app';
-import {Application, RooferLifecycleEvent, RooferMessageEvent} from '@roofer/core';
+import {
+  Application,
+  MicrozordLifecycleEvent,
+  MicrozordMessageEvent,
+} from '@microzord/core';
 
 class ReactApplication extends Application {
   async bootstrap(container: string | Element, props?: Record<string, any>) {
@@ -21,7 +25,7 @@ class ReactApplication extends Application {
       </React.StrictMode>,
       container,
       () => {
-        this.emitHook(RooferLifecycleEvent.bootstrapped());
+        this.emitHook(MicrozordLifecycleEvent.bootstrapped());
       },
     );
   }
@@ -37,14 +41,14 @@ class ReactApplication extends Application {
     ReactDOM.unmountComponentAtNode(this.container);
     this.container = '';
 
-    this.emitHook(RooferLifecycleEvent.destroyed());
+    this.emitHook(MicrozordLifecycleEvent.destroyed());
   }
 
   async navigate(url: string, props: unknown | undefined): Promise<void> {
     return undefined;
   }
 
-  async send(msg: string | RooferMessageEvent): Promise<void> {
+  async send(msg: string | MicrozordMessageEvent): Promise<void> {
     return undefined;
   }
 }

@@ -1,20 +1,23 @@
 import {createPlatformFactory, PlatformRef} from '@angular/core';
 import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
-import {APP_NAME, ROOT_SELECTOR, RooferPlatformRef} from './platform-ref';
+import {APP_NAME, ROOT_SELECTOR, MicrozordPlatformRef} from './platform-ref';
 
-const _platformRooferChild = createPlatformFactory(
+const _platformMicrozordChild = createPlatformFactory(
   platformBrowserDynamic,
-  'roofer-child',
+  'microzord-child',
   [
     {
       provide: PlatformRef,
-      useClass: RooferPlatformRef,
+      useClass: MicrozordPlatformRef,
     },
   ],
 );
 
-export function platformRooferChild(appName: string, rootSelector: string): PlatformRef {
-  return _platformRooferChild([
+export function platformMicrozordChild(
+  appName: string,
+  rootSelector: string,
+): PlatformRef {
+  return _platformMicrozordChild([
     {provide: APP_NAME, useValue: appName},
     {provide: ROOT_SELECTOR, useValue: rootSelector},
   ]);

@@ -1,1 +1,1 @@
-# @roofer/webpack-plugin
+# @microzord/webpack-plugin

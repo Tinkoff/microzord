@@ -1,5 +1,5 @@
 {
-  "name": "@roofer/webpack-plugin",
+  "name": "@microzord/webpack-plugin",
   "version": "0.0.0-development",
   "dependencies": {
     "@types/webpack": "^4.41.26",
@@ -24,6 +24,6 @@
     "Igor Katsuba <katsuba.igor@gmail.ru>",
     "Roman Sedov <79601794011@ya.ru>"
   ],
-  "repository": "https://github.com/TinkoffCreditSystems/roofer",
-  "homepage": "https://github.com/TinkoffCreditSystems/roofer"
+  "repository": "https://github.com/TinkoffCreditSystems/microzord",
+  "homepage": "https://github.com/TinkoffCreditSystems/microzord"
 }
