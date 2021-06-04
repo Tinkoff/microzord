@@ -162,6 +162,7 @@
     }
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx,html,md,less,scss,json}": ["npm run format:write", "git add"]
+    "*.{js,jsx,ts,tsx,html,md,less,scss,json}": ["npm run format:write"],
+    "*.{js,jsx,ts,tsx}": ["eslint --fix"]
   }
 }

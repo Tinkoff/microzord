@@ -12,6 +12,7 @@ import {GettingStartedModule} from './getting-started/getting-started.module';
 import {ROUTES} from './routes';
 
 // TODO: research the problem with this dep
+
 // import { HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
 
 // export const HIGHLIGHT_OPTIONS_VALUE = {
