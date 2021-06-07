@@ -1,4 +1,11 @@
 const fs = require('fs');
+const {argv} = require('process');
+
+const package = argv.length >= 2 ? argv[2] : '';
+
+if (!package) {
+  throw 'Название пакета не передано в sync-readmes';
+}
 
 const README_PATH = 'README.md';
 
@@ -8,12 +15,7 @@ function copyExtraFiles() {
   if (!fs.existsSync(README_PATH)) {
     throw new Error('README.md does not exist');
   } else {
-    copyReadmeIntoLibFolder(README_PATH, 'core');
-    copyReadmeIntoLibFolder(README_PATH, 'angular');
-    copyReadmeIntoLibFolder(README_PATH, 'react');
-    copyReadmeIntoLibFolder(README_PATH, 'vue');
-    copyReadmeIntoLibFolder(README_PATH, 'svelte');
-    copyReadmeIntoLibFolder(README_PATH, 'webpack-plugin');
+    copyReadmeIntoLibFolder(README_PATH, package);
   }
 }
 
