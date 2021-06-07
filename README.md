@@ -2,7 +2,7 @@
 
 ## Attention: WIP
 
-It is a pre-alpha version ofthe library. Please, do not use it until official release.
+It is a pre-alpha version of the library. Please, do not use it until official release.
 
 ## Core team
 

@@ -25,6 +25,8 @@
     "start": "nx run demo:serve",
     "build": "nx affected --target build --prod --with-deps",
     "release": "nx affected --target release",
+    "release:package": "nx build ${npm_config_package} --prod && npm run sync-readmes ${npm_config_package} && nx semrel ${npm_config_package}",
+    "sync-readmes": "node scripts/sync-readmes",
     "test": "nx affected --target test",
     "lint": "nx workspace-lint && nx affected --target lint",
     "prettier": "prettier --write '**/*.{js,ts,html,md,less,json}'",
