@@ -458,7 +458,7 @@
           "builder": "@ng-builders/semrel:release",
           "options": {
             "npm": {
-              "pkgRoot": "dist/libs/angular"
+              "pkgRoot": "dist/libs/webpack-plugin"
             },
             "branches": [
               "+([0-9])?(.{+([0-9]),x}).x",
