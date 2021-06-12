@@ -1,4 +1,4 @@
-# @microzord
+# <img src="apps/demo/src/assets/images/microzord.png" alt="microzord logo" width="36px"> microzord
 
 ## Attention: WIP
 
