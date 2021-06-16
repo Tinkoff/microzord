@@ -4,6 +4,21 @@
 
 It is a pre-alpha version of the library. Please, do not use it until official release.
 
+[![npm version](https://img.shields.io/npm/v/@microzord/core.svg)](https://npmjs.com/package/@microzord/core)
+[![npm bundle size](https://img.shields.io/bundlephobia/minzip/@microzord/core)](https://bundlephobia.com/result?p=@microzord/core)
+
+## What is it?
+
+It is a small tool that allows you to add and render multiple apps on one page. It has simple ideomatic APIs for all modern frameworks and builds bridges between them.
+
+🧙 **Framework agnostic**. You can have an Angular application with a React app header and a Vue app footer. Each app can have endless amount of nested apps inside. There are also wrappers for every modern framework with simple API.
+
+🧩 **Modular**. You can insert another app in your app in any place as an ordinary component. Use the same methods to bind data and to handle its events.
+
+## Installation and usage
+
+An extensive demo is coming soon...
+
 ## Core team
 
 <table>
