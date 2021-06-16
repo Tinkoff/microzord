@@ -19,6 +19,39 @@ It is a small tool that allows you to add and render multiple apps on one page. 
 
 An extensive demo is coming soon...
 
+### An example of usage external apps in Angular app
+
+app.module.ts
+
+```ts
+@NgModule({
+    MicrozordHostModule.register({
+      apps: [
+        {
+          name: 'react-menu',
+          assetMap: '/react-menu/microzord.json',
+        },
+        {
+          name: 'vue-footer-app',
+          assetMap: '/vue-footer-app/microzord.json',
+        },
+      ],
+    }),
+  ],
+})
+export class AppModule {}
+```
+
+Usage in application:
+
+```html
+<header microzord="react-menu"></header>
+
+<div>Any content</div>
+
+<footer microzord="vue-footer-app" (hook)="onFooterLifecycleEvent($event)"></footer>
+```
+
 ## Core team
 
 <table>
