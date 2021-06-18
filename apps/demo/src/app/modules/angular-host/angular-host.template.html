@@ -1,0 +1,63 @@
+<tui-doc-page header="Angular Host">
+  <p>
+    Here you can read how to setup your Angular application as a host to insert other
+    applications in it.
+  </p>
+
+  <p>
+    If you want your application to be inserted into another app, see
+    <a tuiLink routerLink="/angular-child">Angular as a child</a>
+  </p>
+
+  <section>
+    <h2>Installation</h2>
+
+    See <a tuiLink routerLink="/angular-installation">Angular package installation</a>
+  </section>
+
+  <section>
+    <h2>Register child apps</h2>
+
+    <p>
+      First of all, you need microzord asset maps of applications that you want to insert.
+    </p>
+
+    <p>
+      If you do not have them, see "<a tuiLink routerLink="/asset-map"
+        >What is an asset map</a
+      >"
+    </p>
+
+    <p>Connect asset maps the following way:</p>
+
+    <tui-doc-code filename="app.module.ts" [code]="hostConnection"></tui-doc-code>
+  </section>
+
+  <section>
+    <h2>Insert apps in your template</h2>
+
+    <p>Add <code>MicrozordModule</code> to your current Angular module.</p>
+
+    <tui-doc-code filename="some.module.ts" [code]="addingModule"></tui-doc-code>
+
+    <p>Use <code>microzord</code> directive in your template:</p>
+
+    <tui-doc-code
+      filename="some.component.html"
+      [code]="addingIntoTemplate"
+    ></tui-doc-code>
+
+    <p>The following outputs are available:</p>
+
+    <ul>
+      <li><code>(hook)</code> emits lifecycle events</li>
+
+      <li>
+        <code>(application)</code> emits an
+        <a tuiLink routerLink="/application">Application</a> entity that you can handle
+        manually. Be careful, if you need this in Angular, something probably is going
+        wrong.
+      </li>
+    </ul>
+  </section>
+</tui-doc-page>
