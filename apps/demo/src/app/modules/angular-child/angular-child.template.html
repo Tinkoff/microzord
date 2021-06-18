@@ -1,0 +1,33 @@
+<tui-doc-page header="Angular Child">
+  <p>Here you can read how to setup your application to be inserted into another app.</p>
+
+  <p>
+    If you want to make your Angular application a host of other applications, see
+    <a tuiLink routerLink="/angular-host">Angular as a host</a>
+  </p>
+
+  <section>
+    <h2>Installation</h2>
+
+    See <a tuiLink routerLink="/angular-installation">Angular package installation</a>
+  </section>
+
+  <section>
+    <h2>Replace the platform</h2>
+
+    <p>
+      Microzord provides its own Angular platform and
+      <code>enableProdMode</code> functions. It does not change default platform
+      behaviour, so you can still build and use your application separately, but adds
+      <a tuiLink target="_blank" routerLink="/asset-map">asset maps</a> for microzord.
+    </p>
+
+    <tui-doc-code filename="app.module.ts" [code]="replacingPlatform"></tui-doc-code>
+
+    <p>
+      Now you can build your application as usual and dist folder of your app will contain
+      <strong>microzord.json</strong> assets map.
+    </p>
+    <!-- TODO: describe ways how to deliver map to host -->
+  </section>
+</tui-doc-page>

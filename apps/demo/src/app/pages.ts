@@ -8,10 +8,35 @@ export const pages: TuiDocPages = [
     route: 'getting-started',
   },
   {
+    section: `Starting`,
+    title: `What is an asset map`,
+    keywords:
+      'intro, how to, guide, main, source, child, host, главная, начало, инструкция, карта',
+    route: 'asset-map',
+  },
+  {
+    section: `Starting`,
+    title: `Application entity`,
+    keywords: 'intro, how to, guide, main, source, child, host, zord, приложение',
+    route: 'asset-map',
+  },
+  {
     section: `Angular`,
     title: `Angular — Installation`,
     keywords: 'angular, spa',
     route: 'angular-installation',
+  },
+  {
+    section: `Angular`,
+    title: `Angular — Host`,
+    keywords: 'angular, spa, host',
+    route: 'angular-host',
+  },
+  {
+    section: `Angular`,
+    title: `Angular — Child`,
+    keywords: 'angular, spa, child',
+    route: 'angular-child',
   },
   {
     section: `React`,

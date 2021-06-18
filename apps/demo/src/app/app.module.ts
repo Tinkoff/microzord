@@ -10,20 +10,17 @@ import {LOGO_CONTENT} from './logo/logo.component';
 import {pages} from './pages';
 import {GettingStartedModule} from './getting-started/getting-started.module';
 import {ROUTES} from './routes';
+import {HIGHLIGHT_OPTIONS} from 'ngx-highlightjs';
 
-// TODO: research the problem with this dep
-
-// import { HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
-
-// export const HIGHLIGHT_OPTIONS_VALUE = {
-//   coreLibraryLoader: () => import('highlight.js/lib/core'),
-//   lineNumbersLoader: () => import('highlightjs-line-numbers.js'), // Optional, only if you want the line numbers
-//   languages: {
-//     typescript: () => import('highlight.js/lib/languages/typescript'),
-//     less: () => import('highlight.js/lib/languages/less'),
-//     xml: () => import('highlight.js/lib/languages/xml'),
-//   },
-// };
+export const HIGHLIGHT_OPTIONS_VALUE = {
+  coreLibraryLoader: () => import('highlight.js/lib/core' as string),
+  lineNumbersLoader: () => import('highlightjs-line-numbers.js' as string),
+  languages: {
+    typescript: () => import('highlight.js/lib/languages/typescript' as string),
+    less: () => import('highlight.js/lib/languages/less' as string),
+    xml: () => import('highlight.js/lib/languages/xml' as string),
+  },
+};
 
 @NgModule({
   declarations: [AppComponent],
@@ -44,10 +41,10 @@ import {ROUTES} from './routes';
       provide: TUI_DOC_PAGES,
       useValue: pages,
     },
-    // {
-    //   provide: HIGHLIGHT_OPTIONS,
-    //   useValue: HIGHLIGHT_OPTIONS_VALUE,
-    // },
+    {
+      provide: HIGHLIGHT_OPTIONS,
+      useValue: HIGHLIGHT_OPTIONS_VALUE,
+    },
   ],
   bootstrap: [AppComponent],
 })
