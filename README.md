@@ -25,6 +25,7 @@ app.module.ts
 
 ```ts
 @NgModule({
+  imports: [
     MicrozordHostModule.register({
       apps: [
         {
