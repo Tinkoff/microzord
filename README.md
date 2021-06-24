@@ -15,6 +15,8 @@ It is a small tool that allows you to add and render multiple apps on one page. 
 
 🧩 **Modular**. You can insert another app in your app in any place as an ordinary component. Use the same methods to bind data and to handle its events.
 
+🐝 **Tiny as a bee and works as well**. No new code in the bundle of child application and a bit more than 1 KB library for host application to get all the benefits!
+
 ## Installation and usage
 
 An extensive demo is coming soon...

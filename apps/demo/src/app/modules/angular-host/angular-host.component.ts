@@ -29,11 +29,11 @@ const ADDING_MODULE = `import {MicrozordModule} from '@microzord/angular';
 })
 export class SomeModule {}`;
 
-const ADDING_INTO_TEMPLATE = `<header microzord="react-menu"></header>
+const ADDING_INTO_TEMPLATE = `<header microzord="my-header"></header>
 
 <div>Any content</div>
 
-<footer microzord="vue-footer-app" (hook)="onFooterLifecycleEvent($event)"></footer>`;
+<footer microzord="new-footer" (hook)="onFooterLifecycleEvent($event)"></footer>`;
 
 @Component({
   selector: 'angular-host',

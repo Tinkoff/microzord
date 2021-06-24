@@ -18,7 +18,7 @@ export const pages: TuiDocPages = [
     section: `Starting`,
     title: `Application entity`,
     keywords: 'intro, how to, guide, main, source, child, host, zord, приложение',
-    route: 'asset-map',
+    route: 'application',
   },
   {
     section: `Angular`,

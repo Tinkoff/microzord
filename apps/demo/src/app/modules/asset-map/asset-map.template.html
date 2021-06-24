@@ -1,8 +1,34 @@
 <tui-doc-page header="What is an asset map">
   <p>
-    Asset map is a simple JSON file that includes an array of all files included into
-    child app.
+    Asset map is a simple JSON file that contains an array of all files included into
+    child app. Child app is an application that you can insert into other application that
+    is called host application.
   </p>
-  <!-- TODO: about child apps and how to generate asset map  -->
+
+  <host-child-warning class="tui-space_top-4"></host-child-warning>
+
+  <section>
+    <h2>How to make an asset map</h2>
+
+    <p>
+      Asset maps are generated automatically by microzord in your usual building process.
+      See instructions for a framework that you use to make a child app:
+    </p>
+
+    <ul>
+      <li>
+        <a tuiLink routerLink="/todo">Native JS app as a child</a>
+      </li>
+
+      <li>
+        <a tuiLink routerLink="/angular-child">Angular app as a child</a>
+      </li>
+
+      <li>
+        <a tuiLink routerLink="/todo">React app as a child</a>
+      </li>
+    </ul>
+  </section>
+
   <!-- TODO: about flags and types of files -->
 </tui-doc-page>
