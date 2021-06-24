@@ -75,19 +75,19 @@ Usage in application:
                     ><img
                         style="width: 16px;"
                         width="16"
-                        src="https://raw.githubusercontent.com/feathericons/feather/master/icons/twitter.svg"
+                        src="https://raw.githubusercontent.com/MarsiBarsi/readme-icons/main/twitter.svg"
                 /></a>
                 <a href="https://github.com/IKatsuba" title="Github"
                     ><img
                         width="16"
-                        src="https://raw.githubusercontent.com/feathericons/feather/master/icons/github.svg"
+                        src="https://raw.githubusercontent.com/MarsiBarsi/readme-icons/main/github.svg"
                 /></a>
                 <a
                     href="https://t.me/Katsuba"
                     title="Telegram"
                     ><img
                         width="16"
-                        src="https://raw.githubusercontent.com/feathericons/feather/master/icons/send.svg"
+                        src="https://raw.githubusercontent.com/MarsiBarsi/readme-icons/main/send.svg"
                 /></a>
             </div>
         </td>
@@ -106,21 +106,21 @@ Usage in application:
                     title="Twitter"
                     ><img
                         width="16"
-                        src="https://raw.githubusercontent.com/feathericons/feather/master/icons/twitter.svg"
+                        src="https://raw.githubusercontent.com/MarsiBarsi/readme-icons/main/twitter.svg"
                 /></a>
                 <a
                     href="https://github.com/marsibarsi"
                     title="GitHub"
                     ><img
                         width="16"
-                        src="https://raw.githubusercontent.com/feathericons/feather/master/icons/github.svg"
+                        src="https://raw.githubusercontent.com/MarsiBarsi/readme-icons/main/github.svg"
                 /></a>
                 <a
                     href="https://t.me/marsibarsi"
                     title="Telegram"
                     ><img
                         width="16"
-                        src="https://raw.githubusercontent.com/feathericons/feather/master/icons/send.svg"
+                        src="https://raw.githubusercontent.com/MarsiBarsi/readme-icons/main/send.svg"
                 /></a>
             </div>
         </td>

@@ -21,6 +21,12 @@ export const pages: TuiDocPages = [
     route: 'application',
   },
   {
+    section: `Native JS`,
+    title: `Native JS — Installation`,
+    keywords: 'javascript, vanilla, spa',
+    route: 'native-installation',
+  },
+  {
     section: `Angular`,
     title: `Angular — Installation`,
     keywords: 'angular, spa',
@@ -43,5 +49,11 @@ export const pages: TuiDocPages = [
     title: `React — Installation`,
     keywords: 'react, spa',
     route: 'react-installation',
+  },
+  {
+    section: `React`,
+    title: `React — Child`,
+    keywords: 'react, spa, child',
+    route: 'react-child',
   },
 ];

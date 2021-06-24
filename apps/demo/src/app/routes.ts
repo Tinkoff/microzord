@@ -26,6 +26,16 @@ export const ROUTES: Route[] = [
     },
   },
   {
+    path: 'native-installation',
+    loadChildren: () =>
+      import('./modules/native-installation/native-installation.module').then(
+        m => m.NativeInstallationModule,
+      ),
+    data: {
+      title: `Native Installation`,
+    },
+  },
+  {
     path: 'react-installation',
     loadChildren: () =>
       import('./modules/react-installation/react-installation.module').then(
@@ -33,6 +43,14 @@ export const ROUTES: Route[] = [
       ),
     data: {
       title: `React Installation`,
+    },
+  },
+  {
+    path: 'react-child',
+    loadChildren: () =>
+      import('./modules/react-child/react-child.module').then(m => m.ReactChildModule),
+    data: {
+      title: `React Child`,
     },
   },
   {
