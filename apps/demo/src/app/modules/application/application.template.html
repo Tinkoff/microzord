@@ -1,3 +1,129 @@
-<tui-doc-page header="Application entity">
-  <p>TODO</p>
+<tui-doc-page header="Application entity" package="CORE">
+  <ng-template pageTab="Description">
+    <p>
+      <code>Application</code> is an abstract class that contains a set of properties and
+      methods for imperative working with microzord child apps.
+    </p>
+
+    <p>It can give you more flexability in interaction between complex apps if needed.</p>
+
+    <tui-notification class="tui-space_top-8" status="warning">
+      Be careful, if you need this in your not native application, something probably is
+      going wrong.
+    </tui-notification>
+
+    <section>
+      <h2>How to get the entity</h2>
+
+      <p>
+        Every time you add microzord child app with
+        <code>bootstrapApp</code> function or with any framework ideomatic component, you
+        can get the application entity.
+      </p>
+
+      <p>See host guides of your framework:</p>
+
+      <ul>
+        <li>
+          <a tuiLink routerLink="/angular-host"> Angular as a host </a>
+        </li>
+
+        <li>
+          <a tuiLink routerLink="/react-host"> React as a host </a>
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>See also</h2>
+
+      <a
+        tuiLink
+        target="_blank"
+        href="https://github.com/TinkoffCreditSystems/microzord/blob/alpha/libs/core/src/lib/models/application.ts"
+      >
+        Application class source code
+      </a>
+    </section>
+  </ng-template>
+
+  <ng-template pageTab="Props & methods">
+    <tui-doc-documentation [showValues]="false">
+      <ng-template
+        documentationPropertyName="isBootstrapped"
+        documentationPropertyMode="property"
+        documentationPropertyType="boolean"
+      >
+        Application was rendered at least once.
+
+        <p><code>false</code> by default.</p>
+      </ng-template>
+      <ng-template
+        documentationPropertyName="isDestroyed"
+        documentationPropertyMode="property"
+        documentationPropertyType="boolean"
+      >
+        Application is not on the page.
+
+        <p><code>true</code> by default.</p>
+      </ng-template>
+      <ng-template
+        documentationPropertyName="container"
+        documentationPropertyMode="property"
+        documentationPropertyType="Element | string"
+      >
+        DOM element or selector string of DOM element with an application
+      </ng-template>
+      <ng-template
+        documentationPropertyName="name"
+        documentationPropertyMode="property"
+        documentationPropertyType="string"
+      >
+        Readonly unique name of the application
+      </ng-template>
+      <!-- <ng-template
+        documentationPropertyName="props"
+        documentationPropertyMode="property"
+        documentationPropertyType="object"
+      >
+        TODO: design Application props
+      </ng-template> -->
+      <ng-template
+        documentationPropertyName="onMessage(fn: Listener<MicrozordMessageEvent>)"
+        documentationPropertyMode="method"
+        documentationPropertyType="() => void"
+      >
+        Register a callback to be called when an application gets a message
+      </ng-template>
+      <ng-template
+        documentationPropertyName="emitMessage(event: MicrozordMessageEvent)"
+        documentationPropertyMode="method"
+        documentationPropertyType="void"
+      >
+        Emit message to call all onMessage listeners
+      </ng-template>
+      <ng-template
+        documentationPropertyName="onHook(fn: Listener<MicrozordMessageEvent>)"
+        documentationPropertyMode="method"
+        documentationPropertyType="() => void"
+      >
+        Register a callback to be called when an application changes state emitting life
+        cycle event
+      </ng-template>
+      <ng-template
+        documentationPropertyName="emitHook(event: MicrozordMessageEvent)"
+        documentationPropertyMode="method"
+        documentationPropertyType="void"
+      >
+        Emit life cycle event of the application to call all onHook listeners
+      </ng-template>
+      <ng-template
+        documentationPropertyName="destroy()"
+        documentationPropertyMode="method"
+        documentationPropertyType="void"
+      >
+        Destroy an application, remove all listeners
+      </ng-template>
+    </tui-doc-documentation>
+  </ng-template>
 </tui-doc-page>
