@@ -1,1 +1,7 @@
-{"name": "@microzord/vue", "version": "0.0.0"}
+{
+  "name": "@microzord/vue",
+  "version": "0.0.0-development",
+  "dependencies": {
+    "@microzord/core": "0.0.0-development"
+  }
+}
