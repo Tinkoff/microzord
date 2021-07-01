@@ -452,6 +452,9 @@
             "packageJson": "libs/webpack-plugin/package.json",
             "main": "libs/webpack-plugin/src/index.ts",
             "assets": ["libs/webpack-plugin/*.md"]
+          },
+          "configurations": {
+            "production": {}
           }
         },
         "semrel": {
