@@ -9,5 +9,5 @@
   "lib": {
     "entryFile": "src/index.ts"
   },
-  "allowedNonPeerDependencies": ["@microzord/webpack-plugin"]
+  "allowedNonPeerDependencies": ["@microzord/webpack-plugin", "@microzord/core"]
 }
