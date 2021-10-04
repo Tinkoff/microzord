@@ -29,31 +29,25 @@
     "angular": {
       "tags": []
     },
-    "blog": {
-      "tags": []
-    },
     "core": {
       "tags": []
     },
     "demo": {
       "tags": []
     },
+    "host": {
+      "tags": []
+    },
     "react": {
       "tags": []
     },
-    "rxnode-article": {
-      "tags": []
-    },
-    "ssr-article": {
+    "remote": {
       "tags": []
     },
     "svelte": {
       "tags": []
     },
     "vue": {
-      "tags": []
-    },
-    "webpack-plugin": {
       "tags": []
     }
   },

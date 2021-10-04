@@ -18,11 +18,11 @@ export const APP_NAME = new InjectionToken<string>('App name');
 export const ROOT_SELECTOR = new InjectionToken<string>('Root selector');
 
 // todo: очень грубая имплементация
-function createAppFactory<M, Props extends Record<string, any> = Record<string, any>>(
-  bootstrapFn: () => Promise<NgModuleRef<M>>,
+export function createApp<M, Props extends Record<string, any> = Record<string, any>>(
+  bootstrapFn: (props?: any) => Promise<NgModuleRef<M>>,
   rootSelector: string,
-  resolve: (value: NgModuleRef<M> | PromiseLike<NgModuleRef<M>>) => void,
-  reject: (reason?: any) => void,
+  resolve?: (value: NgModuleRef<M> | PromiseLike<NgModuleRef<M>>) => void,
+  reject?: (reason?: any) => void,
 ): ApplicationConstructor {
   // todo: не хватает имплементации хуков, сообщений и навигации
   class AngularApp<T = Props> extends Application<T> {
@@ -53,15 +53,15 @@ function createAppFactory<M, Props extends Record<string, any> = Record<string, 
       containerElement.appendChild(rootElement);
 
       try {
-        this.ngModule = await bootstrapFn();
+        this.ngModule = await bootstrapFn(props);
         this.router = this.ngModule.injector.get(Router, null, InjectFlags.Optional);
 
         await super.bootstrap(container, props);
-        resolve(this.ngModule);
+        resolve?.(this.ngModule);
 
         this.emitHook(MicrozordLifecycleEvent.bootstrapped());
       } catch (e) {
-        reject(e);
+        reject?.(e);
         throw e;
       }
     }
@@ -100,12 +100,7 @@ export class MicrozordPlatformRef extends PlatformRef {
     const bootstrapFn = () => super.bootstrapModule(moduleType, compilerOptions);
 
     return new Promise((resolve, reject) => {
-      const AppConstructor = createAppFactory(
-        bootstrapFn,
-        this.rootSelector,
-        resolve,
-        reject,
-      );
+      const AppConstructor = createApp(bootstrapFn, this.rootSelector, resolve, reject);
 
       this.document.dispatchEvent(
         new CustomEvent('loadApp', {
