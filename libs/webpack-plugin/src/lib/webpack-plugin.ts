@@ -21,10 +21,9 @@ export class MicrozordWebpackPlugin implements Plugin {
 
   apply(compiler: Compiler) {
     compiler.hooks.emit.tap(MicrozordWebpackPlugin.name, compilation => {
-      const {
-        publicPath = '',
-        assets: webpackAssets = [],
-      } = compilation.getStats().toJson();
+      const {publicPath = '', assets: webpackAssets = []} = compilation
+        .getStats()
+        .toJson();
 
       const groups = this.config.groups?.map(group =>
         group

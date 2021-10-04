@@ -6,7 +6,7 @@
     "@angular/core": "^11.2.3"
   },
   "dependencies": {
-    "tslib": "^2.0.0",
+    "tslib": "^2.1.0",
     "@microzord/core": "0.0.0-development",
     "@microzord/webpack-plugin": "0.0.0-development"
   },

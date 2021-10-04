@@ -1,13 +1,18 @@
 {
   "implicitDependencies": {
     "angular.json": "*",
-    "package.json": {"dependencies": "*", "devDependencies": "*"},
+    "package.json": {
+      "dependencies": "*",
+      "devDependencies": "*"
+    },
     "tsconfig.base.json": "*",
     "tslint.json": "*",
     ".eslintrc.json": "*",
     "nx.json": "*"
   },
-  "affected": {"defaultBase": "main"},
+  "affected": {
+    "defaultBase": "alpha"
+  },
   "npmScope": "microzord",
   "tasksRunnerOptions": {
     "default": {
@@ -16,21 +21,54 @@
         "cacheableOperations": ["lint", "e2e", "build", "test"],
         "accessToken": "OGNlYzBkODQtMGE3ZS00YmFiLTlhNTAtOGJkZTRmOTQ3N2QyfHJlYWQtd3JpdGU=",
         "canTrackAnalytics": false,
-        "showUsageWarnings": true,
-        "strictlyOrderedTargets": ["build", "release"]
+        "showUsageWarnings": true
       }
     }
   },
   "projects": {
-    "ssr-article": {"tags": []},
-    "core": {"tags": []},
-    "angular": {"tags": []},
-    "blog": {"tags": []},
-    "rxnode-article": {"tags": []},
-    "webpack-plugin": {"tags": []},
-    "react": {"tags": []},
-    "vue": {"tags": []},
-    "svelte": {"tags": []},
-    "demo": {"tags": []}
+    "angular": {
+      "tags": []
+    },
+    "blog": {
+      "tags": []
+    },
+    "core": {
+      "tags": []
+    },
+    "demo": {
+      "tags": []
+    },
+    "react": {
+      "tags": []
+    },
+    "rxnode-article": {
+      "tags": []
+    },
+    "ssr-article": {
+      "tags": []
+    },
+    "svelte": {
+      "tags": []
+    },
+    "vue": {
+      "tags": []
+    },
+    "webpack-plugin": {
+      "tags": []
+    }
+  },
+  "targetDependencies": {
+    "build": [
+      {
+        "target": "build",
+        "projects": "dependencies"
+      }
+    ],
+    "release": [
+      {
+        "target": "release",
+        "projects": "dependencies"
+      }
+    ]
   }
 }

@@ -1,4 +1,4 @@
-import {registerApp} from '@microzord/core';
+import {registerApp} from './register-app';
 import {ApplicationMock} from '../../__mocks_/application.mock';
 import {appOptionsRegistry} from '../registry';
 

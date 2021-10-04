@@ -16,13 +16,13 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@microzord/core": ["libs/core/src/index.ts"],
       "@microzord/angular": ["libs/angular/src/index.ts"],
       "@microzord/angular/*": ["libs/angular/*"],
-      "@microzord/webpack-plugin": ["libs/webpack-plugin/src/index.ts"],
+      "@microzord/core": ["libs/core/src/index.ts"],
       "@microzord/react": ["libs/react/src/index.ts"],
+      "@microzord/svelte": ["libs/svelte/src/index.ts"],
       "@microzord/vue": ["libs/vue/src/index.ts"],
-      "@microzord/svelte": ["libs/svelte/src/index.ts"]
+      "@microzord/webpack-plugin": ["libs/webpack-plugin/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

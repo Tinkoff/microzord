@@ -1,5 +1,7 @@
-import {bootstrapApp, registerApp, replaceApps} from '@microzord/core';
 import {ApplicationMock} from '../../__mocks_/application.mock';
+import {registerApp} from './register-app';
+import {bootstrapApp} from './bootstrap-app';
+import {replaceApps} from './replace-apps';
 
 describe('replaceApps', () => {
   beforeEach(async () => {
