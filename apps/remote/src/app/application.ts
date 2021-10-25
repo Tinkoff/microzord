@@ -1,4 +1,4 @@
-import {createApp} from '@microzord/angular/child/src/platform-ref';
+import {createApp} from '@microzord/angular/child';
 import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 import {AppModule} from './app.module';
 
