@@ -582,7 +582,7 @@
             "tsConfig": "libs/vue/tsconfig.lib.json"
           }
         },
-        "test": {
+        "xtest": {
           "builder": "@nrwl/jest:jest",
           "outputs": ["coverage/libs/vue"],
           "options": {
