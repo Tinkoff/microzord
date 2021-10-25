@@ -572,10 +572,9 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["libs/vue/**/*.{ts,tsx,vue}"]
-          },
-          "outputs": ["{options.outputFile}"]
+          }
         },
-        "build": {
+        "xbuild": {
           "builder": "@nx-plus/vue:library",
           "options": {
             "dest": "dist/libs/vue",
