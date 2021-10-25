@@ -7,8 +7,7 @@
   },
   "dependencies": {
     "tslib": "^2.1.0",
-    "@microzord/core": "0.0.0-development",
-    "@microzord/webpack-plugin": "0.0.0-development"
+    "@microzord/core": "0.0.0-development"
   },
   "publishConfig": {
     "access": "public"
