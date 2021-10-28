@@ -6,5 +6,7 @@ import {enableProdMode as angularEnableProdMode} from '@angular/core';
 export function enableProdMode() {
   try {
     angularEnableProdMode();
-  } catch (e) {}
+  } catch (e) {
+    //
+  }
 }

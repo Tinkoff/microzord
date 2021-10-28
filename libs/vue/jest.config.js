@@ -2,7 +2,7 @@ module.exports = {
   displayName: 'vue',
   preset: '../../jest.preset.js',
   transform: {
-    '^.+\\.vue$': 'vue-jest',
+    '^.+\\.vue$': 'vue3-jest',
     '.+\\.(css|styl|less|sass|scss|svg|png|jpg|ttf|woff|woff2)$': 'jest-transform-stub',
     '^.+\\.tsx?$': 'ts-jest',
   },
@@ -11,10 +11,12 @@ module.exports = {
   snapshotSerializers: ['jest-serializer-vue'],
   globals: {
     'ts-jest': {
-      tsConfig: '<rootDir>/tsconfig.spec.json',
+      tsconfig: '<rootDir>/tsconfig.spec.json',
+      babelConfig: '<rootDir>/babel.config.js',
     },
     'vue-jest': {
-      tsConfig: '<rootDir>/tsconfig.spec.json',
+      tsConfig: 'libs/vue/tsconfig.spec.json',
+      babelConfig: 'libs/vue/babel.config.js',
     },
   },
 };

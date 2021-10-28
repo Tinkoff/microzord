@@ -1,10 +1,8 @@
 import {registerApp} from './register-app';
-import {
-  Application,
-  bootstrapApp,
-  loadAppConstructor,
-  RegistrationOptions,
-} from '@microzord/core';
+import {Application} from '../models/application';
+import {RegistrationOptions} from '../models/registration-options';
+import {loadAppConstructor} from './load-app-constructor';
+import {bootstrapApp} from './bootstrap-app';
 import {appOptionsRegistry, loadedAppRegistry} from '../registry';
 import {ApplicationMock} from '../../__mocks_/application.mock';
 

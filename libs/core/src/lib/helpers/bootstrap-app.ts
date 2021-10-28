@@ -14,6 +14,8 @@ export function bootstrapApp<T extends Record<string, any> = Record<string, any>
       AppConstructor =>
         new AppConstructor(appName, appOptionsRegistry.get(appName)?.props),
     ),
-    switchMap(app => defer(() => app.bootstrap(selector, props)).pipe(mapTo(app))),
+    switchMap(app =>
+      defer(() => (console.log(props), app.bootstrap(selector, props))).pipe(mapTo(app)),
+    ),
   );
 }

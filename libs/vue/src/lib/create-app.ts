@@ -1,11 +1,15 @@
 import {App as VueApp, Component, createApp as createVueApp} from 'vue';
 import {
   Application,
+  ApplicationConstructor,
   MicrozordLifecycleEvent,
   MicrozordMessageEvent,
 } from '@microzord/core';
 
-export function createApp(name: string, rootComponent: Component) {
+export function createApp(
+  name: string,
+  rootComponent: Component,
+): ApplicationConstructor {
   class VueApplication extends Application {
     private app!: VueApp<Element>;
 
@@ -45,4 +49,6 @@ export function createApp(name: string, rootComponent: Component) {
       detail: {name, appConstructor: VueApplication},
     }),
   );
+
+  return VueApplication;
 }

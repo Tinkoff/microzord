@@ -2,9 +2,7 @@ module.exports = {
   displayName: 'svelte',
   preset: '../../jest.preset.js',
   globals: {
-    'ts-jest': {
-      tsConfig: '<rootDir>/tsconfig.spec.json',
-    },
+    'ts-jest': {tsconfig: '<rootDir>/tsconfig.spec.json'},
   },
   transform: {
     '^(.+\\.svelte$)': 'svelte-jester',

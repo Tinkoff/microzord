@@ -1,13 +1,8 @@
 {
   "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
   "dest": "../../dist/libs/angular",
-  "assets": [
-    "builders.json",
-    "./builder/browser/schema.json",
-    "./builder/dev-server/schema.json"
-  ],
   "lib": {
     "entryFile": "src/index.ts"
   },
-  "allowedNonPeerDependencies": ["@microzord/webpack-plugin", "@microzord/core"]
+  "allowedNonPeerDependencies": ["@microzord/core"]
 }

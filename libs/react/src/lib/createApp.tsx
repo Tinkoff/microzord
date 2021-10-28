@@ -1,12 +1,16 @@
 import {
   Application,
+  ApplicationConstructor,
   MicrozordLifecycleEvent,
   MicrozordMessageEvent,
 } from '@microzord/core';
 import ReactDOM from 'react-dom';
 import React, {ReactElement} from 'react';
 
-export function createApp<P>(name: string, element: ReactElement<P>) {
+export function createApp<P>(
+  name: string,
+  element: ReactElement<P>,
+): ApplicationConstructor {
   class ReactApplication extends Application {
     async bootstrap(container: string | Element, props?: Record<string, any>) {
       container =
@@ -47,4 +51,6 @@ export function createApp<P>(name: string, element: ReactElement<P>) {
       detail: {name, appConstructor: ReactApplication},
     }),
   );
+
+  return ReactApplication;
 }

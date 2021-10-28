@@ -1,6 +1,7 @@
 import type {SvelteComponentTyped} from 'svelte';
 import {
   Application,
+  ApplicationConstructor,
   MicrozordLifecycleEvent,
   MicrozordMessageEvent,
 } from '@microzord/core';
@@ -17,7 +18,10 @@ export interface SvelteComponentConstructor {
   }): SvelteComponentTyped;
 }
 
-export function createApp(name: string, app: SvelteComponentConstructor) {
+export function createApp(
+  name: string,
+  app: SvelteComponentConstructor,
+): ApplicationConstructor {
   class SvelteApplication extends Application {
     private app: any;
 
@@ -64,4 +68,6 @@ export function createApp(name: string, app: SvelteComponentConstructor) {
       detail: {name, appConstructor: SvelteApplication},
     }),
   );
+
+  return SvelteApplication;
 }

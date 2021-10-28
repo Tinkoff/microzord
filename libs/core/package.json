@@ -2,7 +2,7 @@
   "name": "@microzord/core",
   "version": "0.0.0-development",
   "dependencies": {
-    "tslib": "^2.0.0"
+    "tslib": "^2.1.0"
   },
   "peerDependencies": {
     "rxjs": ">=6.5.0"

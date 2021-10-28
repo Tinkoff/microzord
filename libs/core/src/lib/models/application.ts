@@ -83,7 +83,7 @@ export abstract class Application<T extends Record<string, any> = Record<string,
 }
 
 export interface ApplicationConstructor<
-  T extends Record<string, any> = Record<string, any>
+  T extends Record<string, any> = Record<string, any>,
 > {
   new (name: string, props?: T): Application<T>;
 }

@@ -1,4 +1,5 @@
-import {loadAppConstructor, registerApp} from '@microzord/core';
+import {loadAppConstructor} from './load-app-constructor';
+import {registerApp} from './register-app';
 import {ApplicationMock} from '../../__mocks_/application.mock';
 
 describe('loadAppConstructor', () => {
