@@ -1,5 +1,6 @@
 import {MicrozordEvent, MicrozordMessageEvent, MicrozordNavigationEvent} from './events';
 import {MicrozordLifecycleEvent} from './lifecycle';
+import {EntityConstructor} from './entity';
 
 export type Listener<T extends MicrozordEvent> = (event: T) => void;
 
@@ -82,8 +83,5 @@ export abstract class Application<T extends Record<string, any> = Record<string,
   }
 }
 
-export interface ApplicationConstructor<
-  T extends Record<string, any> = Record<string, any>,
-> {
-  new (name: string, props?: T): Application<T>;
-}
+export type ApplicationConstructor<T extends Record<string, any> = Record<string, any>> =
+  EntityConstructor<T, Application<T>>;

@@ -1,8 +1,9 @@
 import {defer, Observable} from 'rxjs';
 import {map, mapTo, switchMap} from 'rxjs/operators';
 import {Application} from '../models/application';
-import {appOptionsRegistry} from '../registry';
+import {entityOptionsRegistry} from '../registry';
 import {loadAppConstructor} from './load-app-constructor';
+import {AppRegistrationOptions} from '../models/app-registration-options';
 
 export function bootstrapApp<T extends Record<string, any> = Record<string, any>>(
   appName: string,
@@ -12,10 +13,11 @@ export function bootstrapApp<T extends Record<string, any> = Record<string, any>
   return loadAppConstructor<T>(appName).pipe(
     map(
       AppConstructor =>
-        new AppConstructor(appName, appOptionsRegistry.get(appName)?.props),
+        new AppConstructor(
+          appName,
+          entityOptionsRegistry.get<AppRegistrationOptions<T>>(appName)?.props,
+        ),
     ),
-    switchMap(app =>
-      defer(() => (console.log(props), app.bootstrap(selector, props))).pipe(mapTo(app)),
-    ),
+    switchMap(app => defer(() => app.bootstrap(selector, props)).pipe(mapTo(app))),
   );
 }

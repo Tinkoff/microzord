@@ -3,12 +3,12 @@ import {Application} from '../models/application';
 import {AppRegistrationOptions} from '../models/app-registration-options';
 import {loadAppConstructor} from './load-app-constructor';
 import {bootstrapApp} from './bootstrap-app';
-import {appOptionsRegistry, loadedAppRegistry} from '../registry';
+import {entityOptionsRegistry, loadedEntityRegistry} from '../registry';
 import {ApplicationMock} from '../../__mocks_/application.mock';
 
 function clearRegistry() {
-  loadedAppRegistry.clear();
-  appOptionsRegistry.clear();
+  loadedEntityRegistry.clear();
+  entityOptionsRegistry.clear();
 }
 
 describe('bootstrapApp', () => {

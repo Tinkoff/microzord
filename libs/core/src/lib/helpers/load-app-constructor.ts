@@ -1,8 +1,9 @@
 import {defer, isObservable, Observable, of} from 'rxjs';
-import {catchError, switchMap, tap} from 'rxjs/operators';
+import {switchMap, tap} from 'rxjs/operators';
 import {ApplicationConstructor} from '../models/application';
-import {appOptionsRegistry, loadedAppRegistry} from '../registry';
+import {entityOptionsRegistry, loadedEntityRegistry} from '../registry';
 import {getAppConstructor} from './get-app-constructor';
+import {AppRegistrationOptions} from '../models/app-registration-options';
 
 export function loadAppConstructor<T extends Record<string, any> = Record<string, any>>(
   appName: string,
@@ -12,7 +13,8 @@ export function loadAppConstructor<T extends Record<string, any> = Record<string
       appConstructor
         ? of(appConstructor)
         : defer(() => {
-            const appOptions = appOptionsRegistry.get(appName);
+            const appOptions =
+              entityOptionsRegistry.get<AppRegistrationOptions<T>>(appName);
 
             if (!appOptions) {
               throw `Microzord appliction "${appName}" has not been registered. Check the spelling or register an app.`;
@@ -31,6 +33,8 @@ export function loadAppConstructor<T extends Record<string, any> = Record<string
               : of(result as ApplicationConstructor<T>);
           }),
     ),
-    tap(applicationConstructor => loadedAppRegistry.set(appName, applicationConstructor)),
+    tap(applicationConstructor =>
+      loadedEntityRegistry.set(appName, applicationConstructor),
+    ),
   );
 }
