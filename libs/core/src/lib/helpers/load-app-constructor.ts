@@ -2,13 +2,13 @@ import {defer, isObservable, Observable, of} from 'rxjs';
 import {switchMap, tap} from 'rxjs/operators';
 import {ApplicationConstructor} from '../models/application';
 import {entityOptionsRegistry, loadedEntityRegistry} from '../registry';
-import {getAppConstructor} from './get-app-constructor';
+import {getApp} from './get-app';
 import {AppRegistrationOptions} from '../models/app-registration-options';
 
 export function loadAppConstructor<T extends Record<string, any> = Record<string, any>>(
   appName: string,
 ): Observable<ApplicationConstructor<T>> {
-  return getAppConstructor<T>(appName).pipe(
+  return getApp<T>(appName).pipe(
     switchMap(appConstructor =>
       appConstructor
         ? of(appConstructor)

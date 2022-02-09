@@ -1,7 +1,9 @@
 export * from './lib/helpers/bootstrap-app';
-export * from './lib/helpers/get-app-constructor';
+export * from './lib/helpers/get-app';
+export * from './lib/helpers/get-entity';
 export * from './lib/helpers/load-app-constructor';
 export * from './lib/helpers/register-app';
+export * from './lib/helpers/register-entity';
 export * from './lib/helpers/replace-apps';
 
 export * from './lib/models/application';

@@ -1,9 +1,9 @@
 import {ApplicationMock} from '../../__mocks_/application.mock';
 import {registerApp} from './register-app';
 import {loadAppConstructor} from './load-app-constructor';
-import {getAppConstructor} from './get-app-constructor';
+import {getApp} from './get-app';
 
-describe('getAppConstructor', () => {
+describe('getApp', () => {
   beforeEach(async () => {
     registerApp({
       name: 'appMock',
@@ -18,7 +18,7 @@ describe('getAppConstructor', () => {
   it('should return an app constructor', async () => {
     expect.assertions(1);
 
-    const appConstructor = await getAppConstructor('appMock').toPromise();
+    const appConstructor = await getApp('appMock').toPromise();
 
     expect(appConstructor).toStrictEqual(ApplicationMock);
   });
