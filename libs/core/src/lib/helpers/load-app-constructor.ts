@@ -18,11 +18,11 @@ export function loadAppConstructor<T extends Record<string, any> = Record<string
               throw `Microzord appliction "${appName}" has not been registered. Check the spelling or register an app.`;
             }
 
-            if (!appOptions.loadApp) {
-              throw `Microzord appliction "${appName}" is registered but it has no "loadApp" function. Please, provide it`;
+            if (!appOptions.load) {
+              throw `Microzord appliction "${appName}" is registered but it has no "load" function. Please, provide it`;
             }
 
-            const result = appOptions.loadApp(appOptions.props);
+            const result = appOptions.load();
 
             return result &&
               (isObservable(result) ||

@@ -7,4 +7,4 @@ export * from './lib/helpers/replace-apps';
 export * from './lib/models/application';
 export * from './lib/models/events';
 export * from './lib/models/lifecycle';
-export * from './lib/models/registration-options';
+export * from './lib/models/app-registration-options';

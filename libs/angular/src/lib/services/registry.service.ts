@@ -10,11 +10,11 @@ export class RegistryService {
     apps.map(app => this.register(app));
   }
 
-  register({name, loadApp, props}: AppRegistrationOptions) {
+  register({name, load, props}: AppRegistrationOptions) {
     registerApp({
       name,
       props,
-      loadApp,
+      load,
     });
   }
 }

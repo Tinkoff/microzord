@@ -7,14 +7,14 @@ describe('replaceApps', () => {
   beforeEach(async () => {
     registerApp({
       name: 'appMock1',
-      loadApp() {
+      load() {
         return ApplicationMock;
       },
     });
 
     registerApp({
       name: 'appMock2',
-      loadApp() {
+      load() {
         return ApplicationMock;
       },
     });

@@ -64,7 +64,7 @@ export function createApp(
   }
 
   document.dispatchEvent(
-    new CustomEvent('loadApp', {
+    new CustomEvent('microzord:load', {
       detail: {name, appConstructor: SvelteApplication},
     }),
   );

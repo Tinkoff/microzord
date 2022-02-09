@@ -1,8 +1,7 @@
-import {ApplicationRef, DoBootstrap, Inject, NgModule} from '@angular/core';
+import {ComponentFactory, ComponentFactoryResolver, NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 
 import {AppComponent} from './app.component';
-import {RouterModule} from '@angular/router';
 
 @NgModule({
   declarations: [AppComponent],
@@ -11,14 +10,12 @@ import {RouterModule} from '@angular/router';
     // RouterModule.forRoot([], {initialNavigation: 'enabledBlocking'}),
   ],
   providers: [],
-  bootstrap: [AppComponent],
+  bootstrap: [],
 })
-export class AppModule implements DoBootstrap {
-  constructor(@Inject('some-token') some: boolean) {
-    console.log(some);
-  }
+export class AppModule {
+  constructor(private componentFactoryResolver: ComponentFactoryResolver) {}
 
-  ngDoBootstrap(appRef: ApplicationRef): void {
-    console.log('bootstrap');
+  getComponentFactory(): ComponentFactory<AppComponent> {
+    return this.componentFactoryResolver.resolveComponentFactory(AppComponent);
   }
 }

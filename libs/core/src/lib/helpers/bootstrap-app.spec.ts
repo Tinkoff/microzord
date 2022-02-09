@@ -1,6 +1,6 @@
 import {registerApp} from './register-app';
 import {Application} from '../models/application';
-import {RegistrationOptions} from '../models/registration-options';
+import {AppRegistrationOptions} from '../models/app-registration-options';
 import {loadAppConstructor} from './load-app-constructor';
 import {bootstrapApp} from './bootstrap-app';
 import {appOptionsRegistry, loadedAppRegistry} from '../registry';
@@ -12,18 +12,18 @@ function clearRegistry() {
 }
 
 describe('bootstrapApp', () => {
-  let options: RegistrationOptions;
-  let loadFn: jest.SpiedFunction<RegistrationOptions['loadApp']>;
+  let options: AppRegistrationOptions;
+  let loadFn: jest.SpiedFunction<AppRegistrationOptions['load']>;
 
   beforeEach(async () => {
     options = {
       name: 'appMock',
-      loadApp() {
+      load() {
         return ApplicationMock;
       },
     };
 
-    loadFn = jest.spyOn(options, 'loadApp');
+    loadFn = jest.spyOn(options, 'load');
 
     registerApp(options);
   });

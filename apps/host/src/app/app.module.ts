@@ -13,14 +13,14 @@ import {HttpClientModule} from '@angular/common/http';
     RouterModule.forRoot([], {initialNavigation: 'enabledBlocking'}),
     HttpClientModule,
     MicrozordModule,
-    MicrozordHostModule.register({
-      apps: [
-        {
-          name: 'remote',
-          loadApp: () => import('remote/App').then(m => m.App),
-        },
-      ],
-    }),
+    // MicrozordHostModule.register({
+    //   apps: [
+    //     {
+    //       name: 'remote',
+    //       loadApp: () => import('remote/App').then(m => m.App),
+    //     },
+    //   ],
+    // }),
   ],
   providers: [{provide: 'some-token', useValue: 'true'}],
   bootstrap: [AppComponent],

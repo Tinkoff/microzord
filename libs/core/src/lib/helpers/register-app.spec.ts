@@ -6,7 +6,7 @@ describe('registerApp', () => {
   beforeEach(async () => {
     registerApp({
       name: 'appMock',
-      loadApp() {
+      load() {
         return ApplicationMock;
       },
     });
@@ -17,7 +17,7 @@ describe('registerApp', () => {
 
     expect(appOptionsRegistry.get('appMock')).toEqual({
       name: 'appMock',
-      loadApp: expect.any(Function),
+      load: expect.any(Function),
     });
   });
 });
