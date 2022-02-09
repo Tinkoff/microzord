@@ -1,8 +1,8 @@
-import {loadAppConstructor} from './load-app-constructor';
+import {loadApp} from './load-app';
 import {registerApp} from './register-app';
 import {ApplicationMock} from '../../__mocks_/application.mock';
 
-describe('loadAppConstructor', () => {
+describe('loadApp', () => {
   beforeEach(async () => {
     registerApp({
       name: 'appMock1',
@@ -15,10 +15,8 @@ describe('loadAppConstructor', () => {
   it('should load an app constructor', async () => {
     expect.assertions(1);
 
-    await loadAppConstructor('appMock1').toPromise();
+    await loadApp('appMock1').toPromise();
 
-    expect(await loadAppConstructor('appMock1').toPromise()).toStrictEqual(
-      ApplicationMock,
-    );
+    expect(await loadApp('appMock1').toPromise()).toStrictEqual(ApplicationMock);
   });
 });

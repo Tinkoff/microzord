@@ -1,4 +1,4 @@
-import {EntityRegistrationOptions} from './models/app-registration-options';
+import {EntityRegistrationOptions} from './models/registration-options';
 import {EntityConstructor} from './models/entity';
 
 export class MicrozordRegistry<K, V> {

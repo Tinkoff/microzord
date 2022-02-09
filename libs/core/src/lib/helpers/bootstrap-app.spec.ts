@@ -1,7 +1,7 @@
 import {registerApp} from './register-app';
 import {Application} from '../models/application';
-import {AppRegistrationOptions} from '../models/app-registration-options';
-import {loadAppConstructor} from './load-app-constructor';
+import {AppRegistrationOptions} from '../models/registration-options';
+import {loadApp} from './load-app';
 import {bootstrapApp} from './bootstrap-app';
 import {entityOptionsRegistry, loadedEntityRegistry} from '../registry';
 import {ApplicationMock} from '../../__mocks_/application.mock';
@@ -30,7 +30,7 @@ describe('bootstrapApp', () => {
 
   describe('An app is already loaded', () => {
     beforeEach(async () => {
-      await loadAppConstructor('appMock').toPromise();
+      await loadApp('appMock').toPromise();
     });
 
     it("shouldn't load an app again", async () => {

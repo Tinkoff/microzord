@@ -2,15 +2,15 @@ import {defer, Observable} from 'rxjs';
 import {map, mapTo, switchMap} from 'rxjs/operators';
 import {Application} from '../models/application';
 import {entityOptionsRegistry} from '../registry';
-import {loadAppConstructor} from './load-app-constructor';
-import {AppRegistrationOptions} from '../models/app-registration-options';
+import {loadApp} from './load-app';
+import {AppRegistrationOptions} from '../models/registration-options';
 
 export function bootstrapApp<T extends Record<string, any> = Record<string, any>>(
   appName: string,
   selector: string | Element,
   props?: T,
 ): Observable<Application<T>> {
-  return loadAppConstructor<T>(appName).pipe(
+  return loadApp<T>(appName).pipe(
     map(
       AppConstructor =>
         new AppConstructor(
