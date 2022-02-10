@@ -9,7 +9,7 @@ sharedMappings.register(path.join(__dirname, '../../tsconfig.base.json'), [
 
 module.exports = {
   output: {
-    uniqueName: 'host',
+    uniqueName: 'demo',
     publicPath: 'auto',
   },
   optimization: {
@@ -23,12 +23,13 @@ module.exports = {
   },
   plugins: [
     new ModuleFederationPlugin({
-      remotes: {
-        remote: 'remote@http://localhost:4201/remoteEntry.js',
-        demo: 'demo@http://localhost:4202/remoteEntry.js',
+      name: 'demo',
+      filename: 'remoteEntry.js',
+      exposes: {
+        './App': 'apps/demo/src/app/application.ts',
       },
       shared: {
-        '@angular/core': {singleton: true, strictVersion: true},
+        '@angular/core': {singleton: true, strictVersion: false},
         '@angular/common': {singleton: true, strictVersion: true},
         '@angular/common/http': {singleton: true, strictVersion: true},
         '@angular/router': {singleton: true, strictVersion: true},
