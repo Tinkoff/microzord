@@ -44,7 +44,7 @@ export class MicrozordNgModuleDirective implements OnDestroy {
 
   private loadModuleAndBootstrap(name: string): Observable<unknown> {
     return loadEntity<any, MicrozordNgModule>(name).pipe(
-      switchMap(async Module => this.mzNgCompiler.createEntryPointFromModule(Module)),
+      switchMap(Module => this.mzNgCompiler.createEntryPointFromModule(Module)),
       complete(componentRef => this.destroyComponentAndModule(componentRef)),
     );
   }

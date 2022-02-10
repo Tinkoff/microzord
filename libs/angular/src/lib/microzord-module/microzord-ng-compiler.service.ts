@@ -61,6 +61,6 @@ export class MicrozordNgCompilerService {
     viewContainerRef: ViewContainerRef = this.viewContainerRef,
   ): Promise<ComponentRef<T>> {
     const moduleRef = await this.createModule(Module, injector);
-    return await this.createEntryPoint(moduleRef, injector, viewContainerRef);
+    return this.createEntryPoint(moduleRef, injector, viewContainerRef);
   }
 }
