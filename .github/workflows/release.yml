@@ -90,7 +90,7 @@ jobs:
       - list_of_projects
     strategy:
       matrix:
-        package: ${{ fromJSON(needs.list_of_affected.outputs.matrix) }}
+        package: ${{ fromJSON(needs.list_of_projects.outputs.matrix) }}
     name: Testing
     runs-on: ubuntu-latest
     steps:
