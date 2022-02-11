@@ -1,14 +1,11 @@
 import {
-  Compiler,
   ComponentFactoryResolver,
   ComponentRef,
   Directive,
-  Injector,
   Input,
   NgModuleRef,
   NgZone,
   OnDestroy,
-  ViewContainerRef,
 } from '@angular/core';
 import {Observable, of, Subject} from 'rxjs';
 import {switchMap, takeUntil, tap} from 'rxjs/operators';
@@ -27,9 +24,6 @@ export class MicrozordNgModuleDirective implements OnDestroy {
 
   constructor(
     private ngZone: NgZone,
-    injector: Injector,
-    compiler: Compiler,
-    viewContainerRef: ViewContainerRef,
     private componentFactoryResolver: ComponentFactoryResolver,
     private mzNgCompiler: MicrozordNgCompilerService,
   ) {
