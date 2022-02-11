@@ -1,9 +1,9 @@
 {
   "version": 1,
+  "defaultProject": "demo",
   "cli": {
     "defaultCollection": "@nrwl/angular"
   },
-  "defaultProject": "demo",
   "schematics": {
     "@nrwl/angular": {
       "application": {
@@ -73,10 +73,11 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/angular"],
+          "outputs": ["coverage/angular"],
           "options": {
             "jestConfig": "libs/angular/jest.config.js",
-            "passWithNoTests": true
+            "passWithNoTests": true,
+            "coverageDirectory": "coverage/angular"
           }
         },
         "semrel": {
@@ -137,10 +138,11 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/core"],
+          "outputs": ["coverage/core"],
           "options": {
             "jestConfig": "libs/core/jest.config.js",
-            "passWithNoTests": true
+            "passWithNoTests": true,
+            "coverageDirectory": "coverage/core"
           }
         },
         "semrel": {
@@ -272,10 +274,11 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/demo"],
+          "outputs": ["coverage/demo"],
           "options": {
             "jestConfig": "apps/demo/jest.config.js",
-            "passWithNoTests": true
+            "passWithNoTests": true,
+            "coverageDirectory": "coverage/demo"
           }
         }
       }
@@ -366,10 +369,11 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/host"],
+          "outputs": ["coverage/host"],
           "options": {
             "jestConfig": "apps/host/jest.config.js",
-            "passWithNoTests": true
+            "passWithNoTests": true,
+            "coverageDirectory": "coverage/host"
           }
         },
         "serve-mfe": {
@@ -414,10 +418,11 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/react"],
+          "outputs": ["coverage/react"],
           "options": {
             "jestConfig": "libs/react/jest.config.js",
-            "passWithNoTests": true
+            "passWithNoTests": true,
+            "coverageDirectory": "coverage/react"
           }
         }
       }
@@ -510,10 +515,11 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/remote"],
+          "outputs": ["coverage/remote"],
           "options": {
             "jestConfig": "apps/remote/jest.config.js",
-            "passWithNoTests": true
+            "passWithNoTests": true,
+            "coverageDirectory": "coverage/remote"
           }
         }
       }
@@ -561,10 +567,11 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/svelte"],
+          "outputs": ["coverage/svelte"],
           "options": {
             "jestConfig": "libs/svelte/jest.config.js",
-            "passWithNoTests": true
+            "passWithNoTests": true,
+            "coverageDirectory": "coverage/svelte"
           }
         }
       }
@@ -588,10 +595,11 @@
         },
         "xtest": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/vue"],
+          "outputs": ["coverage/vue"],
           "options": {
             "jestConfig": "libs/vue/jest.config.js",
-            "passWithNoTests": true
+            "passWithNoTests": true,
+            "coverageDirectory": "coverage/vue"
           }
         }
       },
