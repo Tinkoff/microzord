@@ -1,9 +1,9 @@
 {
   "version": 1,
-  "defaultProject": "demo",
   "cli": {
     "defaultCollection": "@nrwl/angular"
   },
+  "defaultProject": "demo",
   "schematics": {
     "@nrwl/angular": {
       "application": {

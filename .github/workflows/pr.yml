@@ -108,7 +108,7 @@ jobs:
           PROJECTS: '${{ steps.set-project-matrix.outputs.projectMatrix }}'
         with:
           script: |
-            return process.env.PROJECTS.split(',').map(p => p.trim());
+            return process.env.PROJECTS.split(',').map(p => './coverage/' + p.trim() + '/lcov.info').join(',');
     outputs:
       matrix: ${{ steps.parsed-project-matrix.outputs.result }}
   test_coverage:
@@ -116,15 +116,10 @@ jobs:
       - test
     name: Test coverage
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        package: ${{ fromJSON(needs.test.outputs.matrix) }}
     steps:
       - name: Download coverage artifacts
         uses: actions/download-artifact@v2
       - uses: codecov/codecov-action@v2
         with:
-          directory: ./coverage/${{ matrix.package }}/
-          flags: summary,${{ matrix.package }}
-          name: ${{ matrix.package }}
+          files: ${{ needs.test.outputs.matrix }}
           token: ${{ secrets.CODECOV_TOKEN }}
