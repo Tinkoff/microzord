@@ -103,7 +103,6 @@ jobs:
         uses: actions/download-artifact@v2
       - uses: codecov/codecov-action@v2
         with:
-          files: needs.test.outputs.matrix }}
-          flags: summary,${{ matrix.package }}
+          files: ${{ needs.test.outputs.matrix }}
           name: ${{ matrix.package }}
           token: ${{ secrets.CODECOV_TOKEN }}
