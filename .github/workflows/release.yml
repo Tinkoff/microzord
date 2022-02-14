@@ -82,7 +82,7 @@ jobs:
           path: |
             coverage
 
-      - run: echo "::set-output name=projectMatrix::$(npx nx print-affected --target test --select tasks.target.project --base=remotes/origin/${{github.event.pull_request.base.ref}})"
+      - run: echo "::set-output name=projectMatrix::$(npx nx print-affected --target test --select tasks.target.project --all)"
         id: set-project-matrix
       - uses: actions/github-script@v5
         id: parsed-project-matrix
