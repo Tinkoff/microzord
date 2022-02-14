@@ -73,44 +73,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
       - run: npm run lint -- --base=remotes/origin/${{github.event.pull_request.base.ref}}
-        env:
-          CI: true
-  list_of_affected:
-    needs:
-      - install
-    name: 'Compute lis of affected libs'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2.3.4
-        with:
-          fetch-depth: 0
-      - name: Use Node.js 12.x
-        uses: actions/setup-node@v2.1.5
-        with:
-          node-version: 12.x
-      - uses: actions/cache@v2
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-      - run: echo "::set-output name=projectMatrix::$(npx nx print-affected --target test --select tasks.target.project --base=remotes/origin/${{github.event.pull_request.base.ref}})"
-        id: set-project-matrix
-      - uses: actions/github-script@v5
-        id: parsed-project-matrix
-        env:
-          PROJECTS: '${{ steps.set-project-matrix.outputs.projectMatrix }}'
-        with:
-          script: |
-            return process.env.PROJECTS.split(',').map(p => p.trim());
-    outputs:
-      matrix: ${{ steps.parsed-project-matrix.outputs.result }}
   test:
     needs:
-      - list_of_affected
-    strategy:
-      matrix:
-        package: ${{ fromJSON(needs.list_of_affected.outputs.matrix) }}
+      - install
     name: Testing
     runs-on: ubuntu-latest
     steps:
@@ -127,7 +92,36 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
-      - run: npx nx test ${{ matrix.package }} --coverage --coverageReporters lcov
+      - run: npm run test -- --base=remotes/origin/${{github.event.pull_request.base.ref}} --coverage --coverageReporters lcov
+      - name: Archive coverage artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: coverage
+          path: |
+            coverage
+
+      - run: echo "::set-output name=projectMatrix::$(npx nx print-affected --target test --select tasks.target.project --base=remotes/origin/${{github.event.pull_request.base.ref}})"
+        id: set-project-matrix
+      - uses: actions/github-script@v5
+        id: parsed-project-matrix
+        env:
+          PROJECTS: '${{ steps.set-project-matrix.outputs.projectMatrix }}'
+        with:
+          script: |
+            return process.env.PROJECTS.split(',').map(p => p.trim());
+    outputs:
+      matrix: ${{ steps.parsed-project-matrix.outputs.result }}
+  test_coverage:
+    needs:
+      - test
+    name: Test coverage
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        package: ${{ fromJSON(needs.test.outputs.matrix) }}
+    steps:
+      - name: Download coverage artifacts
+        uses: actions/download-artifact@v2
       - uses: codecov/codecov-action@v2
         with:
           directory: ./coverage/${{ matrix.package }}/
