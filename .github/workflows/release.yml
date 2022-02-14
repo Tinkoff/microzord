@@ -90,7 +90,7 @@ jobs:
           PROJECTS: '${{ steps.set-project-matrix.outputs.projectMatrix }}'
         with:
           script: |
-            return process.env.PROJECTS.split(',').map(p => './coverage/' + p.trim()).join(',');
+            return process.env.PROJECTS.split(',').map(p => './coverage/' + p.trim() + '/lcov.info').join(',');
     outputs:
       matrix: ${{ steps.parsed-project-matrix.outputs.result }}
   test_coverage:
