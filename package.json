@@ -11,7 +11,10 @@
     "routing",
     "microservices"
   ],
-  "authors": ["Igor Katsuba <katsuba.igor@gmail.ru>", "Roman Sedov <79601794011@ya.ru>"],
+  "authors": [
+    "Igor Katsuba <katsuba.igor@gmail.ru>",
+    "Roman Sedov <79601794011@ya.ru>"
+  ],
   "contributors": [
     "Igor Katsuba <katsuba.igor@gmail.ru>",
     "Roman Sedov <79601794011@ya.ru>"
@@ -95,6 +98,7 @@
     "@babel/preset-typescript": "7.9.0",
     "@commitlint/config-conventional": "^12.0.1",
     "@ng-builders/semrel": "1.5.0",
+    "@ngneat/spectator": "8.3.2",
     "@nrwl/cli": "12.9.0",
     "@nrwl/cypress": "12.9.0",
     "@nrwl/eslint-plugin-nx": "12.9.0",
@@ -179,7 +183,11 @@
     }
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx,html,md,less,scss,json}": ["npm run format:write"],
-    "*.{js,jsx,ts,tsx}": ["eslint --fix"]
+    "*.{js,jsx,ts,tsx,html,md,less,scss,json}": [
+      "npm run format:write"
+    ],
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix"
+    ]
   }
 }

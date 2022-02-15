@@ -1,5 +1,5 @@
 import {registerApp} from './register-app';
-import {ApplicationMock} from '../../__mocks_/application.mock';
+import {ApplicationMock} from '@microzord/core/testing';
 import {entityOptionsRegistry} from '../registry';
 
 describe('registerApp', () => {

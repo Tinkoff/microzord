@@ -19,6 +19,7 @@
       "@microzord/angular": ["libs/angular/src/index.ts"],
       "@microzord/angular/*": ["libs/angular/*"],
       "@microzord/core": ["libs/core/src/index.ts"],
+      "@microzord/core/testing": ["libs/core/testing/src/index.ts"],
       "@microzord/react": ["libs/react/src/index.ts"],
       "@microzord/svelte": ["libs/svelte/src/index.ts"],
       "@microzord/vue": ["libs/vue/src/index.ts"]

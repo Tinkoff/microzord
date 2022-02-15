@@ -1,4 +1,4 @@
-import {ApplicationMock} from '../../__mocks_/application.mock';
+import {ApplicationMock} from '@microzord/core/testing';
 import {registerApp} from './register-app';
 import {bootstrapApp} from './bootstrap-app';
 import {replaceApps} from './replace-apps';

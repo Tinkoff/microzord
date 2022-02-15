@@ -1,6 +1,6 @@
 import {loadApp} from './load-app';
 import {registerApp} from './register-app';
-import {ApplicationMock} from '../../__mocks_/application.mock';
+import {ApplicationMock} from '@microzord/core/testing';
 
 describe('loadApp', () => {
   beforeEach(async () => {

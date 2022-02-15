@@ -1,7 +1,15 @@
-import {Directive, ElementRef, Input, NgZone, OnDestroy, Output} from '@angular/core';
+import {
+  Directive,
+  ElementRef,
+  ErrorHandler,
+  Input,
+  NgZone,
+  OnDestroy,
+  Output,
+} from '@angular/core';
 import {Application, bootstrapApp, MicrozordLifecycleEvent} from '@microzord/core';
 import {Observable, of, Subject} from 'rxjs';
-import {filter, switchMap, takeUntil, tap} from 'rxjs/operators';
+import {catchError, filter, shareReplay, switchMap, takeUntil, tap} from 'rxjs/operators';
 import {complete} from '../operators/complete';
 
 @Directive({
@@ -17,16 +25,25 @@ export class MicrozordAppDirective implements OnDestroy {
   private destroy$ = new Subject<void>();
   private name$ = new Subject<string>();
 
-  constructor(private elementRef: ElementRef, private ngZone: NgZone) {
+  constructor(
+    private elementRef: ElementRef,
+    private ngZone: NgZone,
+    private errorHandler: ErrorHandler,
+  ) {
     this.application = this.name$.pipe(
       tap(() => NgZone.assertNotInAngularZone()),
       switchMap(name =>
         name
           ? bootstrapApp(name, this.elementRef.nativeElement).pipe(
               complete(app => app.destroy()),
+              catchError(error => {
+                this.errorHandler.handleError(error);
+                return of(null);
+              }),
             )
           : of(null),
       ),
+      shareReplay(1),
       takeUntil(this.destroy$),
     );
 
@@ -34,9 +51,14 @@ export class MicrozordAppDirective implements OnDestroy {
       filter((app => !!app) as (app: unknown) => app is Application),
       switchMap(
         app =>
-          new Observable<MicrozordLifecycleEvent>(subscriber =>
-            app.onHook(event => subscriber.next(event)),
-          ),
+          new Observable<MicrozordLifecycleEvent>(subscriber => {
+            const unsubscribe = app.onHook(event => subscriber.next(event));
+
+            return () => {
+              app.emitHook(MicrozordLifecycleEvent.destroyed());
+              unsubscribe();
+            };
+          }),
       ),
     );
 

@@ -4,7 +4,7 @@ import {AppRegistrationOptions} from '../models/registration-options';
 import {loadApp} from './load-app';
 import {bootstrapApp} from './bootstrap-app';
 import {entityOptionsRegistry, loadedEntityRegistry} from '../registry';
-import {ApplicationMock} from '../../__mocks_/application.mock';
+import {ApplicationMock} from '@microzord/core/testing';
 
 function clearRegistry() {
   loadedEntityRegistry.clear();

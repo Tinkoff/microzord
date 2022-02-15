@@ -1,4 +1,4 @@
-import {ApplicationMock} from '../../__mocks_/application.mock';
+import {ApplicationMock} from '@microzord/core/testing';
 import {loadEntity} from './load-entity';
 import {registerEntity} from './register-entity';
 import {getEntity} from './get-entity';
