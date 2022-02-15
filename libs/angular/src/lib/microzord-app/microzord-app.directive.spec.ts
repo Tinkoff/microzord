@@ -2,7 +2,7 @@ import {MicrozordAppDirective} from './microzord-app.directive';
 import {createDirectiveFactory, SpectatorDirective} from '@ngneat/spectator';
 import {first} from 'rxjs/operators';
 import {Application, MicrozordLifecycleEvent} from '@microzord/core';
-import {MicrozordHostModule} from '@microzord/angular';
+import {MicrozordHostModule} from '../microzord-host.module';
 import {ApplicationMock} from '@microzord/core/testing';
 
 describe('MicrozordAppDirective', () => {
@@ -51,5 +51,15 @@ describe('MicrozordAppDirective', () => {
     event.target = expect.any(Application);
 
     expect(await event$).toEqual(event);
+  });
+
+  it('should complete the subject when the directive is destroyed', async () => {
+    expect.assertions(1);
+
+    const app$ = spectator.directive.application.toPromise();
+
+    spectator.directive.ngOnDestroy();
+
+    expect(await app$).toEqual(expect.any(Application));
   });
 });

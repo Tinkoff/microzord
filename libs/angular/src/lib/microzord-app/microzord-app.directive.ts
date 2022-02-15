@@ -8,16 +8,8 @@ import {
   Output,
 } from '@angular/core';
 import {Application, bootstrapApp, MicrozordLifecycleEvent} from '@microzord/core';
-import {Observable, of, Subject} from 'rxjs';
-import {
-  catchError,
-  filter,
-  mergeMap,
-  shareReplay,
-  switchMap,
-  takeUntil,
-  tap,
-} from 'rxjs/operators';
+import {NEVER, Observable, of, Subject} from 'rxjs';
+import {catchError, filter, shareReplay, switchMap, takeUntil, tap} from 'rxjs/operators';
 import {complete} from '../operators/complete';
 
 @Directive({
@@ -56,12 +48,12 @@ export class MicrozordAppDirective implements OnDestroy {
     );
 
     this.hook = this.application.pipe(
-      filter((app => !!app) as (app: unknown) => app is Application),
-      switchMap(
-        app =>
-          new Observable<MicrozordLifecycleEvent>(subscriber =>
-            app.onHook(event => subscriber.next(event)),
-          ),
+      switchMap(app =>
+        app
+          ? new Observable<MicrozordLifecycleEvent>(subscriber =>
+              app.onHook(event => subscriber.next(event)),
+            )
+          : NEVER,
       ),
     );
 
