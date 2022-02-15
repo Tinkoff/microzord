@@ -1,12 +1,12 @@
 import {MicrozordAppDirective} from './microzord-app.directive';
 import {createDirectiveFactory, SpectatorDirective} from '@ngneat/spectator';
 import {first} from 'rxjs/operators';
-import {Application} from '@microzord/core';
+import {Application, MicrozordLifecycleEvent} from '@microzord/core';
 import {MicrozordHostModule} from '@microzord/angular';
 import {ApplicationMock} from '@microzord/core/testing';
 
 describe('MicrozordAppDirective', () => {
-  let spectator: SpectatorDirective<MicrozordAppDirective>;
+  let spectator: SpectatorDirective<MicrozordAppDirective, {name: string}>;
   const createDirective = createDirectiveFactory({
     directive: MicrozordAppDirective,
     imports: [
@@ -45,10 +45,11 @@ describe('MicrozordAppDirective', () => {
     expect.assertions(1);
 
     const event$ = spectator.directive.hook.pipe(first()).toPromise();
-
-    // @ts-ignore
     spectator.setHostInput('name', 'sss');
 
-    expect(await event$).toBeInstanceOf(Application);
+    const event = MicrozordLifecycleEvent.destroyed();
+    event.target = expect.any(Application);
+
+    expect(await event$).toEqual(event);
   });
 });

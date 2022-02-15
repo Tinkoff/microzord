@@ -53,6 +53,8 @@ export abstract class Application<T extends Record<string, any> = Record<string,
   }
 
   destroy() {
+    this.emitHook(MicrozordLifecycleEvent.destroyed());
+
     this.hook.clear(); // todo: в этот поток перед комплитом нужен евент дестроя
     this.message.clear();
     this.navigationEvent.clear();
