@@ -11,10 +11,7 @@
     "routing",
     "microservices"
   ],
-  "authors": [
-    "Igor Katsuba <katsuba.igor@gmail.ru>",
-    "Roman Sedov <79601794011@ya.ru>"
-  ],
+  "authors": ["Igor Katsuba <katsuba.igor@gmail.ru>", "Roman Sedov <79601794011@ya.ru>"],
   "contributors": [
     "Igor Katsuba <katsuba.igor@gmail.ru>",
     "Roman Sedov <79601794011@ya.ru>"
@@ -183,11 +180,7 @@
     }
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx,html,md,less,scss,json}": [
-      "npm run format:write"
-    ],
-    "*.{js,jsx,ts,tsx}": [
-      "eslint --fix"
-    ]
+    "*.{js,jsx,ts,tsx,html,md,less,scss,json}": ["npm run format:write"],
+    "*.{js,jsx,ts,tsx}": ["eslint --fix"]
   }
 }

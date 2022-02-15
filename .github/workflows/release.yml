@@ -91,17 +91,7 @@ jobs:
         with:
           script: |
             return process.env.PROJECTS.split(',').map(p => './coverage/' + p.trim() + '/lcov.info').join(',');
-    outputs:
-      matrix: ${{ steps.parsed-project-matrix.outputs.result }}
-  test_coverage:
-    needs:
-      - test
-    name: Test coverage
-    runs-on: ubuntu-latest
-    steps:
-      - name: Download coverage artifacts
-        uses: actions/download-artifact@v2
       - uses: codecov/codecov-action@v2
         with:
-          files: ${{ needs.test.outputs.matrix }}
+          files: ${{ steps.parsed-project-matrix.outputs.result }}
           token: ${{ secrets.CODECOV_TOKEN }}
