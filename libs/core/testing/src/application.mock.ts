@@ -1,5 +1,8 @@
-import {Application} from '../lib/models/application';
-import {MicrozordMessageEvent} from '../lib/models/events';
+import {
+  Application,
+  MicrozordLifecycleEvent,
+  MicrozordMessageEvent,
+} from '@microzord/core';
 
 export class ApplicationMock extends Application<any> {
   navigate(_url: string, _props?: unknown): Promise<void> {

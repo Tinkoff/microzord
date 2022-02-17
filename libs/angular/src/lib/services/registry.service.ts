@@ -1,20 +1,18 @@
 import {Injectable} from '@angular/core';
-import {AppRegistrationOptions} from '../tokens/microzord-apps';
-import {registerApp} from '@microzord/core';
+import {AppRegistrationOptions, registerEntity} from '@microzord/core';
+import {NgModuleRegistrationOptions} from '../types/ng-module';
 
 @Injectable({
   providedIn: 'root',
 })
 export class RegistryService {
-  registerApps(apps: AppRegistrationOptions[]) {
-    apps.map(app => this.register(app));
+  registerMany(
+    apps: ReadonlyArray<AppRegistrationOptions | NgModuleRegistrationOptions>,
+  ) {
+    apps.forEach(app => this.register(app));
   }
 
-  register({name, loadApp, props}: AppRegistrationOptions) {
-    registerApp({
-      name,
-      props,
-      loadApp,
-    });
+  register(options: AppRegistrationOptions | NgModuleRegistrationOptions) {
+    registerEntity(options);
   }
 }

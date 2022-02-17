@@ -6,4 +6,4 @@ if (environment.production) {
   enableProdMode();
 }
 
-new App('remote').bootstrap(document.body);
+// new App('remote').bootstrap(document.body);

@@ -183,14 +183,13 @@
       "prefix": "microzord",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@nrwl/angular:webpack-browser",
           "options": {
             "outputPath": "dist/apps/demo",
             "index": "apps/demo/src/index.html",
             "main": "apps/demo/src/main.ts",
             "polyfills": "apps/demo/src/polyfills.ts",
             "tsConfig": "apps/demo/tsconfig.app.json",
-            "baseHref": "/microzord/",
             "assets": [
               "apps/demo/src/favicon.ico",
               "apps/demo/src/assets",
@@ -211,7 +210,10 @@
             "buildOptimizer": false,
             "sourceMap": true,
             "optimization": false,
-            "namedChunks": true
+            "namedChunks": true,
+            "customWebpackConfig": {
+              "path": "apps/demo/webpack.config.js"
+            }
           },
           "configurations": {
             "production": {
@@ -221,6 +223,7 @@
                   "with": "apps/demo/src/environments/environment.prod.ts"
                 }
               ],
+              "baseHref": "/microzord/",
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
@@ -245,9 +248,10 @@
           "defaultConfiguration": ""
         },
         "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
+          "builder": "@nrwl/angular:webpack-server",
           "options": {
-            "browserTarget": "demo:build"
+            "browserTarget": "demo:build",
+            "port": 4202
           },
           "configurations": {
             "production": {

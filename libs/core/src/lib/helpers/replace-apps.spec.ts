@@ -1,4 +1,4 @@
-import {ApplicationMock} from '../../__mocks_/application.mock';
+import {ApplicationMock} from '@microzord/core/testing';
 import {registerApp} from './register-app';
 import {bootstrapApp} from './bootstrap-app';
 import {replaceApps} from './replace-apps';
@@ -7,14 +7,14 @@ describe('replaceApps', () => {
   beforeEach(async () => {
     registerApp({
       name: 'appMock1',
-      loadApp() {
+      load() {
         return ApplicationMock;
       },
     });
 
     registerApp({
       name: 'appMock2',
-      loadApp() {
+      load() {
         return ApplicationMock;
       },
     });

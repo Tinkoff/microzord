@@ -1,15 +1,13 @@
 import {Observable} from 'rxjs';
 import {ApplicationConstructor} from './application';
 
-export interface RegistrationOptions<
-  T extends Record<string, any> = Record<string, any>,
-> {
+export interface EntityRegistrationOptions<T> {
   name: string;
+  load: () => Observable<T> | PromiseLike<T> | T;
+}
+
+export interface AppRegistrationOptions<
+  T extends Record<string, any> = Record<string, any>,
+> extends EntityRegistrationOptions<ApplicationConstructor<T>> {
   props?: T;
-  loadApp: (
-    props: T,
-  ) =>
-    | Observable<ApplicationConstructor<T>>
-    | PromiseLike<ApplicationConstructor<T>>
-    | ApplicationConstructor<T>;
 }

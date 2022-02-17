@@ -1,5 +1,7 @@
 <h1>Host App</h1>
 
-<div microzord="remote"></div>
+<button (click)="click()">click</button>
 
+<ng-container [microzordNgModule]="moduleName$$ | async"></ng-container>
+<div #container></div>
 <router-outlet></router-outlet>

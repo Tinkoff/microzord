@@ -1,12 +1,12 @@
 import {registerApp} from './register-app';
-import {ApplicationMock} from '../../__mocks_/application.mock';
-import {appOptionsRegistry} from '../registry';
+import {ApplicationMock} from '@microzord/core/testing';
+import {entityOptionsRegistry} from '../registry';
 
 describe('registerApp', () => {
   beforeEach(async () => {
     registerApp({
       name: 'appMock',
-      loadApp() {
+      load() {
         return ApplicationMock;
       },
     });
@@ -15,9 +15,9 @@ describe('registerApp', () => {
   it('should register an app', async () => {
     expect.assertions(1);
 
-    expect(appOptionsRegistry.get('appMock')).toEqual({
+    expect(entityOptionsRegistry.get('appMock')).toEqual({
       name: 'appMock',
-      loadApp: expect.any(Function),
+      load: expect.any(Function),
     });
   });
 });

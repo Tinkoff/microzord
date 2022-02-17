@@ -47,7 +47,7 @@ export function createApp<P>(
   }
 
   document.dispatchEvent(
-    new CustomEvent('loadApp', {
+    new CustomEvent('microzord:load', {
       detail: {name, appConstructor: ReactApplication},
     }),
   );

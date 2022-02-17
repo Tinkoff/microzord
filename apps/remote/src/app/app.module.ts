@@ -1,8 +1,8 @@
-import {ApplicationRef, DoBootstrap, Inject, NgModule} from '@angular/core';
+import {NgModule, Type} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 
 import {AppComponent} from './app.component';
-import {RouterModule} from '@angular/router';
+import {MicrozordNgModule} from '@microzord/angular';
 
 @NgModule({
   declarations: [AppComponent],
@@ -11,14 +11,10 @@ import {RouterModule} from '@angular/router';
     // RouterModule.forRoot([], {initialNavigation: 'enabledBlocking'}),
   ],
   providers: [],
-  bootstrap: [AppComponent],
+  bootstrap: [],
 })
-export class AppModule implements DoBootstrap {
-  constructor(@Inject('some-token') some: boolean) {
-    console.log(some);
-  }
-
-  ngDoBootstrap(appRef: ApplicationRef): void {
-    console.log('bootstrap');
+export class AppModule implements MicrozordNgModule<AppComponent> {
+  getEntryPoint(): Type<AppComponent> {
+    return AppComponent;
   }
 }
